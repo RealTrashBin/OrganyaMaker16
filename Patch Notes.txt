@@ -14,4 +14,4 @@ Disabled MIDI and WAV Export for the time being, I fear it may cause an error wi
 
 		-Add a some Panning functions
 
-		-Set back the track going over the frequency limit
+		-Stop it from setting back other tracks because one went over the frequency limit
