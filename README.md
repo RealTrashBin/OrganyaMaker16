@@ -9,7 +9,7 @@ This original library was created by [Studio Pixel](http://studiopixel.sakura.ne
 
  WHY ARE YOU LOOKING AT THIS!?!?!?!?!?!
 
-#&#x1F34E; License
+# &#x1F34E; License
 BSD  
 
 
