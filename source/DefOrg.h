@@ -1,0 +1,32 @@
+
+#define MAXNOTELENGTH	260//How long a note can be.
+#define MAXMELODY		16//How many melody tracks there is.
+#define MAXDRAM			16//How many dram tracks there is.
+#define MAXTRACK		MAXMELODY + MAXDRAM //32
+
+#define KEYDUMMY		255//default allocated space for keys
+#define PANDUMMY		255//default allocated space for Panning
+#define VOLDUMMY		255//default allocated space for Volume
+
+#define SETALL		0xffffffff//flags.
+#define SETWAIT		0x00000001
+#define SETGRID		0x00000002
+#define SETALLOC	0x00000004
+#define SETREPEAT	0x00000008
+#define SETFREQ		0x00000010
+#define SETWAVE		0x00000020
+#define SETPIPI		0x00000040
+
+
+#define ALLOCNOTE	4096 //Memory Allocation for Notes.
+#define MODEPARADD	0 //Adds onto an extending note?
+#define MODEPARSUB	1 //Subtracts from an extending note?
+//PAR is fore notes I think.
+#define MODEMULTIPLY 10 //Something for Rxo's features.
+#define MODEDECAY   64  //Something for Rxo's features.
+
+
+#define NUMDRAMITEM	43	// 43 wav files so 43 Drams
+
+#define MAXHORZMEAS	999 // How many beats there are(GOD DAMN WHY IS IT SET TO 999!?)
+
