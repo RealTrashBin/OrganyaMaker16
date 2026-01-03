@@ -1,18 +1,18 @@
-Changed the soundbank extension(.wdb) to .sb so people can actually understand it. (Srsly I thought it was a Microsoft Works file!)
-Extended the frequency limit from 100-1900 to 0-65535(65535 is the max.)
+Extended the frequency limit from 100-1900 to 0-30000
 Added a new file! (.org16 for use with the 16 tracks in OrgMaker 16, note: it'll be a normal ORG file if none of the new tracks are used.)
 Made the drams appear in ResourceHacker again.
-Made the error messages appear in normal textboxes again.
+Made some error messages appear in normal textboxes again.
 
-Disabled MIDI and WAV Export for the time being, I fear it may cause an error with the 16 tracks later on.
+Disabled MIDI Export, it just crashes OrgMaker because MIDI supports ONLY 16 channels and not 32.
 
 	Goals:
 
-		-Create 8 more usable melody/dram tracks
-
-		-Finish volume functions
+		-Finish the volume functions
 
 		-Add a some Panning functions
 
-		-Stop it from setting back other tracks because one went over the frequency limit
+		-Fix clicking drums disables channels bug(Click Q and then 1, you'll get what I mean.)
+
+		-Finish functions regarding to Channels 9-32(Mem. usage, copying, etc.)
+
 
