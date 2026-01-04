@@ -5,7 +5,7 @@
 This does not use a MIDI device.  
 This original library was created by [Studio Pixel](http://studiopixel.sakura.ne.jp/) in 1999, and was used in [Cave Story](https://www.cavestory.org/).
 
-<img src='/null.png' width=60% height=60%>
+<img src='/preimg.png' width=60% height=60%>
 
  WHY ARE YOU LOOKING AT THIS!?!?!?!?!?!
 
