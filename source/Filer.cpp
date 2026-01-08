@@ -45,7 +45,7 @@ char GetFileNameSave(HWND hwnd,char *title)
 	ofn.hInstance   = hInst;
 
 	org_data.TrackFlag();
-	if (org_data.TrackFlag() == false)
+	if (!org_data.TrackFlag())
 	{
 		ofn.lpstrFilter = "OrganyaData[*.org]\0*.org\0\0";
 		ofn.lpstrDefExt = "org";
@@ -63,12 +63,6 @@ char GetFileNameSave(HWND hwnd,char *title)
 	//ファイル名取得を試みる。
 	if(GetSaveFileName(&ofn));//InvalidateRect(hwnd,NULL,TRUE);
 	else return MSGCANCEL;//キャンセルで0が返る
-	//fp = fopen(music_file,"rb");
-	//既存ファイルが存在する？ OFN_OVERWRITEPROMPT 指定で不要とした。
-	//if(fp != NULL){
-	//	fclose(fp);
-	//	return MSGEXISFILE;//既存ファイル
-	//}
 	return MSGSAVEOK;
 }
 // グラフィックス描画 
@@ -224,45 +218,6 @@ char GetFileNameMIDI(HWND hwnd,char *title, char *filename)
 }
 
 //フックプロシージャ
-/*UINT CALLBACK OFNHookProc(HWND hdlg, UINT msg, WPARAM wParam,LPARAM lParam)
-{
-	RECT  rcWindow;
-	LPOFNOTIFY lpOfn = (LPOFNOTIFY)lParam;
-
-    switch(msg){
-        case WM_INITDIALOG:
-            return TRUE;
-			break;
-		case WM_NOTIFY:
-			if(lpOfn->hdr.code == CDN_INITDONE ){
-			}
-			if(lpOfn->hdr.code == CDN_FILEOK ){
-			}
-				if(count_of_INIT_DONE>=0)count_of_INIT_DONE++;
-				if(count_of_INIT_DONE>=3){
-					ShowWindow(GetParent(hdlg),SW_SHOW);
-					GetWindowRect( GetParent(hdlg), &rcWindow );
-					SetWindowPos( GetParent(hdlg), HWND_TOP, CmnDialogWnd.left, CmnDialogWnd.top,
-						CmnDialogWnd.right,CmnDialogWnd.bottom, SWP_NOZORDER ); 
-					count_of_INIT_DONE = -9999999;
-				}
-			//MessageBox(NULL,"初期化しました","Message",MB_OK);
-			return TRUE;
-        case WM_COMMAND:
-            switch(LOWORD(wParam)){
-                case IDC_BUTTON1:
-					GetWindowRect( GetParent(hdlg), &rcWindow );
-					CmnDialogWnd.top = rcWindow.top;
-					CmnDialogWnd.left = rcWindow.left;
-					CmnDialogWnd.right = rcWindow.right;
-					CmnDialogWnd.bottom = rcWindow.bottom;
-                  return TRUE;
-            }
-            break;
-
-    }
-    return FALSE;
-}*/
 
 char GetFileNameLoad(HWND hwnd,char *title)
 {//ファイル名を取得(ロード)

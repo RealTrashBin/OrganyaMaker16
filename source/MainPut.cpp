@@ -17,12 +17,6 @@ extern int sSmoothScroll;
 
 
 RECT note_rect[] = {
-	/*
-	{  0,  0, 16,  6},//Unused Yellow Note
-	{  0,  6, 16, 12},//Unused Blue Note
-	{ 16,  0, 32,  4},//Unused Yellow Note Tail
-	{ 16,  4, 32,  8},//振nused Blue Note Tail
-	*/
 	{ 0, 0, 16, 5},//Volume/Panning symbol
 	{  0, 6, 15, 16},//Repeat symbol 1
 	{ 16, 6, 31, 16},//Repeat symbol 2
@@ -90,7 +84,7 @@ RECT note_tail_rect[]={ //しっぽ
 	{163, 128, 179, 131}, //Midnight Note Tail(Bi_N)
 	
 };
-RECT msc_rect[] = { //BMP MUSIC(Rect for piano keyboard)
+RECT msc_rect[] = { //BMP MUSIC(Rect for keys on piano)
 	{  0,  0, 64,144+16},//鍵盤
 	{ 64,  0, 80,144+16},//小節ライン
 	{ 80,  0, 96,144+16},//一拍ライン
@@ -138,7 +132,7 @@ RECT rc_CurrentSelect = {0, 109, 63, 125}; //2014.04.30
 RECT rc_ActivePAN = {0, 125, 63, 196}; //2014.05.01 A
 RECT rc_ActiveVOL = {64, 125, 127, 196}; //2014.05.01 A
 
-RECT rc_TCPY[]={
+RECT rc_TCPY[]={ //if TPCY == 1 these rects are used.
 	{0,19,15,24}, //Gray Note
 	{0,35,15,40}, //Gray Note(Black Key)
 	{0,27,16,30}, //Gray Note Tail(White Key)
@@ -335,7 +329,7 @@ void OrgData::PutNotes(int TPCY, bool vol)
 						if (TPCY == 0) PutBitmap2(xpos + j * NoteWidth + NoteWidth, ypos + 3 + addY, &note_tail_rect[k + 8], BMPNOTE);
 						else PutBitmap2(xpos + j * NoteWidth + NoteWidth, ypos + 3 + addY, &rc_TCPY[2 + t], BMPNOTE);
 					}
-					if (TPCY == 0) PutBitmapHead(xpos, ypos + 2 + addY, &note_blue_rect[k], BMPNOTE, p->length);//音符(新)
+					if (TPCY == 0) PutBitmapHead(xpos, ypos + 2 + addY, &note_blue_rect[k], BMPNOTE, p->length);
 					else PutBitmapHead(xpos, ypos + 2 + addY, &rc_TCPY[t], BMPNOTE, p->length);//音符(新)
 				}
 				p = p->to;
@@ -363,7 +357,7 @@ void OrgData::PutNotes(int TPCY, bool vol)
 					for(j = 0,i = p->length-1; i > 0; i--,j++){
 						PutBitmap2(xpos+j*NoteWidth+NoteWidth,ypos+3,&note_tail_rect[track],BMPNOTE);
 					}
-					PutBitmapHead(xpos,ypos+2,&note_blue_rect[track+MAXTRACK],BMPNOTE,p->length);//音符(新)
+					PutBitmapHead(xpos,ypos+2,&note_blue_rect[track+MAXTRACK],BMPNOTE,p->length);
 				}
 				if (vol) {
 					if (p->pan != PANDUMMY) {
@@ -426,7 +420,7 @@ void OrgData::PutNotes2(int TPCY, bool vol)
 						if (TPCY == 0) PutBitmap2(xpos + j * NoteWidth + NoteWidth, ypos + 3 + addY, &note_tail_rect[k], BMPNOTE);
 						else PutBitmap2(xpos + j * NoteWidth + NoteWidth, ypos + 3 + addY, &rc_TCPY[2 + t], BMPNOTE);
 					}
-					if (TPCY == 0) PutBitmapHead(xpos, ypos + 2 + addY, &note_blue_rect[k], BMPNOTE, p->length);//音符
+					if (TPCY == 0) PutBitmapHead(xpos, ypos + 2 + addY, &note_blue_rect[k], BMPNOTE, p->length);
 					else PutBitmapHead(xpos, ypos + 2 + addY, &rc_TCPY[0 + t], BMPNOTE, p->length);//音符
 				}
 				p = p->to;
@@ -459,7 +453,7 @@ void OrgData::PutNotes2(int TPCY, bool vol)
 					for(j = 0,i = p->length-1; i > 0; i--,j++){//尻尾
 						PutBitmap2(xpos+j*NoteWidth+NoteWidth,ypos+3,&note_tail_rect[track-8],BMPNOTE);
 					}
-					PutBitmapHead(xpos,ypos+2,&note_blue_rect[track+MAXTRACK],BMPNOTE,p->length);//音符	// 2014.05.27 A
+					PutBitmapHead(xpos,ypos+2,&note_blue_rect[track+MAXTRACK],BMPNOTE,p->length);
 				}
 				if (vol) {
 					if (p->pan != PANDUMMY) {

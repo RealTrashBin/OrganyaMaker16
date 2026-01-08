@@ -59,6 +59,7 @@ BOOL CALLBACK DialogTheme(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam
 BOOL CALLBACK DialogWavExport(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogWaveDB(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogDecayLength(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
+BOOL CALLBACK DialogSettings(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 void SetModified(bool mod);
 void CheckLoupeMenu(void);
@@ -359,7 +360,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR dropfile
 	ul = WS_CAPTION|WS_MINIMIZEBOX|WS_SYSMENU|WS_THICKFRAME|WS_MAXIMIZEBOX;
 
 	//Generate main window
-	hWnd = CreateWindow(lpszName,
+	hWnd = CreateWindowA(lpszName,
 			"OrgMaker 16",//Displayed "Name"
 			ul,
 			//WS_CAPTION|WS_MINIMIZEBOX|WS_SYSMENU|WS_THICKFRAME|WS_MAXIMIZEBOX,
@@ -370,7 +371,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR dropfile
             wnd_width,//width
             wnd_height,//height
 			*/
-			WinRect.left, WinRect.top, WinRect.right, WinRect.bottom,
+			GetSystemMetrics(SM_CYFULLSCREEN) / 2, GetSystemMetrics(SM_CXFULLSCREEN) / 8, WinRect.right, WinRect.bottom,
             NULL, NULL, hInst, NULL);
 	if(!hWnd) return FALSE;
 
@@ -537,32 +538,10 @@ int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR dropfile
 
 	while (TRUE) {
 		org_data.PutMusic();
-		if (!RefleshScreen(hWnd)) {
+		if (!RefleshScreen(hWnd)) { //Error
 			break;
 		}
 	}
-
-	//Generate message loop (main loop)
-	/*while(GetMessage(&msg,NULL,0,0)){
-//		if(!TranslateAccelerator(hwnd,hAccel,&msg)){
-		//Unless the message is for a dialog
-		if(!TranslateAccelerator(hWnd,Ac,&msg))
-        {
-			if(!IsDialogMessage(hDlgPlayer,&msg)){
-				if(!IsDialogMessage(hDlgTrack,&msg)){
-					if(!IsDialogMessage(hDlgEZCopy,&msg)){
-						if(!IsDialogMessage(hDlgHelp,&msg)){
-							TranslateMessage(&msg);//keyboard available
-							DispatchMessage(&msg);//Return control to Windows
-						}
-					}				
-				}
-			}
-				//TranslateMessage(&msg);
-				//DispatchMessage(&msg);
-        }
-	}*/
-	//MessageBox(NULL, "message loop exited", "OK", MB_OK);
 
 	DestroyAcceleratorTable(Ac);
 	return 0; //application ends here
@@ -621,9 +600,13 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 				//SendDlgItemMessage(hDlgTrack , IDC_TRACK0 , BM_CLICK , 0, 0);
 			}
 		}
-		for(i=0;i<MAXTRACK;i++)if(LOWORD(wParam) == iMuteKey[i]){MuteTrack(i);
-		//return FALSE;
-		}
+		/* //Disabling this makes it so it doesn't swap and mute.
+		for(i=0;i<MAXTRACK;i++)
+			if(LOWORD(wParam) == iMuteKey[i])
+			{
+				MuteTrack(i);
+			}
+		*/
 		if(LOWORD(wParam)==IDM_EZCOPYVISIBLE || LOWORD(wParam)==ID_AC_SHOWEZCOPY){
 			if(EZCopyWindowState==0){
 				EZCopyWindowState=1;
@@ -645,7 +628,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 				if (timer_sw != 0) // Stop playing song
 					SendMessage(hDlgPlayer, WM_COMMAND, IDC_STOP, NULL);
 
-				ClearUndo(); // 2023.06.10 Someone forgot to put this here
+				ClearUndo(); // 2023.06.10 Someone forgot to put this here //Totally a fault of urs 2026.1.4
 				org_data.InitOrgData();
 				org_data.LoadMusicData();
 				SetModified(false);//title name set
@@ -732,6 +715,9 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 			case IDM_DLGWAVEDBS:
 				DialogBox(hInst, "DLGWAVEDBS", hwnd, DialogWaveDB);
 				break;
+			case IDM_DLGSETTINGS:
+				DialogBox(hInst, "DLGSETTINGS", hwnd, DialogSettings);
+				break;
 			case IDM_DLGHELP://
 			case ID_AC_HELP:
 				//LoadFromResource(IDR_HELPHTML);
@@ -748,16 +734,6 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 			case IDM_SAVENEW://Save As
 			case ID_AC_MENUNEWSAVE:
 				OpenDoSave(hwnd, true);
-				/*res = GetFileNameSave(hwnd,MessageString[IDS_STRING62]); //"Save As"
-				if(res == MSGCANCEL)break;
-				if(res == MSGEXISFILE){
-					//if(MessageBox(hwnd,"Do you want to overwrite?","There is a file with the same name",MB_YESNO | MB_ICONEXCLAMATION)	// 2014.10.19 D
-					if(msgbox(hwnd,IDS_NOTIFY_OVERWRITE,IDS_INFO_SAME_FILE,MB_YESNO | MB_ICONEXCLAMATION)	// 2014.10.19 A
-						==IDNO)break;
-				}
-				org_data.SaveMusicData();
-				SetModified(false);//title name set
-                gFileUnsaved = false;*/
 				break;
 			case IDM_EXPORT_MIDI: //Export 2014.05.11
 			case ID_AC_MIDI:
@@ -899,7 +875,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 			case IDM_CT_L18:
 			case IDM_CT_L19:
 				SetUndo();
-				VolumeDecayEdit(1, -4, LOWORD(wParam) - IDM_CT_L1 + 1); //If the first argument is 0, it will be returned empty, so
+				VolumeDecayEdit(1, -4, LOWORD(wParam) - IDM_CT_L1 + 1); //Existing notes only. (case - 40192)
 				break;
 			case IDM_CT_S0: 
 			case IDM_CT_S1: 

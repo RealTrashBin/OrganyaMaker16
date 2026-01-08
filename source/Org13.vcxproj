@@ -185,6 +185,13 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="Bitmap\button_track_1.bmp" />
+    <Image Include="Bitmap\button_track_10.bmp" />
+    <Image Include="Bitmap\button_track_11.bmp" />
+    <Image Include="Bitmap\button_track_12.bmp" />
+    <Image Include="Bitmap\button_track_13.bmp" />
+    <Image Include="Bitmap\button_track_14.bmp" />
+    <Image Include="Bitmap\button_track_15.bmp" />
+    <Image Include="Bitmap\button_track_16.bmp" />
     <Image Include="Bitmap\button_track_2.bmp" />
     <Image Include="Bitmap\button_track_3.bmp" />
     <Image Include="Bitmap\button_track_4.bmp" />
@@ -231,15 +238,19 @@
     <CustomBuild Include="Wave\Wave.dat" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Metro\Metro01.wav">
-      <FileType>Document</FileType>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
-    </Media>
-    <Media Include="Metro\Metro02.wav">
-      <FileType>Document</FileType>
-      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
-    </Media>
+    <Media Include="Wave\Bass09.wav" />
+    <Media Include="Wave\Bass10.wav" />
+    <Media Include="Wave\Bass11.wav" />
+    <Media Include="Wave\Clap02.wav" />
+    <Media Include="Wave\Crash03.wav" />
+    <Media Include="Wave\HiClose06.wav" />
+    <Media Include="Wave\HiClose07.wav" />
+    <Media Include="Wave\HiClose08.wav" />
+    <Media Include="Wave\HiOpen05.wav" />
     <Media Include="Wave\Per03.wav" />
+    <Media Include="Wave\Snare09.wav" />
+    <Media Include="Wave\Snare10.wav" />
+    <Media Include="Wave\Tom06.wav" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="help.txt" />

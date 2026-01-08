@@ -89,34 +89,6 @@ BEGIN
     LTEXT           "Beat",IDC_STATIC,23,205,15,8
     EDITTEXT        IDD_GRIDEDIT2,39,202,15,13,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
     LTEXT           "Step",IDC_STATIC,56,205,15,8
-    /* I'm not setting this up. ~Bi_N
-    GROUPBOX        "Freq. (1000)",IDC_STATIC,76,53,49,142
-    LTEXT           "1",IDC_STATIC,81,66,8,8
-    EDITTEXT        IDD_SETFREQ0,91,63,28,12,ES_RIGHT | ES_NUMBER
-    LTEXT           "2",IDC_STATIC,81,82,8,8
-    EDITTEXT        IDD_SETFREQ1,91,79,28,12,ES_RIGHT | ES_NUMBER
-    LTEXT           "3",IDC_STATIC,81,98,8,8
-    EDITTEXT        IDD_SETFREQ2,91,95,28,12,ES_RIGHT | ES_NUMBER
-    LTEXT           "4",IDC_STATIC,81,114,8,8
-    EDITTEXT        IDD_SETFREQ3,91,111,28,12,ES_RIGHT | ES_NUMBER
-    LTEXT           "5",IDC_STATIC,81,133,8,8
-    EDITTEXT        IDD_SETFREQ4,91,130,28,12,ES_RIGHT | ES_NUMBER
-    LTEXT           "6",IDC_STATIC,81,149,8,8
-    EDITTEXT        IDD_SETFREQ5,91,146,28,12,ES_RIGHT | ES_NUMBER
-    LTEXT           "7",IDC_STATIC,81,165,8,8
-    EDITTEXT        IDD_SETFREQ6,91,162,28,12,ES_RIGHT | ES_NUMBER
-    LTEXT           "8",IDC_STATIC,81,181,8,8
-    EDITTEXT        IDD_SETFREQ7,91,178,28,12,ES_RIGHT | ES_NUMBER
-    GROUPBOX        "Pi",IDC_STATIC,128,53,16,142
-    CONTROL         "",IDC_CHECK_PIPI0,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,65,8,8
-    CONTROL         "",IDC_CHECK_PIPI1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,81,8,8
-    CONTROL         "",IDC_CHECK_PIPI2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,97,8,8
-    CONTROL         "",IDC_CHECK_PIPI3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,113,8,8
-    CONTROL         "",IDC_CHECK_PIPI4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,132,8,8
-    CONTROL         "",IDC_CHECK_PIPI5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,148,8,8
-    CONTROL         "",IDC_CHECK_PIPI6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,164,8,8
-    CONTROL         "",IDC_CHECK_PIPI7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,132,180,8,8
-    */
     DEFPUSHBUTTON   "OK",IDOK,76,201,39,18
     PUSHBUTTON      "Cancel",IDCANCEL,117,201,29,18
     LTEXT           "''<'' BPM to wait ''>'' Wait to BPM.\nBPM is an extra function for conversion.",IDC_STATIC,13,27,122,17
@@ -170,14 +142,14 @@ BEGIN
     PUSHBUTTON      "U", IDC_TRACKDxU, 70, 35, 8, 14, BS_BITMAP
     PUSHBUTTON      "I", IDC_TRACKDxI, 78, 35, 8, 14, BS_BITMAP
 
-        PUSHBUTTON      "A", IDC_TRACKDxA, 91, 35, 8, 14, BS_BITMAP
-        PUSHBUTTON      "S", IDC_TRACKDxS, 99, 35, 8, 14, BS_BITMAP
-        PUSHBUTTON      "D", IDC_TRACKDxD, 107, 35, 8, 14, BS_BITMAP
-        PUSHBUTTON      "F", IDC_TRACKDxF, 115, 35, 8, 14, BS_BITMAP
-        PUSHBUTTON      "G", IDC_TRACKDxG, 125, 35, 8, 14, BS_BITMAP
-        PUSHBUTTON      "H", IDC_TRACKDxH, 133, 35, 8, 14, BS_BITMAP
-        PUSHBUTTON      "J", IDC_TRACKDxJ, 141, 35, 8, 14, BS_BITMAP
-        PUSHBUTTON      "K", IDC_TRACKDxK, 149, 35, 8, 14, BS_BITMAP
+    PUSHBUTTON      "A", IDC_TRACKDxA, 91, 35, 8, 14, BS_BITMAP
+    PUSHBUTTON      "S", IDC_TRACKDxS, 99, 35, 8, 14, BS_BITMAP
+    PUSHBUTTON      "D", IDC_TRACKDxD, 107, 35, 8, 14, BS_BITMAP
+    PUSHBUTTON      "F", IDC_TRACKDxF, 115, 35, 8, 14, BS_BITMAP
+    PUSHBUTTON      "G", IDC_TRACKDxG, 125, 35, 8, 14, BS_BITMAP
+    PUSHBUTTON      "H", IDC_TRACKDxH, 133, 35, 8, 14, BS_BITMAP
+    PUSHBUTTON      "J", IDC_TRACKDxJ, 141, 35, 8, 14, BS_BITMAP
+    PUSHBUTTON      "K", IDC_TRACKDxK, 149, 35, 8, 14, BS_BITMAP
 
     CONTROL         "",IDC_MUTE0,"Button",BS_AUTOCHECKBOX,20,15,8,8
     CONTROL         "",IDC_MUTE1,"Button",BS_AUTOCHECKBOX,28,15,8,8
@@ -213,6 +185,7 @@ BEGIN
     CONTROL         "", IDC_MUTE31, "Button", BS_AUTOCHECKBOX, 149, 48, 8, 8
     LTEXT           "Mute",IDC_STATIC,2,24,16,8
     LTEXT           "Edit",IDC_STATIC,2,5,12,8
+    LTEXT           "Dram", IDC_STATIC, 2, 39, 15, 8
     PUSHBUTTON      "",IDC_BTN_MELO,20,23,66,6,0,WS_EX_STATICEDGE
     PUSHBUTTON      "",IDC_BTN_MELO2,91,23,66,6,0,WS_EX_STATICEDGE
     PUSHBUTTON      "", IDC_BTN_DRAM, 20, 56, 66, 6, 0, WS_EX_STATICEDGE
@@ -428,7 +401,7 @@ PUSHBUTTON      "Cancel", IDCANCEL, 44, 64, 32, 14
 LTEXT           "Track", IDC_STATIC, 8, 4, 16, 8
 LTEXT           "From", Meas, 36, 4, 16, 8
 LTEXT           "To", IDC_STATIC, 64, 4, 8, 8
-LTEXT           "~", IDC_STATIC, 56, 16, 8, 12
+LTEXT           "~", IDC_STATIC, 56, 16, 4, 12
 LTEXT           ":", IDC_STATIC, 24, 16, 8, 12
 LTEXT           "Value", IDC_STATIC, 8, 33, 8, 8
 GROUPBOX        "Direction", IDC_STATIC, 24, 32, 56, 28
@@ -456,12 +429,12 @@ LTEXT           "Value", IDC_STATIC, 8, 34, 8, 8
 GROUPBOX        "Direction", IDC_STATIC, 24, 32, 56, 28
 END
 
-DLGUSED DIALOG 0, 0, 175, 180
+DLGUSED DIALOG 0, 0, 175, 250
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION
 CAPTION "Memory Usage"
 FONT 9, "MS PGothic"
 BEGIN
-DEFPUSHBUTTON   "OK", IDOK, 60, 140, 56, 14
+DEFPUSHBUTTON   "OK", IDOK, 60, 230, 56, 14
 EDITTEXT        IDE_USE0, 20, 16, 28, 12, ES_READONLY | ES_NUMBER
 EDITTEXT        IDE_USE1, 20, 28, 28, 12, ES_READONLY | ES_NUMBER
 EDITTEXT        IDE_USE2, 20, 40, 28, 12, ES_READONLY | ES_NUMBER
@@ -478,15 +451,23 @@ EDITTEXT        IDE_USE12, 104, 64, 28, 12, ES_READONLY | ES_NUMBER
 EDITTEXT        IDE_USE13, 104, 76, 28, 12, ES_READONLY | ES_NUMBER
 EDITTEXT        IDE_USE14, 104, 88, 28, 12, ES_READONLY | ES_NUMBER
 EDITTEXT        IDE_USE15, 104, 100, 28, 12, ES_READONLY | ES_NUMBER
-EDITTEXT        IDE_LEFT8, 136, 16, 28, 12, ES_READONLY | ES_NUMBER
-EDITTEXT        IDE_LEFT9, 136, 28, 28, 12, ES_READONLY | ES_NUMBER
-EDITTEXT        IDE_LEFT10, 136, 40, 28, 12, ES_READONLY | ES_NUMBER
-EDITTEXT        IDE_LEFT11, 136, 52, 28, 12, ES_READONLY | ES_NUMBER
-EDITTEXT        IDE_LEFT12, 136, 64, 28, 12, ES_READONLY | ES_NUMBER
-EDITTEXT        IDE_LEFT13, 136, 76, 28, 12, ES_READONLY | ES_NUMBER
-EDITTEXT        IDE_LEFT14, 136, 88, 28, 12, ES_READONLY | ES_NUMBER
-EDITTEXT        IDE_LEFT15, 136, 100, 28, 12, ES_READONLY | ES_NUMBER
-LTEXT           "1", IDC_STATIC, 8, 18, 8, 8
+EDITTEXT        IDE_USEDxQ, 20, 124, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxW, 20, 136, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxE, 20, 148, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxR, 20, 160, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxT, 20, 172, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxY, 20, 184, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxU, 20, 196, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxI, 20, 208, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxA, 104, 124, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxS, 104, 136, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxD, 104, 148, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxF, 104, 160, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxG, 104, 172, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxH, 104, 184, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxJ, 104, 196, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_USEDxK, 104, 208, 28, 12, ES_READONLY | ES_NUMBER
+LTEXT           "1", IDC_STATIC, 8, 18, 8, 8 // y+12
 LTEXT           "2", IDC_STATIC, 8, 30, 8, 8
 LTEXT           "3", IDC_STATIC, 8, 42, 8, 8
 LTEXT           "4", IDC_STATIC, 8, 54, 8, 8
@@ -494,14 +475,30 @@ LTEXT           "5", IDC_STATIC, 8, 66, 8, 8
 LTEXT           "6", IDC_STATIC, 8, 78, 8, 8
 LTEXT           "7", IDC_STATIC, 8, 90, 8, 8
 LTEXT           "8", IDC_STATIC, 8, 102, 8, 8
-LTEXT           "Q", IDC_STATIC, 92, 18, 8, 8
-LTEXT           "W", IDC_STATIC, 92, 30, 8, 8
-LTEXT           "E", IDC_STATIC, 92, 42, 8, 8
-LTEXT           "R", IDC_STATIC, 92, 54, 8, 8
-LTEXT           "T", IDC_STATIC, 92, 66, 8, 8
-LTEXT           "Y", IDC_STATIC, 92, 78, 8, 8
-LTEXT           "U", IDC_STATIC, 92, 90, 8, 8
-LTEXT           "I", IDC_STATIC, 92, 102, 8, 8
+LTEXT           "9", IDC_STATIC, 92, 18, 8, 8
+LTEXT           "10", IDC_STATIC, 92, 30, 8, 8
+LTEXT           "11", IDC_STATIC, 92, 42, 8, 8
+LTEXT           "12", IDC_STATIC, 92, 54, 8, 8
+LTEXT           "13", IDC_STATIC, 92, 66, 8, 8
+LTEXT           "14", IDC_STATIC, 92, 78, 8, 8
+LTEXT           "15", IDC_STATIC, 92, 90, 8, 8
+LTEXT           "16", IDC_STATIC, 92, 102, 8, 8
+LTEXT           "Q", IDC_STATIC, 8, 126, 8, 8
+LTEXT           "W", IDC_STATIC, 8, 138, 8, 8
+LTEXT           "E", IDC_STATIC, 8, 150, 8, 8
+LTEXT           "R", IDC_STATIC, 8, 162, 8, 8
+LTEXT           "T", IDC_STATIC, 8, 174, 8, 8
+LTEXT           "Y", IDC_STATIC, 8, 186, 8, 8
+LTEXT           "U", IDC_STATIC, 8, 198, 8, 8
+LTEXT           "I", IDC_STATIC, 8, 210, 8, 8
+LTEXT           "A", IDC_STATIC, 92, 126, 8, 8
+LTEXT           "S", IDC_STATIC, 92, 138, 8, 8
+LTEXT           "D", IDC_STATIC, 92, 150, 8, 8
+LTEXT           "F", IDC_STATIC, 92, 162, 8, 8
+LTEXT           "G", IDC_STATIC, 92, 174, 8, 8
+LTEXT           "H", IDC_STATIC, 92, 186, 8, 8
+LTEXT           "J", IDC_STATIC, 92, 198, 8, 8
+LTEXT           "K", IDC_STATIC, 92, 210, 8, 8
 LTEXT           "Used", IDC_STATIC, 20, 4, 24, 8
 LTEXT           "Free", IDC_STATIC, 52, 4, 16, 8
 EDITTEXT        IDE_LEFT0, 52, 16, 28, 12, ES_READONLY | ES_NUMBER
@@ -512,6 +509,30 @@ EDITTEXT        IDE_LEFT4, 52, 64, 28, 12, ES_READONLY | ES_NUMBER
 EDITTEXT        IDE_LEFT5, 52, 76, 28, 12, ES_READONLY | ES_NUMBER
 EDITTEXT        IDE_LEFT6, 52, 88, 28, 12, ES_READONLY | ES_NUMBER
 EDITTEXT        IDE_LEFT7, 52, 100, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFT8, 136, 16, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFT9, 136, 28, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFT10, 136, 40, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFT11, 136, 52, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFT12, 136, 64, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFT13, 136, 76, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFT14, 136, 88, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFT15, 136, 100, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxQ, 52, 124, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxW, 52, 136, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxE, 52, 148, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxR, 52, 160, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxT, 52, 172, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxY, 52, 184, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxU, 52, 196, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxI, 52, 208, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxA, 136, 124, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxS, 136, 136, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxD, 136, 148, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxF, 136, 160, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxG, 136, 172, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxH, 136, 184, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxJ, 136, 196, 28, 12, ES_READONLY | ES_NUMBER
+EDITTEXT        IDE_LEFTDxK, 136, 208, 28, 12, ES_READONLY | ES_NUMBER
 LTEXT           "Used", IDC_STATIC, 104, 4, 24, 8
 LTEXT           "Free", IDC_STATIC, 136, 4, 16, 8
 LTEXT           "Tr", IDC_STATIC, 7, 4, 10, 10
@@ -524,7 +545,7 @@ CAPTION "About OrgMaker"
 FONT 9, "MS PGothic", 0, 0, 0x1
 BEGIN
 DEFPUSHBUTTON   "OK", IDOK, 39, 131, 40, 18
-CTEXT           "OrgMaker ver.16.0.0", IDC_STATIC, 20, 32, 80, 8
+CTEXT           "OrgMaker ver.16.0.2", IDC_STATIC, 20, 32, 80, 8
 LTEXT           "2025 / 05 / 25", IDC_STATIC, 37, 43, 44, 8
 CTEXT           "OrgMaker 1 by Studio Pixel", IDC_STATIC, 2, 57, 114, 16, SS_CENTERIMAGE | SS_SUNKEN
 ICON            "ICON", ID_ICON_ORG, 49, 3, 20, 20, SS_NOTIFY, WS_EX_DLGMODALFRAME //SS_Notify can be used to restore the "Meow!"
@@ -533,32 +554,32 @@ CTEXT           "OrgMaker 3 by Strultz", IDC_STATIC, 2, 93, 114, 16, SS_CENTERIM
 CTEXT           "OrgMaker 16 by Bi_N", IDC_STATIC, 2, 111, 114, 16, SS_CENTERIMAGE | SS_SUNKEN
 END
 
-DLGCOPY2 DIALOGEX 0, 0, 175, 200
+DLGCOPY2 DIALOGEX 0, 0, 280, 150
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Multi-Copy"
 FONT 9, "MS PGothic", 0, 0, 0x1
 BEGIN
-EDITTEXT        IDE_MEAS1_1, 84, 36, 16, 12, ES_NUMBER
-EDITTEXT        IDE_BEAT1_1, 104, 36, 16, 12, ES_NUMBER
-EDITTEXT        IDE_MEAS1_2, 128, 36, 16, 12, ES_NUMBER
-EDITTEXT        IDE_BEAT1_2, 148, 36, 16, 12, ES_NUMBER
-EDITTEXT        IDE_MEAS2, 83, 81, 16, 12, ES_NUMBER
-EDITTEXT        IDE_BEAT2, 104, 81, 16, 12, ES_NUMBER
-EDITTEXT        IDE_COPYNUM, 148, 76, 12, 12, ES_NUMBER
-DEFPUSHBUTTON   "OK", IDOK, 84, 108, 36, 18
-PUSHBUTTON      "Cancel", IDCANCEL, 129, 108, 36, 18
+EDITTEXT        IDE_MEAS1_1, 184, 36, 16, 12, ES_NUMBER
+EDITTEXT        IDE_BEAT1_1, 204, 36, 16, 12, ES_NUMBER
+EDITTEXT        IDE_MEAS1_2, 228, 36, 16, 12, ES_NUMBER
+EDITTEXT        IDE_BEAT1_2, 248, 36, 16, 12, ES_NUMBER
+EDITTEXT        IDE_MEAS2, 183, 81, 16, 12, ES_NUMBER
+EDITTEXT        IDE_BEAT2, 204, 81, 16, 12, ES_NUMBER
+EDITTEXT        IDE_COPYNUM, 248, 76, 12, 12, ES_NUMBER
+DEFPUSHBUTTON   "OK", IDOK, 184, 108, 36, 18
+PUSHBUTTON      "Cancel", IDCANCEL, 229, 108, 36, 18
 LTEXT           "Melody", IDC_STATIC, 12, 12, 24, 8
-LTEXT           "Meas", IDC_STATIC, 84, 24, 16, 8
-LTEXT           "Step", IDC_STATIC, 104, 24, 16, 8
-LTEXT           "Meas", IDC_STATIC, 128, 24, 16, 8
-LTEXT           "Step", IDC_STATIC, 148, 24, 16, 8
-LTEXT           "~", IDC_STATIC, 120, 40, 8, 8
-LTEXT           "Times", IDC_STATIC, 132, 78, 15, 8
-GROUPBOX        "From", IDC_STATIC, 80, 11, 88, 41
-GROUPBOX        "To", IDC_STATIC, 80, 56, 44, 42
-LTEXT           "Drums", IDC_STATIC, 44, 12, 20, 8
-LTEXT           "Meas", IDC_STATIC, 83, 67, 16, 8
-LTEXT           "Step", IDC_STATIC, 102, 67, 16, 8
+LTEXT           "Meas", IDC_STATIC, 184, 24, 16, 8
+LTEXT           "Step", IDC_STATIC, 204, 24, 16, 8
+LTEXT           "Meas", IDC_STATIC, 228, 24, 16, 8
+LTEXT           "Step", IDC_STATIC, 248, 24, 16, 8
+LTEXT           "~", IDC_STATIC, 222, 40, 4, 8
+LTEXT           "Times", IDC_STATIC, 232, 78, 15, 8
+GROUPBOX        "From", IDC_STATIC, 180, 11, 88, 41
+GROUPBOX        "To", IDC_STATIC, 180, 56, 44, 42
+LTEXT           "Drams", IDC_STATIC, 92, 12, 20, 8
+LTEXT           "Meas", IDC_STATIC, 183, 67, 16, 8
+LTEXT           "Step", IDC_STATIC, 202, 67, 16, 8
 CONTROL         "Tr 1", IDC_USE0, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 12, 24, 29, 10
 CONTROL         "Tr 2", IDC_USE1, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 12, 36, 29, 10
 CONTROL         "Tr 3", IDC_USE2, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 12, 48, 29, 10
@@ -567,20 +588,38 @@ CONTROL         "Tr 5", IDC_USE4, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 12, 76
 CONTROL         "Tr 6", IDC_USE5, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 12, 88, 29, 10
 CONTROL         "Tr 7", IDC_USE6, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 12, 100, 29, 10
 CONTROL         "Tr 8", IDC_USE7, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 12, 112, 29, 10
-CONTROL         "Tr Q", IDC_USE8, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 24, 30, 10
-CONTROL         "Tr W", IDC_USE9, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 36, 31, 10
-CONTROL         "Tr E", IDC_USE10, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 48, 30, 10
-CONTROL         "Tr R", IDC_USE11, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 60, 30, 10
-CONTROL         "Tr T", IDC_USE12, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 76, 29, 10
-CONTROL         "Tr Y", IDC_USE13, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 88, 29, 10
-    GROUPBOX        "Target",IDC_STATIC,4,0,72,144
-    CONTROL         "Tr U",IDC_USE14,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,44,100,30,10
-    CONTROL         "Tr I",IDC_USE15,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,44,112,26,10
-    PUSHBUTTON      "All",IDC_SETCOPY_FULLCLICK,41,123,31,17,0,WS_EX_STATICEDGE
-    PUSHBUTTON      "Current",IDC_SETCOPY_FULLCLICK2,9,123,31,17,0,WS_EX_STATICEDGE
+CONTROL         "Tr 9", IDC_USE8, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 24, 29, 10
+CONTROL         "Tr 10", IDC_USE9, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 36, 29, 10
+CONTROL         "Tr 11", IDC_USE10, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 48, 29, 10
+CONTROL         "Tr 12", IDC_USE11, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 60, 29, 10
+CONTROL         "Tr 13", IDC_USE12, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 76, 29, 10
+CONTROL         "Tr 14", IDC_USE13, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 88, 29, 10
+CONTROL         "Tr 15", IDC_USE14, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 100, 29, 10
+CONTROL         "Tr 16", IDC_USE15, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 44, 112, 29, 10
+CONTROL         "Tr Q", IDC_USEDxQ, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 92, 24, 30, 10
+CONTROL         "Tr W", IDC_USEDxW, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 92, 36, 31, 10
+CONTROL         "Tr E", IDC_USEDxE, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 92, 48, 30, 10
+CONTROL         "Tr R", IDC_USEDxR, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 92, 60, 30, 10
+CONTROL         "Tr T", IDC_USEDxT, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 92, 76, 29, 10
+CONTROL         "Tr Y", IDC_USEDxY, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 92, 88, 29, 10
+CONTROL         "Tr U",IDC_USEDxU,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,92,100,30,10
+CONTROL         "Tr I",IDC_USEDxI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,92,112,26,10
+CONTROL         "Tr A", IDC_USEDxA, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 124, 24, 30, 10
+CONTROL         "Tr S", IDC_USEDxS, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 124, 36, 31, 10
+CONTROL         "Tr D", IDC_USEDxD, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 124, 48, 30, 10
+CONTROL         "Tr F", IDC_USEDxF, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 124, 60, 30, 10
+CONTROL         "Tr G", IDC_USEDxG, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 124, 76, 29, 10
+CONTROL         "Tr H", IDC_USEDxH, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 124, 88, 29, 10
+CONTROL         "Tr J", IDC_USEDxJ, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 124, 100, 30, 10
+CONTROL         "Tr K", IDC_USEDxK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 124, 112, 26, 10
+    GROUPBOX        "Target",IDC_STATIC,4,0,150,144
+    PUSHBUTTON      "All",IDC_SETCOPY_FULLCLICK,9,123,31,17,0,WS_EX_STATICEDGE
+    PUSHBUTTON      "Current",IDC_SETCOPY_FULLCLICK2,41,123,31,17,0,WS_EX_STATICEDGE
+    PUSHBUTTON      "Melody", IDC_SETCOPY_FULLCLICK3, 88, 123, 31, 17, 0, WS_EX_STATICEDGE
+    PUSHBUTTON      "Drams", IDC_SETCOPY_FULLCLICK4, 120, 123, 31, 17, 0, WS_EX_STATICEDGE
 END
 
-DLGDEFAULT DIALOGEX 0, 0, 171, 267
+DLGDEFAULT DIALOGEX 0, 0, 171, 410
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Default Pan/Volume"
 FONT 9, "MS PGothic", 0, 0, 0x1
@@ -593,6 +632,34 @@ BEGIN
     EDITTEXT        IDC_PANPOT6,20,108,20,12,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_PANPOT7,20,123,20,12,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_PANPOT8,20,138,20,12,ES_AUTOHSCROLL | ES_NUMBER
+
+    EDITTEXT        IDC_PANPOT9, 105, 30, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOT10, 105, 45, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOT11, 105, 60, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOT12, 105, 75, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOT13, 105, 94, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOT14, 105, 108, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOT15, 105, 123, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOT16, 105, 138, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+
+    EDITTEXT        IDC_PANPOTDxQ, 20, 168, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxW, 20, 183, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxE, 20, 198, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxR, 20, 213, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxT, 20, 231, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxY, 20, 246, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxU, 20, 261, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxI, 20, 276, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+
+    EDITTEXT        IDC_PANPOTDxA, 105, 168, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxS, 105, 183, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxD, 105, 198, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxF, 105, 213, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxG, 105, 231, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxH, 105, 246, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxJ, 105, 261, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_PANPOTDxK, 105, 276, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+
     EDITTEXT        IDC_VOLUME1,50,30,20,12,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_VOLUME2,50,45,20,12,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_VOLUME3,50,60,20,12,ES_AUTOHSCROLL | ES_NUMBER
@@ -601,31 +668,45 @@ BEGIN
     EDITTEXT        IDC_VOLUME6,50,108,20,12,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_VOLUME7,50,123,20,12,ES_AUTOHSCROLL | ES_NUMBER
     EDITTEXT        IDC_VOLUME8,50,138,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_PANPOT9,106,30,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_PANPOT10,106,45,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_PANPOT11,106,60,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_PANPOT12,106,75,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_PANPOT13,106,94,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_PANPOT14,106,108,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_PANPOT15,106,123,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_VOLUME9,136,30,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_VOLUME10,136,45,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_VOLUME11,136,60,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_VOLUME12,136,75,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_VOLUME13,136,93,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_VOLUME14,136,108,20,12,ES_AUTOHSCROLL | ES_NUMBER
-    EDITTEXT        IDC_VOLUME15,136,123,20,12,ES_AUTOHSCROLL | ES_NUMBER
 
-    PUSHBUTTON      "Load Default Data",IDC_DEF_NOWLOAD,10,165,80,15
-    PUSHBUTTON      "Save Default Data",IDC_DEF_NOWSAVE,10,183,80,15
-    PUSHBUTTON      "Copy Track 1 Values to All",IDC_BTN_SORT,13,221,91,15,0,WS_EX_STATICEDGE
-    PUSHBUTTON      "Preset 1",IDC_PRESET1,111,221,31,16,WS_GROUP,WS_EX_STATICEDGE
-    PUSHBUTTON      "Vol 95%",IDC_PRESET2,14,239,27,16,WS_GROUP,WS_EX_STATICEDGE
-    PUSHBUTTON      "Ran. Pan",IDC_PRESET3,46,239,37,16,WS_GROUP,WS_EX_STATICEDGE
-    PUSHBUTTON      "Ran. Vol",IDC_PRESET4,88,239,39,16,WS_GROUP,WS_EX_STATICEDGE
-    PUSHBUTTON      "Reset",IDC_PRESET5,132,239,27,16,WS_GROUP,WS_EX_STATICEDGE
-    DEFPUSHBUTTON   "OK",IDOK,104,163,60,21
-    PUSHBUTTON      "Cancel",IDCANCEL,104,189,60,15
+    EDITTEXT        IDC_VOLUME9, 135, 30, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUME10, 135, 45, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUME11, 135, 60, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUME12, 135, 75, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUME13, 135, 93, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUME14, 135, 108, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUME15, 135, 123, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUME16, 135, 138, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+
+    EDITTEXT        IDC_VOLUMEDxQ, 50, 168, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxW, 50, 183, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxE, 50, 198, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxR, 50, 213, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxT, 50, 231, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxY, 50, 246, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxU, 50, 261, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxI, 50, 276, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+
+    EDITTEXT        IDC_VOLUMEDxA, 135, 168, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxS, 135, 183, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxD, 135, 198, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxF, 135, 213, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxG, 135, 231, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxH, 135, 246, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxJ, 135, 261, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_VOLUMEDxK, 135, 276, 20, 12, ES_AUTOHSCROLL | ES_NUMBER
+    //GROUPBOX        "Melody",IDC_STATIC,5,0,155,150
+
+    PUSHBUTTON      "Load Default Data",IDC_DEF_NOWLOAD,10,305,80,15
+    PUSHBUTTON      "Save Default Data",IDC_DEF_NOWSAVE,10,323,80,15
+    PUSHBUTTON      "Copy Track 1 Values to All",IDC_BTN_SORT,13,361,91,15,0,WS_EX_STATICEDGE
+    PUSHBUTTON      "Preset 1",IDC_PRESET1,111,361,31,16,WS_GROUP,WS_EX_STATICEDGE
+    PUSHBUTTON      "Vol 95%",IDC_PRESET2,14,379,27,16,WS_GROUP,WS_EX_STATICEDGE
+    PUSHBUTTON      "Ran. Pan",IDC_PRESET3,46,379,37,16,WS_GROUP,WS_EX_STATICEDGE
+    PUSHBUTTON      "Ran. Vol",IDC_PRESET4,88,379,39,16,WS_GROUP,WS_EX_STATICEDGE
+    PUSHBUTTON      "Reset",IDC_PRESET5,132,379,27,16,WS_GROUP,WS_EX_STATICEDGE
+    DEFPUSHBUTTON   "OK",IDOK,104,303,60,21
+    PUSHBUTTON      "Cancel",IDCANCEL,104,329,60,15
     CTEXT           "Pan\n(0-6-12)",IDC_STATIC,15,5,30,15
     CTEXT           "Volume\n(0-254)",IDC_STATIC,45,5,35,20
     CTEXT           "1",IDC_STATIC,5,32,8,10
@@ -636,19 +717,34 @@ BEGIN
     CTEXT           "6",IDC_STATIC,5,110,8,10
     CTEXT           "7",IDC_STATIC,5,125,8,10
     CTEXT           "8",IDC_STATIC,5,140,8,10
-    CTEXT           "9",IDC_STATIC,5,155,8,10
+    CTEXT           "9", IDC_STATIC, 90, 32, 8, 10
+    CTEXT           "10", IDC_STATIC, 90, 47, 8, 10
+    CTEXT           "11", IDC_STATIC, 90, 62, 8, 10
+    CTEXT           "12", IDC_STATIC, 90, 77, 8, 10
+    CTEXT           "13", IDC_STATIC, 90, 95, 8, 10
+    CTEXT           "14", IDC_STATIC, 90, 110, 8, 10
+    CTEXT           "15", IDC_STATIC, 90, 125, 8, 10
+    CTEXT           "16", IDC_STATIC, 90, 140, 8, 10
     CTEXT           "Pan\n(0-6-12)",IDC_STATIC,101,5,30,15
     CTEXT           "Volume\n(0-254)",IDC_STATIC,131,5,35,20
-    CTEXT           "Q",IDC_STATIC,90,32,8,10
-    CTEXT           "W",IDC_STATIC,90,47,8,10
-    CTEXT           "E",IDC_STATIC,90,62,8,10
-    CTEXT           "R",IDC_STATIC,90,77,8,10
-    CTEXT           "T",IDC_STATIC,90,95,8,10
-    CTEXT           "Y",IDC_STATIC,90,110,8,10
-    CTEXT           "U",IDC_STATIC,90,125,8,10
-    CTEXT           "I",IDC_STATIC,90,140,8,10
-    GROUPBOX        "File Operations (*.pvi)",IDC_STATIC,5,155,91,47
-    GROUPBOX        "Functions",IDC_STATIC,7,209,159,50
+    CTEXT           "Q",IDC_STATIC,5,170,8,10
+    CTEXT           "W",IDC_STATIC,5,185,8,10
+    CTEXT           "E",IDC_STATIC,5,200,8,10
+    CTEXT           "R",IDC_STATIC,5,215,8,10
+    CTEXT           "T",IDC_STATIC,5,233,8,10
+    CTEXT           "Y",IDC_STATIC,5,248,8,10
+    CTEXT           "U",IDC_STATIC,5,263,8,10
+    CTEXT           "I",IDC_STATIC,5,278,8,10
+    CTEXT           "A", IDC_STATIC, 90, 170, 8, 10
+    CTEXT           "S", IDC_STATIC, 90, 185, 8, 10
+    CTEXT           "D", IDC_STATIC, 90, 200, 8, 10
+    CTEXT           "F", IDC_STATIC, 90, 215, 8, 10
+    CTEXT           "G", IDC_STATIC, 90, 233, 8, 10
+    CTEXT           "H", IDC_STATIC, 90, 248, 8, 10
+    CTEXT           "J", IDC_STATIC, 90, 263, 8, 10
+    CTEXT           "K", IDC_STATIC, 90, 278, 8, 10
+    GROUPBOX        "File Operations (*. pvi)",IDC_STATIC,5,295,91,47
+    GROUPBOX        "Functions",IDC_STATIC,7,349,159,50
 END
 
 DLGHELP DIALOGEX 0, 0, 366, 329
@@ -804,6 +900,16 @@ AUTOCHECKBOX    "Use note length instead", IDC_VOL_USENOTELEN, 9, 21, 86, 8
 AUTOCHECKBOX    "Shorten notes if too long", IDC_VOL_SETNOTELEN, 9, 35, 94, 8
 END
 
+DLGSETTINGS DIALOG 0, 0, 200, 200
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION
+CAPTION "Boot Settings"
+FONT 9, "MS PGothic"
+BEGIN
+DEFPUSHBUTTON   "OK", IDOK, 30, 50, 32, 14
+PUSHBUTTON      "Cancel", IDCANCEL, 66, 50, 32, 14
+PUSHBUTTON      "...", IDE_ORGCHOICE, 20,30, 28, 12
+EDITTEXT        IDE_ORGDEFAULT, 20, 16, 28, 12, ES_READONLY
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -971,6 +1077,14 @@ BEGIN
         BOTTOMMARGIN, 55
     END
 END
+
+    "DLGSETTINGS", DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 169
+    END
 #endif    // APSTUDIO_INVOKED
 
 
@@ -990,7 +1104,7 @@ BEGIN
         MENUITEM "Save &As...\tCtrl+Shift+S",   IDM_SAVENEW
         MENUITEM "Export",                      ID_EXPORT, INACTIVE
         MENUITEM "  &WAV File (*.wav)...\tCtrl+Alt+W",  IDM_EXPORT_WAV,
-        MENUITEM "  &MIDI File (*.mid)...\tCtrl+Alt+M", IDM_EXPORT_MIDI, GRAYED
+        MENUITEM "  &XM Module (*.xm)...\tCtrl+Alt+X", IDM_EXPORT_MIDI, GRAYED
         MENUITEM SEPARATOR
         MENUITEM "&Recent Files",                ID_MENUITEM40135, INACTIVE
         MENUITEM "  1",                         IDM_RECENT1
@@ -1051,8 +1165,8 @@ BEGIN
         MENUITEM "  (&2) Fade From Start to End", IDM_CT_L11
         MENUITEM "  (&3) Fade In (slow)",       IDM_CT_L12
         MENUITEM "  (&4) Fade In (linear)",     IDM_CT_L13
-        MENUITEM "  (&5) (none)",               IDM_CT_L14, GRAYED //Fade in fast
-        MENUITEM "  (&6) (none)",               IDM_CT_L15, GRAYED //Fade in very fast
+        MENUITEM "  (&5) (none)",               IDM_CT_L14, GRAYED//Fade in fast
+        MENUITEM "  (&6) (none)",               IDM_CT_L15, GRAYED//Fade in very fast
         MENUITEM "  (&7) (none)",               IDM_CT_L16, GRAYED
         MENUITEM "  (&8) (none)",               IDM_CT_L17, GRAYED
         MENUITEM "  (&9) (none)",               IDM_CT_L18, GRAYED
@@ -1074,8 +1188,8 @@ BEGIN
         MENUITEM "  (&2) Fade From Start to End\tCtrl+Alt+1", IDM_CT_S11
         MENUITEM "  (&3) Fade In (slow)\tCtrl+Alt+2", IDM_CT_S12
         MENUITEM "  (&4) Fade In (linear)\tCtrl+Alt+3", IDM_CT_S13
-        MENUITEM "  (&5) Fade In (fast)", IDM_CT_S14, GRAYED
-        MENUITEM "  (&6) Fade In(very fast)", IDM_CT_S15, GRAYED
+        MENUITEM "  (&5) (none)", IDM_CT_S14, GRAYED
+        MENUITEM "  (&6) (none)", IDM_CT_S15, GRAYED
         MENUITEM "  (&7) (none)", IDM_CT_S16, GRAYED
         MENUITEM "  (&8) (none)", IDM_CT_S17, GRAYED
         MENUITEM "  (&9) (none)", IDM_CT_S18, GRAYED
@@ -1083,6 +1197,7 @@ BEGIN
         MENUITEM "Clear Volume Events\tCtrl+0", IDM_CT_S20
         MENUITEM "Setup Decay Length...", IDM_DCLEN
     END
+    /*
     POPUP "Note Pan(&1)"
     BEGIN
         MENUITEM "None", IDM_CT_L0, INACTIVE //Change this later.
@@ -1091,6 +1206,7 @@ BEGIN
     BEGIN
             MENUITEM "None", IDM_CT_L0, INACTIVE //Change this later.
     END
+    */
     MENUITEM "|",                           IDM_DUMMY_TATE_SEPARATOR, GRAYED
     POPUP "&Operations"
     BEGIN
@@ -1160,6 +1276,7 @@ BEGIN
         MENUITEM "  &Metronome",                IDM_METRONOME
         MENUITEM "  &Themes...",                IDM_DLGTHEMES
         MENUITEM "  Sound&banks...",            IDM_DLGWAVEDBS
+        MENUITEM"  Boot Settings",              IDM_DLGSETTINGS
     END
     POPUP "&Help"
     BEGIN
@@ -1223,6 +1340,18 @@ B_TRACK_9               BITMAP                  "Bitmap\\button_track_9.bmp"
 
 B_TRACK_10              BITMAP                  "Bitmap\\button_track_10.bmp"
 
+B_TRACK_11              BITMAP                  "Bitmap\\button_track_11.bmp"
+
+B_TRACK_12              BITMAP                  "Bitmap\\button_track_12.bmp"
+
+B_TRACK_13              BITMAP                  "Bitmap\\button_track_13.bmp"
+
+B_TRACK_14              BITMAP                  "Bitmap\\button_track_14.bmp"
+
+B_TRACK_15              BITMAP                  "Bitmap\\button_track_15.bmp"
+
+B_TRACK_16              BITMAP                  "Bitmap\\button_track_16.bmp"
+
 B_TRACK_Q               BITMAP                  "Bitmap\\button_track_Q.bmp"
 
 B_TRACK_W               BITMAP                  "Bitmap\\button_track_W.bmp"
@@ -1238,7 +1367,23 @@ B_TRACK_Y               BITMAP                  "Bitmap\\button_track_Y.bmp"
 B_TRACK_U               BITMAP                  "Bitmap\\button_track_U.bmp"
 
 B_TRACK_I               BITMAP                  "Bitmap\\button_track_I.bmp"
+/*
+B_TRACK_A               BITMAP                  "Bitmap\\button_track_A.bmp"
 
+B_TRACK_S               BITMAP                  "Bitmap\\button_track_S.bmp"
+
+B_TRACK_D               BITMAP                  "Bitmap\\button_track_D.bmp"
+
+B_TRACK_F               BITMAP                  "Bitmap\\button_track_F.bmp"
+
+B_TRACK_G               BITMAP                  "Bitmap\\button_track_G.bmp"
+
+B_TRACK_H               BITMAP                  "Bitmap\\button_track_H.bmp"
+
+B_TRACK_J               BITMAP                  "Bitmap\\button_track_J.bmp"
+
+B_TRACK_K               BITMAP                  "Bitmap\\button_track_K.bmp"
+*/
 B_LOUPE_PLUS            BITMAP                  "Bitmap\\Loupe_PLUS.bmp"
 
 B_LOUPE_MINUS           BITMAP                  "Bitmap\\Loupe_MINUS.bmp"
@@ -1350,6 +1495,32 @@ HICLOSE05               WAVE                    "Wave\\HiClose05.wav"
 SNARE08                 WAVE                    "Wave\\Snare08.wav"
 
 MENU                    WAVE                    "Wave\\Menu.wav"
+//Bi_N's Drams, sadly they wouldn't play...
+/*
+CLAP02                  WAVE                    "Wave\\Clap02.wav"
+
+BASS09                  WAVE                    "Wave\\Bass09.wav"
+
+BASS10                  WAVE                    "Wave\\Bass10.wav"
+
+HICLOSE06               WAVE                    "Wave\\HiClose06.wav"
+
+HICLOSE07               WAVE                    "Wave\\HiClose07.wav"
+
+SNARE09                 WAVE                    "Wave\\Snare09.wav"
+
+CRASH03                 WAVE                    "Wave\\Crash03.wav"
+
+BASS11                  WAVE                    "Wave\\Bass11.wav"
+
+SNARE10                 WAVE                    "Wave\\Snare10.wav"
+
+HICLOSE08               WAVE                    "Wave\\HiClose08.wav"
+
+HIOPEN05                WAVE                    "Wave\\HiOpen05.wav"
+
+TOM06                   WAVE                    "Wave\\Tom06.wav"
+*/
 
 METRO01                 WAVE                    "Wave\\Metro01.wav"
 
@@ -1374,7 +1545,7 @@ BEGIN
             VALUE "CompanyName", "Cave Story."
             VALUE "FileDescription", "32 Tracks, and your imagination."
             VALUE "FileVersion", "1.6.0.0"
-            VALUE "LegalCopyright", "Copyright (C) 2005-2024 Pixel and Rxo Inverse(Yo, can I be in here too?) -Bi_N"
+            VALUE "LegalCopyright", "Copyright (C) 2005-2024 Pixel and Rxo Inverse (Yo, can I be in here too?) -Bi_N"
             VALUE "OriginalFilename", "OrgMaker.exe"
             VALUE "ProductName", "OrgMaker 16"
             VALUE "ProductVersion", "1.6.0.0"
@@ -1707,8 +1878,8 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_STRING112           "1!2!3!4!5!6!7!8!9!Q!W!E!R!T!Y!U!I!!"
-    IDS_STRING113           "[1]![2]![3]![4]![5]![6]![7]![8]![9]![Q]![W]![E]![R]![T]![Y]![U]![I]!!"
+    IDS_STRING112           "1!2!3!4!5!6!7!8!9!10!11!12!13!14!15!16!Q!W!E!R!T!Y!U!I!A!S!D!F!G!H!J!K!!"
+    IDS_STRING113           "[1]![2]![3]![4]![5]![6]![7]![8]![9]![10]![11]![12]![13]![14]![15]![16]![Q]![W]![E]![R]![T]![Y]![U]![I]!!"
     IDS_STRING114           "Created with OrgMaker 16"
     IDS_STRING115           " from beginning to end"
     IDS_STRING116           "All tracks from beginning to end"

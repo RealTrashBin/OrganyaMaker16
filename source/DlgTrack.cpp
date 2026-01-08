@@ -68,7 +68,7 @@ extern char TrackN[];
 extern char* gSelectedTheme;
 
 void ChangeTrackPlus(HWND hdwnd, int iValue){
-	char str[16];
+	char str[8];
 
 	RECT rect = {64,0,WWidth,WHeight};//更新する領域(トラック変更)
 
@@ -107,7 +107,7 @@ void ChangeTrackPlus(HWND hdwnd, int iValue){
 
 
 void ChangeTrack(HWND hdwnd, int iTrack){
-	char str[16];
+	char str[8];
 	int i;
 	RECT rect = {64,0,WWidth,WHeight};//更新する領域(トラック変更)
 
@@ -115,9 +115,9 @@ void ChangeTrack(HWND hdwnd, int iTrack){
 	org_data.track = i;
 	setRecentTrack(org_data.track); //A 2010.09.23 
 
-	if(timer_sw == 0) PlayOrganKey(36,i,1000,80);
+	if(timer_sw == 0) PlayOrganKey(36,i,1000,80); //Plays the sound
 	if(sACrnt){
-		if(tra>=0){
+		if(tra>=0) {
 			tra = org_data.track;
 		}
 	}
@@ -127,7 +127,6 @@ void ChangeTrack(HWND hdwnd, int iTrack){
 		if(tra>=0){
 			tra = org_data.track;
 			char wk[256],wk2[256];
-
 			if(ful==0){ //part Selection
 				wsprintf(wk2,MessageString[IDS_STRING104], TrackN[tra]); 
 				strcpy(wk,wk2);
@@ -142,8 +141,8 @@ void ChangeTrack(HWND hdwnd, int iTrack){
 			}
 		}
 	}
+	org_data.track + 1;
 	SetDlgItemText(hDlgTrack,IDE_VIEWTRACK,TrackCode[org_data.track]); //Sets the letter/number
-
 	SetFocus(hWnd);
 }
 
@@ -151,6 +150,7 @@ void LoadTrackBitmaps(HWND hdwnd) {
 	LoadSingleBitmap(hdwnd, IDC_BTN_SOLO, 31, 17, "B_SOLO");
 	LoadSingleBitmap(hdwnd, IDC_BTN_LOUPE1, 24, 24, "B_LOUPE_PLUS");
 	LoadSingleBitmap(hdwnd, IDC_BTN_LOUPE2, 24, 24, "B_LOUPE_MINUS");
+	//Melody
 	LoadSingleBitmap(hdwnd, IDC_TRACK0, 14, 21, "B_TRACK_1");
 	LoadSingleBitmap(hdwnd, IDC_TRACK1, 14, 21, "B_TRACK_2");
 	LoadSingleBitmap(hdwnd, IDC_TRACK2, 14, 21, "B_TRACK_3");
@@ -161,7 +161,13 @@ void LoadTrackBitmaps(HWND hdwnd) {
 	LoadSingleBitmap(hdwnd, IDC_TRACK7, 14, 21, "B_TRACK_8");
 	LoadSingleBitmap(hdwnd, IDC_TRACK8, 14, 21, "B_TRACK_9");
 	LoadSingleBitmap(hdwnd, IDC_TRACK9, 14, 21, "B_TRACK_10");
-
+	LoadSingleBitmap(hdwnd, IDC_TRACK10, 14, 21, "B_TRACK_11");
+	LoadSingleBitmap(hdwnd, IDC_TRACK11, 14, 21, "B_TRACK_12");
+	LoadSingleBitmap(hdwnd, IDC_TRACK12, 14, 21, "B_TRACK_13");
+	LoadSingleBitmap(hdwnd, IDC_TRACK13, 14, 21, "B_TRACK_14");
+	LoadSingleBitmap(hdwnd, IDC_TRACK14, 14, 21, "B_TRACK_15");
+	LoadSingleBitmap(hdwnd, IDC_TRACK15, 14, 21, "B_TRACK_16");
+	//Drams
 	LoadSingleBitmap(hdwnd, IDC_TRACK16, 14, 21, "B_TRACK_Q");
 	LoadSingleBitmap(hdwnd, IDC_TRACK17, 14, 21, "B_TRACK_W");
 	LoadSingleBitmap(hdwnd, IDC_TRACKDxE, 14, 21, "B_TRACK_E");

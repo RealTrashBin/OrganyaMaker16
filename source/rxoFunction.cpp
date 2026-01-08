@@ -80,11 +80,11 @@ void CreateMenuRecent();
 
 void ShowStatusMessage(void);
 
-int iRecentTrackM[]={ // 2010.09.23 A 最近使ったトラック番号
-	0,1,2,3,4,5,6,7
+int iRecentTrackM[MAXMELODY]={ // 2010.09.23 A 最近使ったトラック番号
+	0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
 };
-int iRecentTrackD[]={ // 2010.09.23 A 最近使ったトラック番号
-	8,9,10,11,12,13,14,15
+int iRecentTrackD[MAXDRAM]={ // 2010.09.23 A 最近使ったトラック番号
+	16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31
 };
 
 int NoteWidth; //音符の幅
@@ -92,29 +92,30 @@ int NoteEnlarge_Until_16px; //表示の際、NOTEの頭を最大16ピクセルまで伸ばす。
 int iPushStratch = 0; //2014.05.31
 int iLastEditNoteLength = 1;
 
-void setRecentTrack(int iNewTrack){ //最近使ったトラック番号を更新する
+void setRecentTrack(int iNewTrack) { 
 	int iRT[MAXMELODY];
-	int i,j;
-	if(iNewTrack<MAXMELODY){
-		for(i=0;i<MAXMELODY;i++){
-			iRT[i]=iRecentTrackM[i];
+	int i, j;
+	if (iNewTrack < MAXMELODY) {
+		for (i = 0; i < MAXMELODY; i++) {
+			iRT[i] = iRecentTrackM[i];
 		}
-		iRecentTrackM[0]=iNewTrack;
-		j=1;
-		for(i=0;i<MAXMELODY;i++){
-			if(iRT[i]!=iNewTrack){
+		iRecentTrackM[0] = iNewTrack;
+		j = 1;
+		for (i = 0; i < MAXMELODY; i++) {
+			if (iRT[i] != iNewTrack) {
 				iRecentTrackM[j] = iRT[i];
 				j++;
 			}
 		}
-	}else{
-		for(i=0;i<MAXMELODY;i++){
-			iRT[i]=iRecentTrackD[i];
+	}
+	else {
+		for (i = 0; i < MAXMELODY; i++) {
+			iRT[i] = iRecentTrackD[i];
 		}
-		iRecentTrackD[0]=iNewTrack;
-		j=1;
-		for(i=0;i<MAXMELODY;i++){
-			if(iRT[i]!=iNewTrack){
+		iRecentTrackD[0] = iNewTrack;
+		j = 1;
+		for (i = 0; i < MAXMELODY; i++) {
+			if (iRT[i] != iNewTrack) {
 				iRecentTrackD[j] = iRT[i];
 				j++;
 			}
@@ -122,6 +123,7 @@ void setRecentTrack(int iNewTrack){ //最近使ったトラック番号を更新する
 	}
 	return;
 }
+
 
 //iOrder:0～7
 //isDrumTrack:0 メロディ  ,   isDrumTrack:1 ドラム
@@ -365,9 +367,6 @@ int ReverseTrackCode(char *strTrack)
 		case 'K':
 		case 'k':
 			return 31;
-		case ' ':
-			MessageBoxA(hWnd, "Problem with TRACKS", "ERROR", MB_OK);
-			return 99;
 		}
 	}
 
@@ -380,6 +379,7 @@ void MuteTrack(int Track)
 	SendDlgItemMessage(hDlgTrack , mute_name[Track] , BM_CLICK , 0, 0);
 	
 }
+
 
 void EditNote(int AddNotes , int Track , int Function)
 {
@@ -453,6 +453,11 @@ void EditNote(int AddNotes , int Track , int Function)
 	return;
 }
 
+void VolumeDecayEdit(int AddNotes, int Track, int Function)  //2014.05.01 A
+{
+	EditNote(AddNotes, Track, MODEDECAY + Function);
+}
+
 //音の高さを上げる Track=-1ですべて(ドラムはのぞく)
 void TransportNote(int AddNotes , int Track )
 {
@@ -466,11 +471,6 @@ void VolumeEdit(int AddNotes , int Track )
 void VolumeWariaiEdit(int AddNotes , int Track )  //2014.04.30 A
 {
 	EditNote(AddNotes , Track , 10);
-}
-
-void VolumeDecayEdit(int AddNotes , int Track , int Function )  //2014.05.01 A
-{
-	EditNote(AddNotes , Track , MODEDECAY + Function);
 }
 
 void PanEdit(int AddNotes , int Track )

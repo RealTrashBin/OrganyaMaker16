@@ -2,20 +2,14 @@
 #include "OrgData.h"
 #include "DefOrg.h"
 #include "TrackFlag.h"
-#include <math.h>
 
-float NewMelody = MAXMELODY / 2;
-float NewDram = MAXDRAM / 2;
+char NewMelody = MAXMELODY / 2;
+char NewDram = MAXTRACK - MAXDRAM / 2;
 
 
 bool OrgData::TrackFlag(void) //Used for ORG-16
 {
 	int i; //Track
-	bool tf; //Track Flag
-	tf = false;
-
-	round(NewMelody);
-	round(NewDram);
 
 	//Checks Melody
 	for (i = NewMelody; i < MAXMELODY; i++) //i = Last STD Track, i < maxmium track
@@ -25,12 +19,9 @@ bool OrgData::TrackFlag(void) //Used for ORG-16
 			continue;
 		else
 		{
-			tf = true;
-			break;
+			return true;
 		}
 	}
-
-	if (tf == false) 
 		//Checks Drams
 		for (i = NewDram; i < MAXTRACK; i++)
 		{
@@ -39,9 +30,8 @@ bool OrgData::TrackFlag(void) //Used for ORG-16
 				continue;
 			else
 			{
-				tf = true;
-				break;
+				return true;
 			}
 		}
-	return tf;
+	return false;
 }

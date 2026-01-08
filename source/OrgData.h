@@ -41,7 +41,7 @@ typedef struct MUSICINFO{
 	unsigned short wait;
 	unsigned char line;//Number of lines in one bar
 	unsigned char dot;//Number of dots per night
-	unsigned short alloc_note;//number of reserved notes
+	unsigned long alloc_note;//number of reserved notes
 	long repeat_x;//リピート
 	long end_x;//曲の終わり(リピートに戻る)
 	TRACKDATA tdata[MAXTRACK];
@@ -65,7 +65,7 @@ typedef struct OrgData{
 		int SetUndoData();
 		int ResetLastUndo(void); //最後のアンドゥはなかったことに！（空クリックだったとか）
 		MUSICINFO ud_tdata[32]; //とりあえず、アンドゥは32回
-		NOTELIST  ud_note[32][16][4096];
+		NOTELIST  ud_note[32][16][ALLOCNOTE]; //ud stands for undo
 		bool UndoEnable;
 		bool RedoEnable;
 		int CurrentUndoCursor; //この番号に書き込む
@@ -80,7 +80,7 @@ typedef struct OrgData{
 		void GetMusicInfo(MUSICINFO *mi, int mode = 0);//曲情報を取得
 		//曲情報を設定。flagは設定アイテムを指定
 		BOOL SetMusicInfo(MUSICINFO *mi,unsigned long flag);
-		BOOL NoteAlloc(unsigned short note_num);//指定の数だけNoteDataの領域を確保
+		BOOL NoteAlloc(unsigned long note_num);//指定の数だけNoteDataの領域を確保
 		void ReleaseNote(void);//NoteDataを開放
 		NOTELIST *SearchNote(NOTELIST *np);//未使用NOTEの検索
 		void OrgData::TouchKeyboard(unsigned char y);//鍵盤に触れる

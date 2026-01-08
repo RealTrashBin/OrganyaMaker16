@@ -17,7 +17,7 @@ extern char *dram_name[];
 extern int iKeyPushDown[];
 
 //指定の数だけNoteDataの領域を確保(初期化)
-BOOL OrgData::NoteAlloc(unsigned short alloc)
+BOOL OrgData::NoteAlloc(unsigned long alloc)
 {
 	int i,j;
 	for(j = 0; j < MAXTRACK; j++){
@@ -708,14 +708,22 @@ void OrgData::InitOrgData(void)
 		MakeOrganyaWave(i, info.tdata[i].wave_no, info.tdata[i].pipi);
 		break;  //Makes the waves not go up by 11.
 	}
-	info.tdata[ 8].wave_no = 0;
-	info.tdata[ 9].wave_no = 0;
-	info.tdata[10].wave_no = 0;
-	info.tdata[11].wave_no = 0;
-	info.tdata[12].wave_no = 0;
-	info.tdata[13].wave_no = 0;
-	info.tdata[14].wave_no = 0;
-	info.tdata[15].wave_no = 0;
+	info.tdata[16].wave_no = 0; //Drams
+	info.tdata[17].wave_no = 0;
+	info.tdata[18].wave_no = 0;
+	info.tdata[19].wave_no = 0;
+	info.tdata[20].wave_no = 0;
+	info.tdata[21].wave_no = 0;
+	info.tdata[22].wave_no = 0;
+	info.tdata[23].wave_no = 0;
+	info.tdata[24].wave_no = 0;
+	info.tdata[25].wave_no = 0;
+	info.tdata[26].wave_no = 0;
+	info.tdata[27].wave_no = 0;
+	info.tdata[28].wave_no = 0;
+	info.tdata[29].wave_no = 0;
+	info.tdata[30].wave_no = 0;
+	info.tdata[31].wave_no = 0;
 	for(i = MAXMELODY; i < MAXTRACK; i++){
 		InitDramObject(info.tdata[i].wave_no,i-MAXMELODY);
 	}
@@ -736,20 +744,7 @@ void OrgData::GetNoteUsed(long *use,long*left,char track)
 	*use = u;
 	*left = l;
 }
-OrgData::OrgData()
-{
-	int i;
-	for(i = 0; i < MAXTRACK; i++){
-		info.tdata[i].note_list = NULL;
-		info.tdata[i].note_p = NULL;
-	}
-	CurrentUndoCursor = 0;
-	MinimumUndoCursor = 0;
-	MaximumUndoCursor = 0;
-	RedoEnable = false;
-	UndoEnable = false;
-	//noteon = new unsigned char[65536];
-}
+
 OrgData::~OrgData() //デストラクタ
 {
 	//delete [] noteon;
@@ -925,3 +920,17 @@ BOOL OrgData::SetNote_afterSetLength(long x)
 
 }
 
+OrgData::OrgData()
+{
+	int i;
+	for (i = 0; i < MAXTRACK; i++) {
+		info.tdata[i].note_list = NULL;
+		info.tdata[i].note_p = NULL;
+	}
+	CurrentUndoCursor = 0;
+	MinimumUndoCursor = 0;
+	MaximumUndoCursor = 0;
+	RedoEnable = false;
+	UndoEnable = false;
+	//noteon = new unsigned char[65536];
+}

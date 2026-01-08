@@ -637,7 +637,7 @@ BOOL OrgData::ChangeVolumeData(PARCHANGE *pc, char mode)
 	}
 	return TRUE;
 }
-
+/*
 char *test[16]={
 	"0",
 	"1",
@@ -656,6 +656,7 @@ char *test[16]={
 	"14",
 	"15",
 };
+*/ //Unused anywhere.
 //音譜の尻尾を総チェック
 BOOL OrgData::CheckNoteTail(char tr)
 {

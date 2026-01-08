@@ -2,7 +2,7 @@
 #include "DefOrg.h"
 
 typedef struct {
-	unsigned short note_num;//Number of notes.
+	unsigned long note_num;//Number of notes.
 }ORGANYATRACKS; //Structure of Tracks and Drams
 
 typedef struct {

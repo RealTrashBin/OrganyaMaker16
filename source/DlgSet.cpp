@@ -17,7 +17,7 @@
 
 #define PI 3.14159265358979323846
 
-#define NUMGRID		8
+#define NUMGRID		16
 #define NUMGRIDA		11
 #define MAXWAVE		100
 #define maxx(a, b) ((a) > (b) ? (a) : (b))
@@ -66,25 +66,41 @@ int check_pipi[NUMGRID] ={
 	IDC_CHECK_PIPI5,
 	IDC_CHECK_PIPI6,
 	IDC_CHECK_PIPI7,
+	IDC_CHECK_PIPI8,
+	IDC_CHECK_PIPI9,
+	IDC_CHECK_PIPI10,
+	IDC_CHECK_PIPI11,
+	IDC_CHECK_PIPI12,
+	IDC_CHECK_PIPI13,
+	IDC_CHECK_PIPI14,
+	IDC_CHECK_PIPI15
 };
 
-int txt_Pan[]={
+int txt_Pan[MAXTRACK]={
 	IDC_PANPOT1, IDC_PANPOT2 , IDC_PANPOT3, IDC_PANPOT4, IDC_PANPOT5, IDC_PANPOT6, IDC_PANPOT7, IDC_PANPOT8, 
 	IDC_PANPOT9, IDC_PANPOT10, IDC_PANPOT11, IDC_PANPOT12, IDC_PANPOT13, IDC_PANPOT14, IDC_PANPOT15, IDC_PANPOT16,
+	IDC_PANPOTDxQ,IDC_PANPOTDxW,IDC_PANPOTDxE,IDC_PANPOTDxR,IDC_PANPOTDxT,IDC_PANPOTDxY,IDC_PANPOTDxU,IDC_PANPOTDxI,
+	IDC_PANPOTDxA,IDC_PANPOTDxS,IDC_PANPOTDxD,IDC_PANPOTDxF,IDC_PANPOTDxG,IDC_PANPOTDxH,IDC_PANPOTDxJ,IDC_PANPOTDxK
 };
 
-int txt_Vol[]={
+int txt_Vol[MAXTRACK]={
 	IDC_VOLUME1, IDC_VOLUME2, IDC_VOLUME3, IDC_VOLUME4, IDC_VOLUME5, IDC_VOLUME6, IDC_VOLUME7, IDC_VOLUME8,
 	IDC_VOLUME9, IDC_VOLUME10, IDC_VOLUME11, IDC_VOLUME12, IDC_VOLUME13, IDC_VOLUME14, IDC_VOLUME15, IDC_VOLUME16,
+	IDC_VOLUMEDxQ, IDC_VOLUMEDxW, IDC_VOLUMEDxE,IDC_VOLUMEDxR,IDC_VOLUMEDxT,IDC_VOLUMEDxY,IDC_VOLUMEDxU,IDC_VOLUMEDxI,
+	IDC_VOLUMEDxA,IDC_VOLUMEDxS,IDC_VOLUMEDxD,IDC_VOLUMEDxF,IDC_VOLUMEDxG,IDC_VOLUMEDxH,IDC_VOLUMEDxJ,IDC_VOLUMEDxK,
 };
 
 int Preset1_Pan[]={
 	6, 6, 5, 4, 8, 9, 3, 7,
-	6, 7, 5, 5, 6, 6, 8, 4
+	6, 7, 5, 5, 6, 6, 8, 4,
+	4, 7, 5, 2, 4, 6, 3, 5,
+	5, 8, 3, 6, 2, 1, 9, 3
 };
 int Preset1_Vol[]={
 	180, 210, 170, 150, 150, 190, 120, 140,
-	180, 190, 225, 230, 195, 200, 180, 190
+	180, 190, 225, 230, 195, 200, 180, 190,
+	180, 150, 200, 237, 210, 180, 155, 165,
+	180, 164, 225, 160, 155, 122, 111, 100
 };
 
 
@@ -217,30 +233,70 @@ void InitSettingDialog(HWND hdwnd)
 	itoa(a, str, 10);
 	SetDlgItemText(hdwnd, IDD_END_BEAT, str);
 	//ÇÃèâä˙âª//////////////////
+
 	a = mi.tdata[0].freq;
 	itoa(a,str,10);
 	SetDlgItemText(hdwnd,IDD_SETFREQ0,str);
+
 	a = mi.tdata[1].freq;
 	itoa(a,str,10);
 	SetDlgItemText(hdwnd,IDD_SETFREQ1,str);
+
 	a = mi.tdata[2].freq;
 	itoa(a,str,10);
 	SetDlgItemText(hdwnd,IDD_SETFREQ2,str);
+
 	a = mi.tdata[3].freq;
 	itoa(a,str,10);
 	SetDlgItemText(hdwnd,IDD_SETFREQ3,str);
+
 	a = mi.tdata[4].freq;
 	itoa(a,str,10);
 	SetDlgItemText(hdwnd,IDD_SETFREQ4,str);
+
 	a = mi.tdata[5].freq;
 	itoa(a,str,10);
 	SetDlgItemText(hdwnd,IDD_SETFREQ5,str);
+
 	a = mi.tdata[6].freq;
 	itoa(a,str,10);
 	SetDlgItemText(hdwnd,IDD_SETFREQ6,str);
+
 	a = mi.tdata[7].freq;
 	itoa(a,str,10);
 	SetDlgItemText(hdwnd,IDD_SETFREQ7,str);
+
+	a = mi.tdata[8].freq;
+	itoa(a, str, 10);
+	SetDlgItemText(hdwnd, IDD_SETFREQ8, str);
+
+	a = mi.tdata[9].freq;
+	itoa(a, str, 10);
+	SetDlgItemText(hdwnd, IDD_SETFREQ9, str);
+
+	a = mi.tdata[10].freq;
+	itoa(a, str, 10);
+	SetDlgItemText(hdwnd, IDD_SETFREQ10, str);
+
+	a = mi.tdata[11].freq;
+	itoa(a, str, 10);
+	SetDlgItemText(hdwnd, IDD_SETFREQ11, str);
+
+	a = mi.tdata[12].freq;
+	itoa(a, str, 10);
+	SetDlgItemText(hdwnd, IDD_SETFREQ12, str);
+
+	a = mi.tdata[13].freq;
+	itoa(a, str, 10);
+	SetDlgItemText(hdwnd, IDD_SETFREQ13, str);
+
+	a = mi.tdata[14].freq;
+	itoa(a, str, 10);
+	SetDlgItemText(hdwnd, IDD_SETFREQ14, str);
+
+	a = mi.tdata[15].freq;
+	itoa(a, str, 10);
+	SetDlgItemText(hdwnd, IDD_SETFREQ15, str);
 
 	for(i = 0; i < NUMGRID; i++){//pipiÇÃèâä˙âª
 		if( mi.tdata[i].pipi )
@@ -503,69 +559,94 @@ BOOL CALLBACK DialogSetting(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPar
 	}
 	return 0;
 }
-char *dram_name[] = { //Drams inside of DLG_TRACK
-	"Bass01",
-	"Bass02",
-	"Snare01",
-	"Snare02",
-	"Tom01",
+char *dram_name[] = { //Names for all the drams.
+	"Bass01",//0
+	"Bass02",//1
+	"Snare01",//2
 
-	"HiClose",
-	"HiOpen",
-	"Crash",
-	"Per01",
-	"Per02",
+	"Snare02",//3
+	"Tom01",//4
+	"HiClose",//5
+	
+	"HiOpen",//6
+	"Crash",//7
+	"Per01",//8
+	
+	"Per02",//9
+	"Bass03",//10
+	"Tom02",//11
+	
+	"Bass04", //ê12
+	"Bass05",//13
+	"Snare03",//14
 
-	"Bass03",
-	"Tom02",
-	"Bass04", //êVãKí«â¡
-	"Bass05",
-	"Snare03",
+	"Snare04",//15
+	"HiClose02",//16
+	"HiOpen02",//17
+	
+	"HiClose03",//18
+	"HiOpen03",//19
+	"Crash02",//20
+	
+	"RevSym01",//21
+	"Ride01",//22
+	"Tom03",//23
+	
+	"Tom04",//24
+	"OrcDrm01",	//25
+	"Bell",//26
+	
+	"Cat" ,//27
+	"Bass06",//28
+	"Bass07",//29
 
-	"Snare04",
-	"HiClose02",
-	"HiOpen02",
-	"HiClose03",
-	"HiOpen03",
+	"Snare05",//30
+	"Snare06",//31
+	"Snare07",//32
+	
+	"Tom05",//33
+	"HiOpen04",//34
+	"HiClose04",//35
+	
+	"Clap01",//36
+	"Pesi01",//37
+	"Quick01",//38
+	
+	"Bass08" ,//39
 
-	"Crash02",
-	"RevSym01",
-	"Ride01",
-	"Tom03",
-	"Tom04",
+	"Snare08",//40
+	"HiClose05",//41
+    "Per03",//42
+	//Bi_N down.
+	/*
+	"Clap02", //43
+	"Bass09",//44
+	"Bass10",//45
 
-	"OrcDrm01",	
-	"Bell",
-	"Cat" ,
-	"Bass06",		//Ç≥ÇÁÇ…í«â¡
-	"Bass07",
+	"HiClose06",//46
+	"HiClose07",//47
+	"Snare09",//48
 
-	"Snare05",
-	"Snare06",
-	"Snare07",
-	"Tom05",
-	"HiOpen04",
+	"Crash03",//49
+	"Bass11",//50
+	"Snare10",//51
 
-	"HiClose04",
-	"Clap01",
-	"Pesi01",
-	"Quick01",
-	"Bass08" ,		//í¶ÇËÇ∏Ç…í«â¡	// 2011.10.17 
-
-	"Snare08",
-	"HiClose05",
-    "Per03",        // 2024.08.24
+	"HiClose08",//52
+	"HiOpen05",//53
+	"Tom06"//54
+	*/
 };
 
 //ÉAÉãÉtÉ@ÉxÉbÉgèáïœä∑íËã`
 unsigned char Wave_no_to_List_no[] = { //Format as to how drums are shown in DLG_TRACK
 	0,1,10,12,13,28,29,39,26,27,36,7,20,5,16,18,35,41,6,17,19,34,25,8,9,42,37,38,21,22,2,3,14,15,30,31,32,40,4,11,23,24,33
-};
-unsigned char List_no_to_Wave_no[] = { //Idk what this even is, tbh I just know it has to do with char *dram_name.
-	0,1,30,31,38,13,18,11,23,24,2,39,3,4,32,33,14,19,15,20,12,28,29,40,41,22,8,9,5,6,34,35,36,42,21,16,10,26,27,7,37,17,25 //I'll never understand how this works but it does.
+}; //0 = Bass, 2 = Snare, 5 = Hiclose, 6 = HiOpen,4 = Tom
+
+unsigned char List_no_to_Wave_no[] = { 
+	0,1,30,31,38,13,18,11,23,24,2,39,3,4,32,33,14,19,15,20,12,28,29,40,41,22,8,9,5,6,34,35,36,42,21,16,10,26,27,7,37,17,25 //Was going to add new drams, but I had no idea how this works.
 };
 /*unsigned char Wave_no_to_List_no[]={
-	0,1,10,12,13,28,29,39,26,27,36,7,20,5,16,18,35,41,6,17,19,34,25,8,9,42,37,38,21,22,2,3,14,15,30,31,32,40,4,11,23,24,33
+	0,1,10,12,13,28,29,39,45,46,51,26,27,36,44,7,20,50,5,16,18,35,41,47,48,53,6,17,19,34,25,8,9,42,43,37,38,21,22,2,3,14,15,30,31,32,40,49,52,4,11,23,24,33,55
 };
 unsigned char List_no_to_Wave_no[]={
 	0,1,30,31,38,13,18,11,23,24,2,39,3,4,32,33,14,19,15,20,12,28,29,40,41,22,8,9,5,6,34,35,36,42,21,16,10,26,27,7,37,17,25
@@ -862,7 +943,6 @@ int usebox[MAXTRACK] = {
 	IDE_USE5,
 	IDE_USE6,
 	IDE_USE7,
-
 	IDE_USE8,
 	IDE_USE9,
 	IDE_USE10,
@@ -871,6 +951,23 @@ int usebox[MAXTRACK] = {
 	IDE_USE13,
 	IDE_USE14,
 	IDE_USE15,
+
+	IDE_USEDxQ,
+	IDE_USEDxW,
+	IDE_USEDxE,
+	IDE_USEDxR,
+	IDE_USEDxT,
+	IDE_USEDxY,
+	IDE_USEDxU,
+	IDE_USEDxI,
+	IDE_USEDxA,
+	IDE_USEDxS,
+	IDE_USEDxD,
+	IDE_USEDxF,
+	IDE_USEDxG,
+	IDE_USEDxH,
+	IDE_USEDxJ,
+	IDE_USEDxK
 }; //The amount of memory used in a TRACK
 int leftbox[MAXTRACK] = {
 	IDE_LEFT0,
@@ -881,7 +978,6 @@ int leftbox[MAXTRACK] = {
 	IDE_LEFT5,
 	IDE_LEFT6,
 	IDE_LEFT7,
-
 	IDE_LEFT8,
 	IDE_LEFT9,
 	IDE_LEFT10,
@@ -890,6 +986,23 @@ int leftbox[MAXTRACK] = {
 	IDE_LEFT13,
 	IDE_LEFT14,
 	IDE_LEFT15,
+
+	IDE_LEFTDxQ,
+	IDE_LEFTDxW,
+	IDE_LEFTDxE,
+	IDE_LEFTDxR,
+	IDE_LEFTDxT,
+	IDE_LEFTDxY,
+	IDE_LEFTDxU,
+	IDE_LEFTDxI,
+	IDE_LEFTDxA,
+	IDE_LEFTDxS,
+	IDE_LEFTDxD,
+	IDE_LEFTDxF,
+	IDE_LEFTDxG,
+	IDE_LEFTDxH,
+	IDE_LEFTDxJ,
+	IDE_LEFTDxK
 }; //The amount of memory left in a TRACK
 BOOL CALLBACK DialogNoteUsed(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -1130,6 +1243,34 @@ BOOL CALLBACK DialogMemo(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		return 1;
 	
+	}
+	return 0;
+}
+
+BOOL CALLBACK DialogSettings(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	//	char str[10] = {NULL};
+	switch (message) {
+	case WM_INITDIALOG://É_ÉCÉAÉçÉOÇ™åƒÇŒÇÍÇΩ
+
+		EnableDialogWindow(FALSE);
+		return 1;
+	case WM_COMMAND:
+		switch (LOWORD(wParam)) {
+		case IDOK:
+			//Write to int file.
+			EnableDialogWindow(TRUE);
+			EndDialog(hdwnd, 0);
+			return 1;
+		case IDCANCEL:
+			EnableDialogWindow(TRUE);
+			EndDialog(hdwnd, 0);
+			return 1;
+		}
+		//Preload ORG option here.
+
+		return 1;
+
 	}
 	return 0;
 }

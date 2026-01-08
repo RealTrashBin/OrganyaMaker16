@@ -102,7 +102,7 @@ BOOL CALLBACK DialogCopy(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			SetDlgItemText(hdwnd,IDE_TRACK2,TrackCode[org_data.track]);
 			SetDlgItemText(hdwnd,IDE_MEAS1_1,"");
 			{
-				char c[32];
+				char c[64];
 				GetDlgItemText(hDlgPlayer,IDE_VIEWMEAS, c , 32);
 				SetDlgItemText(hdwnd,IDE_MEAS1_1,c);
 			}
@@ -115,7 +115,7 @@ BOOL CALLBACK DialogCopy(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			SetDlgItemText(hdwnd,IDE_TRACK1,TrackCode[tra]);
 			SetDlgItemText(hdwnd,IDE_TRACK2,TrackCode[org_data.track]);
 			{
-				char c[32];
+				char c[64];
 				GetDlgItemText(hDlgPlayer,IDE_VIEWMEAS, c , 32);
 				SetDlgItemText(hdwnd,IDE_MEAS1_1,c);
 			}
@@ -416,7 +416,6 @@ int cbox[MAXTRACK] = {
 	IDC_USE5,
 	IDC_USE6,
 	IDC_USE7,
-
 	IDC_USE8,
 	IDC_USE9,
 	IDC_USE10,
@@ -425,6 +424,23 @@ int cbox[MAXTRACK] = {
 	IDC_USE13,
 	IDC_USE14,
 	IDC_USE15,
+
+	IDC_USEDxQ,
+	IDC_USEDxW,
+	IDC_USEDxE,
+	IDC_USEDxR,
+	IDC_USEDxT,
+	IDC_USEDxY,
+	IDC_USEDxU,
+	IDC_USEDxI,
+	IDC_USEDxA,
+	IDC_USEDxS,
+	IDC_USEDxD,
+	IDC_USEDxF,
+	IDC_USEDxG,
+	IDC_USEDxH,
+	IDC_USEDxJ,
+	IDC_USEDxK,
 };
 
 //Multi-Copy function
@@ -448,7 +464,7 @@ BOOL CALLBACK DialogCopy2(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam
 		if(tra<0){
 			SetDlgItemText(hdwnd,IDE_MEAS1_1,"");
 			{
-				char c[32];
+				char c[64];
 				GetDlgItemText(hDlgPlayer,IDE_VIEWMEAS, c , 32);
 				SetDlgItemText(hdwnd,IDE_MEAS1_1,c);
 			}
@@ -468,13 +484,33 @@ BOOL CALLBACK DialogCopy2(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam
 		return 1;
 	case WM_COMMAND:
 		switch(LOWORD(wParam)){
-		case IDC_SETCOPY_FULLCLICK:
+		case IDC_SETCOPY_FULLCLICK: //All
 			for(i=0;i<MAXTRACK;i++)SendDlgItemMessage(hdwnd,cbox[i],BM_SETCHECK,1,0);
 
 			return 1;
-		case IDC_SETCOPY_FULLCLICK2:
+		case IDC_SETCOPY_FULLCLICK2: //Current
 			for(i=0;i<MAXTRACK;i++)SendDlgItemMessage(hdwnd,cbox[i],BM_SETCHECK,0,0);
 			SendDlgItemMessage(hdwnd,cbox[org_data.track],BM_SETCHECK,1,0);
+			return 1;
+		case IDC_SETCOPY_FULLCLICK3: //Melody
+			for (i = MAXMELODY; i < MAXTRACK; i++)
+			{
+				SendDlgItemMessage(hdwnd, cbox[i], BM_SETCHECK, 0, 0);
+			}
+			for (i = 0; i < MAXMELODY; i++)
+			{
+				SendDlgItemMessage(hdwnd, cbox[i], BM_SETCHECK, 1, 0);
+			}
+			return 1;
+		case IDC_SETCOPY_FULLCLICK4: //Dram
+			for (i = 0; i < MAXTRACK; i++)
+			{
+				SendDlgItemMessage(hdwnd, cbox[i], BM_SETCHECK, 0, 0);
+			}
+			for (i = MAXMELODY; i < MAXTRACK; i++)
+			{
+				SendDlgItemMessage(hdwnd, cbox[i], BM_SETCHECK, 1, 0);
+			}
 			return 1;
 		case IDCANCEL:
 			EndDialog(hdwnd,0);

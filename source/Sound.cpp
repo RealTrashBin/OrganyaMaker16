@@ -430,37 +430,7 @@ void ReleaseSoundObject(int no){
 // ƒTƒEƒ“ƒh‚ÌÝ’è 
 BOOL InitSoundObject(LPCSTR resname, int no)
 {
-    /*HRSRC hrscr;
-    DSBUFFERDESC dsbd;
-    DWORD *lpdword;//ƒŠƒ\[ƒX‚ÌƒAƒhƒŒƒX
-    // ƒŠƒ\[ƒX‚ÌŒŸõ
-    if((hrscr = FindResource(NULL, resname, "WAVE")) == NULL)
-                                                    return(FALSE);
-    // ƒŠƒ\[ƒX‚ÌƒAƒhƒŒƒX‚ðŽæ“¾
-    lpdword = (DWORD*)LockResource(LoadResource(NULL, hrscr));
-	// “ñŽŸƒoƒbƒtƒ@‚Ì¶¬
-	ZeroMemory(&dsbd, sizeof(DSBUFFERDESC));
-	dsbd.dwSize = sizeof(DSBUFFERDESC);
-	dsbd.dwFlags = 
-		DSBCAPS_STATIC|
-		DSBCAPS_GLOBALFOCUS
-		|DSBCAPS_CTRLPAN | DSBCAPS_CTRLVOLUME | DSBCAPS_CTRLFREQUENCY;
-	dsbd.dwBufferBytes = *(DWORD*)((BYTE*)lpdword+0x36);//WAVEƒf[ƒ^‚ÌƒTƒCƒY
-	dsbd.lpwfxFormat = (LPWAVEFORMATEX)(lpdword+5); 
-	if(lpDS->CreateSoundBuffer(&dsbd, &lpSECONDARYBUFFER[no],
-								NULL) != DS_OK) return(FALSE);
-    LPVOID lpbuf1, lpbuf2;
-    DWORD dwbuf1, dwbuf2;
-    // “ñŽŸƒoƒbƒtƒ@‚ÌƒƒbƒN
-    lpSECONDARYBUFFER[no]->Lock(0, *(DWORD*)((BYTE*)lpdword+0x36),
-                        &lpbuf1, &dwbuf1, &lpbuf2, &dwbuf2, 0); 
-	// ‰¹Œ¹ƒf[ƒ^‚ÌÝ’è
-	CopyMemory(lpbuf1, (BYTE*)lpdword+0x3a, dwbuf1);
-    if(dwbuf2 != 0) CopyMemory(lpbuf2, (BYTE*)lpdword+0x3a+dwbuf1, dwbuf2);
-	// “ñŽŸƒoƒbƒtƒ@‚ÌƒƒbƒN‰ðœ
-	lpSECONDARYBUFFER[no]->Unlock(lpbuf1, dwbuf1, lpbuf2, dwbuf2); 
 
-    return(TRUE);*/
 
 	ReleaseSoundObject(no);
 
@@ -594,7 +564,7 @@ OCTWAVE oct_wave[8] = {
 	{  8,128, 32},
 };
 
-//WAVEFORMATEX format_tbl2 = { WAVE_FORMAT_PCM, 1, 22050, 22050, 1, 8, 0 };	// 22050Hz Format
+WAVEFORMATEX format_tbl2 = { WAVE_FORMAT_PCM, 1, 22050, 22050, 1, 8, 0 };	// 22050Hz Format
 
 //BYTE format_tbl3[] = {0x01,0x00,0x01,0x00,0x44,0xac,0x00,//441000Hz‚ÌFormat
 //0x00,0x44,0xac,0x00,0x00,0x08,0x00,0x00,0x00,0x66,0x61};
@@ -735,7 +705,7 @@ void PlayOrganObject(unsigned char key, int mode,char track,DWORD freq, bool pip
 }
 //ƒIƒ‹ƒK[ƒjƒƒƒIƒuƒWƒFƒNƒg‚ðŠJ•ú
 void ReleaseOrganyaObject(char track){
-	for(int i = 0; i < 8; i++){
+	for(int i = 0; i < MAXMELODY; i++){
 		if(lpORGANBUFFER[track][i][0] != NULL){
 			S_DestroySound(lpORGANBUFFER[track][i][0]);
 			lpORGANBUFFER[track][i][0] = NULL;

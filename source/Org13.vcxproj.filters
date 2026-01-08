@@ -210,6 +210,15 @@
     <Image Include="Bitmap\wave100.bmp">
       <Filter>Resource Files\Bitmap</Filter>
     </Image>
+    <Image Include="Bitmap\org_end.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\org_next_step.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\org_back_step.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
     <Image Include="Bitmap\button_track_5.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -222,13 +231,37 @@
     <Image Include="Bitmap\button_track_8.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Bitmap\button_track_Q.bmp">
+    <Image Include="Bitmap\button_track_9.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Bitmap\button_track_W.bmp">
+    <Image Include="Bitmap\button_track_10.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\button_track_11.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\button_track_12.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\button_track_13.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\button_track_14.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\button_track_15.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\button_track_16.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Bitmap\button_track_E.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\button_track_I.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Bitmap\button_track_Q.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="Bitmap\button_track_R.bmp">
@@ -237,25 +270,13 @@
     <Image Include="Bitmap\button_track_T.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Bitmap\button_track_Y.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Bitmap\button_track_U.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Bitmap\button_track_I.bmp">
+    <Image Include="Bitmap\button_track_W.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="Bitmap\org_end.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmap\org_next_step.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmap\org_back_step.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="Bitmap\button_track_9.bmp">
+    <Image Include="Bitmap\button_track_Y.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
@@ -263,10 +284,40 @@
     <Media Include="Wave\Per03.wav">
       <Filter>Resource Files\Wave</Filter>
     </Media>
-    <Media Include="Metro\Metro01.wav">
+    <Media Include="Wave\Snare09.wav">
       <Filter>Resource Files\Wave</Filter>
     </Media>
-    <Media Include="Metro\Metro02.wav">
+    <Media Include="Wave\Snare10.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\Tom06.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\Bass09.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\Bass10.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\Bass11.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\Clap02.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\Crash03.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\HiClose06.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\HiClose07.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\HiClose08.wav">
+      <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Wave\HiOpen05.wav">
       <Filter>Resource Files\Wave</Filter>
     </Media>
   </ItemGroup>
