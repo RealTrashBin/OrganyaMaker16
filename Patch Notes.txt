@@ -13,3 +13,5 @@ Disabled MIDI Export, it just crashes OrgMaker because MIDI supports ONLY 16 cha
 
 			Add export to FT2 XM feature since it has 32 Tracks.
 			(Remember the one Clownancy made.)
+
+			Fix the shift+track error
