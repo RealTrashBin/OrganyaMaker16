@@ -7,12 +7,9 @@ Disabled MIDI Export, it just crashes OrgMaker because MIDI supports ONLY 16 cha
 
 	Goals:
 
-		-Finish the volume functions
+			Make it read ORG files properly again.
 
-		-Add a some Panning functions
+			Fix memory bug that locks tracks to 31-32 notes per track.
 
-		-Fix clicking drums disables channels bug(Click Q and then 1, you'll get what I mean.)
-
-		-Finish functions regarding to Channels 9-32(Mem. usage, copying, etc.)
-
-
+			Add export to FT2 XM feature since it has 32 Tracks.
+			(Remember the one Clownancy made.)
