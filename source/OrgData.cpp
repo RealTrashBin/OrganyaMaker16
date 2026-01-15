@@ -17,7 +17,7 @@ extern char *dram_name[];
 extern int iKeyPushDown[];
 
 //w’è‚Ì”‚¾‚¯NoteData‚Ì—Ìˆæ‚ğŠm•Û(‰Šú‰»)
-BOOL OrgData::NoteAlloc(unsigned long alloc)
+BOOL OrgData::NoteAlloc(unsigned short alloc)
 {
 	int i,j;
 	for(j = 0; j < MAXTRACK; j++){
@@ -109,7 +109,7 @@ BOOL OrgData::SetMusicInfo(MUSICINFO *mi,unsigned long flag)
 		SetDlgItemText(hDlgTrack,IDE_VIEWWAIT,str);
 //		MessageBox(hWnd,"‚¤‚¦‚¢‚Æ","",MB_OK);
 	}
-	if(flag & SETREPEAT){ //Is repeat set?
+	if(flag & SETREPEAT){ //Repeat x and end x
 		info.repeat_x = mi->repeat_x;
 		info.end_x = mi->end_x;
 	}
@@ -704,9 +704,8 @@ void OrgData::InitOrgData(void)
 
 	// i is refering to TRACKS
 	for(i=0; i<MAXMELODY; i++){
-		info.tdata[i].wave_no = i*11;
+		info.tdata[i].wave_no = i*0;
 		MakeOrganyaWave(i, info.tdata[i].wave_no, info.tdata[i].pipi);
-		break;  //Makes the waves not go up by 11.
 	}
 	info.tdata[16].wave_no = 0; //Drams
 	info.tdata[17].wave_no = 0;

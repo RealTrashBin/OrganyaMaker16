@@ -256,6 +256,14 @@ BEGIN
     EDITTEXT        IDD_SETFREQx5,235,8,23,12,ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx6,278,8,23,12,ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx7,322,8,23,12,ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx8, 366, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx9, 410, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx10, 454, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx11, 542, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx12, 498, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx13, 542, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx14, 586, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx15, 630, 8, 23, 12, ES_RIGHT | ES_NUMBER
     CONTROL         "",IDC_CHECK_PIPIx0,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,34,9,8,8
     CONTROL         "",IDC_CHECK_PIPIx1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,79,9,8,8
     CONTROL         "",IDC_CHECK_PIPIx2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,122,9,8,8
@@ -264,6 +272,14 @@ BEGIN
     CONTROL         "",IDC_CHECK_PIPIx5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,260,9,8,8
     CONTROL         "",IDC_CHECK_PIPIx6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,303,9,8,8
     CONTROL         "",IDC_CHECK_PIPIx7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,347,9,8,8
+    CONTROL         "", IDC_CHECK_PIPIx8, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 391, 9, 8, 8
+    CONTROL         "", IDC_CHECK_PIPIx9, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 435, 9, 8, 8
+    CONTROL         "", IDC_CHECK_PIPIx10, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 479, 9, 8, 8
+    CONTROL         "", IDC_CHECK_PIPIx11, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 523, 9, 8, 8
+    CONTROL         "", IDC_CHECK_PIPIx12, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 567, 9, 8, 8
+    CONTROL         "", IDC_CHECK_PIPIx13, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 611, 9, 8, 8
+    CONTROL         "", IDC_CHECK_PIPIx14, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 655, 9, 8, 8
+    CONTROL         "", IDC_CHECK_PIPIx15, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 699, 9, 8, 8
     PUSHBUTTON      "reset",VS_SLIDER_RESET,761,3,22,16,0,WS_EX_CLIENTEDGE
     CONTROL         "Slider1",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | WS_TABSTOP,832,27,138,20
     DEFPUSHBUTTON   "Save", VS_VERSION_INFO,790,3,47,16
@@ -907,7 +923,7 @@ FONT 9, "MS PGothic"
 BEGIN
 DEFPUSHBUTTON   "OK", IDOK, 30, 50, 32, 14
 PUSHBUTTON      "Cancel", IDCANCEL, 66, 50, 32, 14
-PUSHBUTTON      "...", IDE_ORGCHOICE, 20,30, 28, 12
+PUSHBUTTON      "...", IDE_ORGCHOICE, 20,30, 28, 12 //Pre-Load Org Option
 EDITTEXT        IDE_ORGDEFAULT, 20, 16, 28, 12, ES_READONLY
 END
 
@@ -1276,7 +1292,8 @@ BEGIN
         MENUITEM "  &Metronome",                IDM_METRONOME
         MENUITEM "  &Themes...",                IDM_DLGTHEMES
         MENUITEM "  Sound&banks...",            IDM_DLGWAVEDBS
-        MENUITEM"  Boot Settings",              IDM_DLGSETTINGS
+        MENUITEM SEPARATOR
+        MENUITEM"  Boot Settings",              IDM_DLGSETTINGS,GRAYED
     END
     POPUP "&Help"
     BEGIN
@@ -1545,7 +1562,7 @@ BEGIN
             VALUE "CompanyName", "Cave Story."
             VALUE "FileDescription", "32 Tracks, and your imagination."
             VALUE "FileVersion", "1.6.0.0"
-            VALUE "LegalCopyright", "Copyright (C) 2005-2024 Pixel and Rxo Inverse (Yo, can I be in here too?) -Bi_N"
+            VALUE "LegalCopyright", "Copyright (C) 2005-2026 Pixel and Rxo Inverse (Yo, can I be in here too?) -Bi_N"
             VALUE "OriginalFilename", "OrgMaker.exe"
             VALUE "ProductName", "OrgMaker 16"
             VALUE "ProductVersion", "1.6.0.0"
@@ -1570,37 +1587,35 @@ BEGIN
     "1",            ID_AC_1,                VIRTKEY, NOINVERT
     "1",            ID_AC_C1,               VIRTKEY, CONTROL, NOINVERT
     "1",            ID_AC_CA1,              VIRTKEY, CONTROL, ALT, NOINVERT
-    "1",            ID_AC_S1,               VIRTKEY, SHIFT, NOINVERT
+ //   "1",            ID_AC_S1,               VIRTKEY, SHIFT, NOINVERT
     "2",            ID_AC_2,                VIRTKEY, NOINVERT
     "2",            ID_AC_C2,               VIRTKEY, CONTROL, NOINVERT
     "2",            ID_AC_CA2,              VIRTKEY, CONTROL, ALT, NOINVERT
-    "2",            ID_AC_S2,               VIRTKEY, SHIFT, NOINVERT
+//    "2",            ID_AC_S2,               VIRTKEY, SHIFT, NOINVERT
     "3",            ID_AC_3,                VIRTKEY, NOINVERT
     "3",            ID_AC_C3,               VIRTKEY, CONTROL, NOINVERT
     "3",            ID_AC_CA3,              VIRTKEY, CONTROL, ALT, NOINVERT
-    "3",            ID_AC_S3,               VIRTKEY, SHIFT, NOINVERT
+//    "3",            ID_AC_S3,               VIRTKEY, SHIFT, NOINVERT
     "4",            ID_AC_4,                VIRTKEY, NOINVERT
     "4",            ID_AC_C4,               VIRTKEY, CONTROL, NOINVERT
     "4",            ID_AC_CA4,              VIRTKEY, CONTROL, ALT, NOINVERT
-    "4",            ID_AC_S4,               VIRTKEY, SHIFT, NOINVERT
+//    "4",            ID_AC_S4,               VIRTKEY, SHIFT, NOINVERT
     "5",            ID_AC_5,                VIRTKEY, NOINVERT
     "5",            ID_AC_C5,               VIRTKEY, CONTROL, NOINVERT
     "5",            ID_AC_CA5,              VIRTKEY, CONTROL, ALT, NOINVERT
-    "5",            ID_AC_S5,               VIRTKEY, SHIFT, NOINVERT
+//   "5",            ID_AC_S5,               VIRTKEY, SHIFT, NOINVERT
     "6",            ID_AC_6,                VIRTKEY, NOINVERT
     "6",            ID_AC_C6,               VIRTKEY, CONTROL, NOINVERT
     "6",            ID_AC_CA6,              VIRTKEY, CONTROL, ALT, NOINVERT
-    "6",            ID_AC_S6,               VIRTKEY, SHIFT, NOINVERT
+//    "6",            ID_AC_S6,               VIRTKEY, SHIFT, NOINVERT
     "7",            ID_AC_7,                VIRTKEY, NOINVERT
     "7",            ID_AC_C7,               VIRTKEY, CONTROL, NOINVERT
     "7",            ID_AC_CA7,              VIRTKEY, CONTROL, ALT, NOINVERT
-    "7",            ID_AC_S7,               VIRTKEY, SHIFT, NOINVERT
+//    "7",            ID_AC_S7,               VIRTKEY, SHIFT, NOINVERT
     "8",            ID_AC_8,                VIRTKEY, NOINVERT
     "8",            ID_AC_C8,               VIRTKEY, CONTROL, NOINVERT
     "8",            ID_AC_CA8,              VIRTKEY, CONTROL, ALT, NOINVERT
-    "8",            ID_AC_S8,               VIRTKEY, SHIFT, NOINVERT
-    "9",            ID_AC_C9,               VIRTKEY, CONTROL, NOINVERT
-    "9",            ID_AC_CA9,              VIRTKEY, CONTROL, ALT, NOINVERT
+//    "8",            ID_AC_S8,               VIRTKEY, SHIFT, NOINVERT
     "A",            ID_AC_SELECT_ALL,       VIRTKEY, CONTROL, NOINVERT
     "D",            ID_AC_SELECT_RESET,     VIRTKEY, CONTROL, NOINVERT
     "D",            ID_AC_CT_KEY_OCT_DOWN,  VIRTKEY, CONTROL, ALT, NOINVERT
@@ -1879,7 +1894,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_STRING112           "1!2!3!4!5!6!7!8!9!10!11!12!13!14!15!16!Q!W!E!R!T!Y!U!I!A!S!D!F!G!H!J!K!!"
-    IDS_STRING113           "[1]![2]![3]![4]![5]![6]![7]![8]![9]![10]![11]![12]![13]![14]![15]![16]![Q]![W]![E]![R]![T]![Y]![U]![I]!!"
+    IDS_STRING113           "[1]![2]![3]![4]![5]![6]![7]![8]![9]![10]![11]![12]![13]![14]![15]![16]![Q]![W]![E]![R]![T]![Y]![U]![I]![A]![S]![D]![F]![G]![H]![J]![K]!!"
     IDS_STRING114           "Created with OrgMaker 16"
     IDS_STRING115           " from beginning to end"
     IDS_STRING116           "All tracks from beginning to end"

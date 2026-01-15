@@ -234,74 +234,6 @@ void InitSettingDialog(HWND hdwnd)
 	SetDlgItemText(hdwnd, IDD_END_BEAT, str);
 	//の初期化//////////////////
 
-	a = mi.tdata[0].freq;
-	itoa(a,str,10);
-	SetDlgItemText(hdwnd,IDD_SETFREQ0,str);
-
-	a = mi.tdata[1].freq;
-	itoa(a,str,10);
-	SetDlgItemText(hdwnd,IDD_SETFREQ1,str);
-
-	a = mi.tdata[2].freq;
-	itoa(a,str,10);
-	SetDlgItemText(hdwnd,IDD_SETFREQ2,str);
-
-	a = mi.tdata[3].freq;
-	itoa(a,str,10);
-	SetDlgItemText(hdwnd,IDD_SETFREQ3,str);
-
-	a = mi.tdata[4].freq;
-	itoa(a,str,10);
-	SetDlgItemText(hdwnd,IDD_SETFREQ4,str);
-
-	a = mi.tdata[5].freq;
-	itoa(a,str,10);
-	SetDlgItemText(hdwnd,IDD_SETFREQ5,str);
-
-	a = mi.tdata[6].freq;
-	itoa(a,str,10);
-	SetDlgItemText(hdwnd,IDD_SETFREQ6,str);
-
-	a = mi.tdata[7].freq;
-	itoa(a,str,10);
-	SetDlgItemText(hdwnd,IDD_SETFREQ7,str);
-
-	a = mi.tdata[8].freq;
-	itoa(a, str, 10);
-	SetDlgItemText(hdwnd, IDD_SETFREQ8, str);
-
-	a = mi.tdata[9].freq;
-	itoa(a, str, 10);
-	SetDlgItemText(hdwnd, IDD_SETFREQ9, str);
-
-	a = mi.tdata[10].freq;
-	itoa(a, str, 10);
-	SetDlgItemText(hdwnd, IDD_SETFREQ10, str);
-
-	a = mi.tdata[11].freq;
-	itoa(a, str, 10);
-	SetDlgItemText(hdwnd, IDD_SETFREQ11, str);
-
-	a = mi.tdata[12].freq;
-	itoa(a, str, 10);
-	SetDlgItemText(hdwnd, IDD_SETFREQ12, str);
-
-	a = mi.tdata[13].freq;
-	itoa(a, str, 10);
-	SetDlgItemText(hdwnd, IDD_SETFREQ13, str);
-
-	a = mi.tdata[14].freq;
-	itoa(a, str, 10);
-	SetDlgItemText(hdwnd, IDD_SETFREQ14, str);
-
-	a = mi.tdata[15].freq;
-	itoa(a, str, 10);
-	SetDlgItemText(hdwnd, IDD_SETFREQ15, str);
-
-	for(i = 0; i < NUMGRID; i++){//pipiの初期化
-		if( mi.tdata[i].pipi )
-			CheckDlgButton( hdwnd, check_pipi[i], 1 );
-	}
 	//MessageBox(NULL, "メッセージループを抜けました", "OK", MB_OK);
 }
 
@@ -424,7 +356,7 @@ BOOL SetTrackFreq(HWND hdwnd, MUSICINFO *mi)
 	unsigned short a;
 	bool msg = false;
 	for (int i = 0; i < MAXMELODY; i++) {
-		GetDlgItemText(hdwnd,freqbox[i],str,7);
+		GetDlgItemText(hdwnd,freqbox[i],str,15);
 		a = (unsigned short)atol(str);
 		/*
 		if ((a < 100 || 1900 < a) && !msg2) //Fix this too.
@@ -436,7 +368,6 @@ BOOL SetTrackFreq(HWND hdwnd, MUSICINFO *mi)
 		if(a > 30000){ //Why is it skipping this!?!?!?!
 			msg = true;
 			MessageBox(hdwnd,"Track freqency must be between 0 and 30000.","Error(Frequency)", MB_OK);	//Shows this in the wait menu.
-			mi->tdata[i].freq = 1000;
 		}
 		else
 		{
@@ -512,6 +443,7 @@ BOOL CALLBACK DialogSetting(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPar
 		case IDD_REP_MEAS: case IDD_END_MEAS: case IDD_REP_BEAT: case IDD_END_BEAT: case IDD_SETWAIT: case IDC_BPM:
 		case IDD_GRIDEDIT1: case IDD_GRIDEDIT2:
 		case IDD_SETFREQ0: case IDD_SETFREQ1: case IDD_SETFREQ2: case IDD_SETFREQ3: case IDD_SETFREQ4: case IDD_SETFREQ5: case IDD_SETFREQ6: case IDD_SETFREQ7:
+		case IDD_SETFREQ8: case IDD_SETFREQ9: case IDD_SETFREQ10: case IDD_SETFREQ11: case IDD_SETFREQ12: case IDD_SETFREQ13: case IDD_SETFREQ14: case IDD_SETFREQ15:
 			if(HIWORD(wParam) == EN_SETFOCUS)PostMessage(GetDlgItem(hdwnd, LOWORD(wParam)), EM_SETSEL, 0, -1); //フォーカス時にテキストを全選択する
 			return -1;
 		case IDCANCEL:
@@ -544,7 +476,7 @@ BOOL CALLBACK DialogSetting(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPar
 					}
 				}
 			}
-			org_data.SetMusicInfo(&mi,SETGRID|SETWAIT|SETREPEAT|SETFREQ|SETPIPI);
+			org_data.SetMusicInfo(&mi,SETGRID|SETWAIT|SETREPEAT);
 			//波形の作りなおし
 			for(j = 0; j < MAXMELODY; j++)
 				MakeOrganyaWave(j,mi.tdata[j].wave_no,mi.tdata[j].pipi);
@@ -659,7 +591,7 @@ void Sl_Reset(HWND hdwnd)
 	SendDlgItemMessage(hdwnd , IDC_SLIDER1 , TBM_SETRANGEMIN , FALSE, 0);
 	SendDlgItemMessage(hdwnd , IDC_SLIDER1 , TBM_SETRANGEMAX , FALSE, 95);
 	SendDlgItemMessage(hdwnd , IDC_SLIDER1 , TBM_CLEARTICS , FALSE, 0);
-	for(i=1; i<8; i++){
+	for(i=1; i<MAXMELODY; i++){
 		SendDlgItemMessage(hdwnd , IDC_SLIDER1 , TBM_SETTIC , 0, i*12);
 
 	}
@@ -707,7 +639,7 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	long mouse_x;
 	long mouse_y;
 	long mx, my, n;
-	char str[10];
+	char str[32];
 	TCHAR* p;
 	static MUSICINFO mi;
 	static int iLastLBox = 0;
@@ -775,7 +707,7 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		return 1;
 	case WM_COMMAND:
-		if ((LOWORD(wParam) >= IDD_SETFREQx0 && LOWORD(wParam) <= IDD_SETFREQx7) && (HIWORD(wParam) == EN_SETFOCUS)) {	// 2014.10.19 
+		if ((LOWORD(wParam) >= IDD_SETFREQx0 && LOWORD(wParam) <= IDD_SETFREQ15) && (HIWORD(wParam) == EN_SETFOCUS)) {	// 2014.10.19 
 			PostMessage(GetDlgItem(hdwnd, LOWORD(wParam)), EM_SETSEL, 0, -1); //フォーカス時にテキストを全選択する
 			return -1;
 		}
@@ -786,10 +718,28 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				Rxo_StopAllSoundNow();
 				SetUndo();
 				n = 0;
-				for (j = 0; j < MAXMELODY; j++) {
-					GetDlgItemText(hdwnd, IDD_SETFREQx0 + j, str, 7); i = atol(str); mi.tdata[j].freq = (i > 0xFFFF) ? 0xFFFF : i;
+				for (j = 0; j < 15; j++) {
+					if (j < 8)
+					{
+						GetDlgItemTextA(hdwnd, IDD_SETFREQx0 + j, str, MAXMELODY); i = atol(str); mi.tdata[j].freq = (i > 0xFFFF) ? 0xFFFF : i;
+					}
+					else
+					{
+						GetDlgItemTextA(hdwnd, IDD_SETFREQx0 + j + 498, str, MAXMELODY); i = atol(str); mi.tdata[j].freq = (i > 0xFFFF) ? 0xFFFF : i;
+					}
 					n |= (i >30000) ? 1 : 0;
-					mi.tdata[j].pipi = (IsDlgButtonChecked(hdwnd, IDC_CHECK_PIPIx0 + j)) ? 1 : 0;
+					if (j < 8)
+					{
+						mi.tdata[j].pipi = (IsDlgButtonChecked(hdwnd, IDC_CHECK_PIPIx0 + j)) ? 1 : 0;
+					}
+					else
+					{
+						mi.tdata[j].pipi = (IsDlgButtonChecked(hdwnd, IDC_CHECK_PIPIx0 + j + 404)) ? 1 : 0;
+					}
+					if (mi.tdata[10].pipi == 1)
+					{
+						MessageBoxA(hWnd, "Frequency 15 is here", "Work", MB_OK);
+					}
 					MakeOrganyaWave(j, mi.tdata[j].wave_no, mi.tdata[j].pipi); // add this so it updates if pipi changes
 				}
 
@@ -1614,7 +1564,9 @@ BOOL CALLBACK DialogDefault(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPar
 	case WM_COMMAND:
 		switch(LOWORD(wParam)){
 		case IDC_PANPOT1: case IDC_PANPOT2: case IDC_PANPOT3: case IDC_PANPOT4: case IDC_PANPOT5: case IDC_PANPOT6: case IDC_PANPOT7: case IDC_PANPOT8: case IDC_PANPOT9: case IDC_PANPOT10: case IDC_PANPOT11: case IDC_PANPOT12: case IDC_PANPOT13: case IDC_PANPOT14: case IDC_PANPOT15: case IDC_PANPOT16:
+		case IDC_PANPOTDxQ: case IDC_PANPOTDxW: case IDC_PANPOTDxE: case IDC_PANPOTDxR: case IDC_PANPOTDxT: case IDC_PANPOTDxY: case IDC_PANPOTDxU: case IDC_PANPOTDxI: case IDC_PANPOTDxA: case IDC_PANPOTDxS: case IDC_PANPOTDxD: case IDC_PANPOTDxF: case IDC_PANPOTDxG: case IDC_PANPOTDxH: case IDC_PANPOTDxJ: case IDC_PANPOTDxK:
 		case IDC_VOLUME1: case IDC_VOLUME2: case IDC_VOLUME3: case IDC_VOLUME4: case IDC_VOLUME5: case IDC_VOLUME6: case IDC_VOLUME7: case IDC_VOLUME8: case IDC_VOLUME9: case IDC_VOLUME10: case IDC_VOLUME11: case IDC_VOLUME12: case IDC_VOLUME13: case IDC_VOLUME14: case IDC_VOLUME15: case IDC_VOLUME16:
+		case IDC_VOLUMEDxQ: case IDC_VOLUMEDxW: case IDC_VOLUMEDxE: case IDC_VOLUMEDxR: case IDC_VOLUMEDxT: case IDC_VOLUMEDxY: case IDC_VOLUMEDxU: case IDC_VOLUMEDxI: case IDC_VOLUMEDxA: case IDC_VOLUMEDxS: case IDC_VOLUMEDxD: case IDC_VOLUMEDxF: case IDC_VOLUMEDxG: case IDC_VOLUMEDxH: case IDC_VOLUMEDxJ: case IDC_VOLUMEDxK:
 			if(HIWORD(wParam) == EN_SETFOCUS)PostMessage(GetDlgItem(hdwnd, LOWORD(wParam)), EM_SETSEL, 0, -1); //フォーカス時にテキストを全選択する	// 2014.10.19 
 			return 1;
 		case IDC_DEF_NOWLOAD:

@@ -36,7 +36,7 @@
 
 #include "Sound.h"
 #include "Timer.h"
-
+char strPath[MAX_PATH] = { NULL };
 //main procedure
 LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam);
 BOOL CALLBACK DialogSetting(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -765,7 +765,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 				if(CancelDeleteCurrentData(CDCD_LOAD)) break;
 				/*i = 0;
 				if(LOWORD(wParam)==IDM_LOAD2 || LOWORD(wParam)==ID_AC_LOAD2)i=1; */
-				if(GetFileNameLoad(hWnd,MessageString[IDS_STRING61]/*,i*/) != MSGLOADOK) break;//"Load song data"
+				if(GetFileNameLoad(hWnd,MessageString[IDS_STRING61],strPath) != MSGLOADOK) break;//"Load song data"
 				
 				if (timer_sw != 0) // Stop playing song
 					SendMessage(hDlgPlayer, WM_COMMAND, IDC_STOP, NULL);

@@ -6,10 +6,9 @@
 char NewMelody = MAXMELODY / 2;
 char NewDram = MAXTRACK - MAXDRAM / 2;
 
-
 bool OrgData::TrackFlag(void) //Used for ORG-16
 {
-	int i; //Track
+	char i; //Track
 
 	//Checks Melody
 	for (i = NewMelody; i < MAXMELODY; i++) //i = Last STD Track, i < maxmium track
@@ -35,3 +34,4 @@ bool OrgData::TrackFlag(void) //Used for ORG-16
 		}
 	return false;
 }
+

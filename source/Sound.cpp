@@ -705,7 +705,7 @@ void PlayOrganObject(unsigned char key, int mode,char track,DWORD freq, bool pip
 }
 //ƒIƒ‹ƒK[ƒjƒƒƒIƒuƒWƒFƒNƒg‚ðŠJ•ú
 void ReleaseOrganyaObject(char track){
-	for(int i = 0; i < MAXMELODY; i++){
+	for(int i = 0; i < 8; i++){
 		if(lpORGANBUFFER[track][i][0] != NULL){
 			S_DestroySound(lpORGANBUFFER[track][i][0]);
 			lpORGANBUFFER[track][i][0] = NULL;
@@ -848,10 +848,6 @@ void ReleaseDramObject(char track){
 // ƒTƒEƒ“ƒh‚ÌÝ’è 
 BOOL InitDramObject(char drum, int no)
 {
-    //HRSRC hrscr;
-    //DSBUFFERDESC dsbd;
-    //DWORD *lpdword;//ƒŠƒ\[ƒX‚ÌƒAƒhƒŒƒX
-    // ƒŠƒ\[ƒX‚ÌŒŸõ
 	ReleaseDramObject(no); //‚±‚±‚É‚¨‚¢‚Ä‚Ý‚½B
 
 	if (drum < 0 || drum >= NUMDRAMITEM || drumsData[drum].data == NULL) {

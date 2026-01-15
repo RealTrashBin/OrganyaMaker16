@@ -22,7 +22,7 @@ RECT note_rect[] = {
 	{ 16, 6, 31, 16},//Repeat symbol 2
 };
 
-RECT note_blue_rect[]={ //数字入りのキー音符（頭）
+RECT note_blue_rect[]={ //殖MPNOTE
 	{ 48,  0, 64,  6}, //Blue Note
 	{64,  0, 80,  6}, //Red Note
 	{ 48,  8, 64,  14}, //Purple Note
@@ -31,8 +31,17 @@ RECT note_blue_rect[]={ //数字入りのキー音符（頭）
 	{64,  16, 80,  22}, //Yellow Note
 	{ 48,  24, 64,  30}, //Gray Note
 	{64,  24, 80,  30}, //Beige Note
-	{131,  128,  147,  134}, //Midnight Note(Bi_N)
-	
+
+
+	{131,  128,  147,  134}, //9th Note(Bi_N)
+	{147,  128,  163,  134}, //Mint Note(Bi_N)
+	{131,  136,  147,  142}, //Blueish Note(Bi_N)
+	{147,  136,  163,  142}, //Pinkish Note(Bi_N)
+	{131,  144,  147,  150}, //Beige Pinkish Note(Bi_N)
+	{147,  144,  163,  150}, //Niko Note(Bi_N) kitty!!~~
+	{131,  152,  147,  158}, //Purple-ish Note(Bi_N)
+	{147,  152,  163,  158}, //Another Purple-ish Note(Bi_N)
+
 	{ 97,  0, 113,  6}, //Blue Note(Dram)
 	{113,  0, 129,  6}, //Red Note(Dram)
 	{ 97,  8, 113,  14}, //Purple Note(Dram)
@@ -41,6 +50,16 @@ RECT note_blue_rect[]={ //数字入りのキー音符（頭）
 	{113,  16, 129, 22}, //Yellow Note(Dram)
 	{ 97, 24, 113, 30}, //Gray Note(Dram)
 	{113, 24, 129, 30}, //Beige Note(Dram)
+
+
+	{ 180,128,196,134}, //9th Note(Dram)
+	{196,128,212,134}, //Mint Note(Dram)
+	{ 180,136,196,142}, //Blueish Note(Dram)
+	{196,136,212,142}, //Pinkish Note(Dram)
+	{ 180,144,196,150}, //Beige pinkish Note(Dram)
+	{196,144,212,150}, //Niko Note(Dram) Kityy!!!~~~~~
+	{ 180,152,196,158}, //Purple-ish Note(Dram)
+	{196,152,212,158}, //Another purple-ish Note(Dram)
 	
 	{ 48, 37, 64, 43}, //Blue Note light
 	{64, 37, 80, 43}, //Red Note light
@@ -50,7 +69,26 @@ RECT note_blue_rect[]={ //数字入りのキー音符（頭）
 	{64, 53, 80, 59}, //Yellow Note light
 	{ 48, 61, 64, 67}, //Gray Note light
 	{64, 61, 80, 67}, //Beige Note light
+
+
 	{131, 165, 147, 171}, // Midnight Note light(Bi_N)
+	{64, 37, 80, 43}, //Red Note light
+	{ 48, 45, 64, 51}, //Purple Note light
+	{64, 45, 80, 51}, //Green Note light
+	{ 48, 53, 64, 59}, //Cyan Note light
+	{64, 53, 80, 59}, //Yellow Note light
+	{ 48, 61, 64, 67}, //Gray Note light
+	{64, 61, 80, 67}, //Beige Note light
+
+	{ 97, 37, 113, 43}, //Blue Note(Dram) light
+	{113, 37, 129, 43}, //Red Note(Dram) light
+	{ 97, 45, 113, 51}, //Purple Note(Dram) light
+	{113, 45, 129, 51}, //Green Note(Dram) light
+	{ 97, 53, 113, 59}, //Cyan Note(Dram) light
+	{113, 53, 129, 59}, //Yellow Note(Dram) light
+	{ 97, 61, 113, 67}, //Gray Note(Dram) light
+	{113, 61, 129, 67}, //Beige Note(Dram) light
+
 
 	{ 97, 37, 113, 43}, //Blue Note(Dram) light
 	{113, 37, 129, 43}, //Red Note(Dram) light
@@ -71,7 +109,17 @@ RECT note_tail_rect[]={ //しっぽ
 	{80, 57, 96, 60}, //Yellow Note Tail light
 	{80, 61, 96, 64}, //Gray Note Tail light
 	{80, 65, 96, 68}, //Beige Note Tail light
+	
+
 	{163, 37, 179, 40}, //Midnight Note Tail light(Bi_N)
+	{80, 41, 96, 44}, //Red Note Tail light
+	{80, 45, 96, 48}, //Purple Note Tail light
+	{80, 49, 96, 52}, //Green Note Tail light
+	{80, 53, 96, 56}, //Cyan Note Tail light
+	{80, 57, 96, 60}, //Yellow Note Tail light
+	{80, 61, 96, 64}, //Gray Note Tail light
+	{80, 65, 96, 68}, //Beige Note Tail light
+
 
 	{80, 0, 96, 3}, //Blue Note Tail
 	{80, 4, 96, 7}, //Red Note Tail
@@ -81,7 +129,16 @@ RECT note_tail_rect[]={ //しっぽ
 	{80, 20, 96, 24}, //Yellow Note Tail
 	{80, 24, 96, 28}, //Gray Note Tail
 	{80, 28, 96, 32}, //Beige Note Tail
+	
+
 	{163, 128, 179, 131}, //Midnight Note Tail(Bi_N)
+	{80, 4, 96, 7}, //Red Note Tail
+	{80, 8, 96, 12}, //Purple Note Tail
+	{80, 12, 96, 16}, //Green Note Tail
+	{80, 16, 96, 20}, //Cyan Note Tail
+	{80, 20, 96, 24}, //Yellow Note Tail
+	{80, 24, 96, 28}, //Gray Note Tail
+	{80, 28, 96, 32}, //Beige Note Tail
 	
 };
 RECT msc_rect[] = { //BMP MUSIC(Rect for keys on piano)
@@ -326,7 +383,7 @@ void OrgData::PutNotes(int TPCY, bool vol)
 					}
 
 					for (j = 0, i = p->length - 1; i > 0; i--, j++) {//尻尾
-						if (TPCY == 0) PutBitmap2(xpos + j * NoteWidth + NoteWidth, ypos + 3 + addY, &note_tail_rect[k + 8], BMPNOTE);
+						if (TPCY == 0) PutBitmap2(xpos + j * NoteWidth + NoteWidth, ypos + 3 + addY, &note_tail_rect[k + MAXMELODY], BMPNOTE);
 						else PutBitmap2(xpos + j * NoteWidth + NoteWidth, ypos + 3 + addY, &rc_TCPY[2 + t], BMPNOTE);
 					}
 					if (TPCY == 0) PutBitmapHead(xpos, ypos + 2 + addY, &note_blue_rect[k], BMPNOTE, p->length);
@@ -451,7 +508,7 @@ void OrgData::PutNotes2(int TPCY, bool vol)
 					//PutBitmap(xpos,ypos+2,&note_rect[0],BMPNOTE);//音符
 					//PutBitmap2(xpos,ypos+2,&note_blue_rect[track+16],BMPNOTE);//音符	// 2014.05.27 D
 					for(j = 0,i = p->length-1; i > 0; i--,j++){//尻尾
-						PutBitmap2(xpos+j*NoteWidth+NoteWidth,ypos+3,&note_tail_rect[track-8],BMPNOTE);
+						PutBitmap2(xpos+j*NoteWidth+NoteWidth,ypos+3,&note_tail_rect[track-MAXMELODY],BMPNOTE);
 					}
 					PutBitmapHead(xpos,ypos+2,&note_blue_rect[track+MAXTRACK],BMPNOTE,p->length);
 				}
@@ -491,7 +548,7 @@ void OrgData::PutMusic(void)
 	//ここ以降に楽譜表示を記述
 	x = (-(hpos % (info.dot * info.line)) * NoteWidth) + KEYWIDTH;
 
-	for (j = 0; j < 8; ++j) {
+	for (j = 0; j < MAXMELODY; ++j) {
 		for (int i = 0; i < (WWidth / NoteWidth) + (info.line * info.dot) + 1; ++i) { // 15
 			if (i % (info.line * info.dot) == 0) {
 				brect = { 64, 0, 64 + NoteWidth, 144 };
@@ -513,14 +570,6 @@ void OrgData::PutMusic(void)
 			}
 		}
 	}
-
-	//for (j = 0; j < 8; j++) PutMusicParts(x, j * 144 + vpos);//楽譜
-	/*if (x < KEYWIDTH) {
-		for (j = 0; j < 8; j++)PutMusicParts(x + WWidth, j * 144 + vpos);//楽譜
-		PutPanParts(x + WWidth);//パンライン
-	}*/
-
-	//キーボード鍵盤（譜面背景を光らす部分）
 	for(j = 0; j < 96; j++){ // 2010.09.22 A
 		if(iKeyPushDown[j]!=0){
 			PutBitmap(0,  (95 - j - vpos2)*12, &rc_PushKB[j%12],BMPMUSIC);//鍵盤
@@ -541,7 +590,7 @@ void OrgData::PutMusic(void)
 		}
 		
 	}
-	for(j = 0; j < 8; j++) PutBitmap(0, j*144 + vpos, &msc_rect[0], BMPMUSIC);
+	for(j = 0; j < MAXMELODY; j++) PutBitmap(0, j*144 + vpos, &msc_rect[0], BMPMUSIC);
 
 	//キーボード鍵盤（鍵盤部分）
 	for(j = 0; j < 96 ; j++){ // 2010.09.22 A

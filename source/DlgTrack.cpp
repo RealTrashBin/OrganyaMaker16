@@ -107,7 +107,7 @@ void ChangeTrackPlus(HWND hdwnd, int iValue){
 
 
 void ChangeTrack(HWND hdwnd, int iTrack){
-	char str[8];
+	char str[16];
 	int i;
 	RECT rect = {64,0,WWidth,WHeight};//更新する領域(トラック変更)
 
@@ -159,6 +159,7 @@ void LoadTrackBitmaps(HWND hdwnd) {
 	LoadSingleBitmap(hdwnd, IDC_TRACK5, 14, 21, "B_TRACK_6");
 	LoadSingleBitmap(hdwnd, IDC_TRACK6, 14, 21, "B_TRACK_7");
 	LoadSingleBitmap(hdwnd, IDC_TRACK7, 14, 21, "B_TRACK_8");
+
 	LoadSingleBitmap(hdwnd, IDC_TRACK8, 14, 21, "B_TRACK_9");
 	LoadSingleBitmap(hdwnd, IDC_TRACK9, 14, 21, "B_TRACK_10");
 	LoadSingleBitmap(hdwnd, IDC_TRACK10, 14, 21, "B_TRACK_11");

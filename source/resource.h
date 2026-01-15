@@ -260,7 +260,7 @@
 #define IDR_SUB                         1030
 #define IDC_USE14                       1030
 #define IDC_VOLUME11                    1030
-#define IDD_SETFREQx7                   1030
+#define IDD_SETFREQx7                   1030 //u are here.
 #define Meas                            1031
 #define IDC_USE15                       1031
 #define IDC_MUTE4                       1031
@@ -483,6 +483,15 @@
 #define IDC_LABEL_TRACK_DxS				1341
 #define IDC_LABEL_TRACK_DxD				1342
 #define IDC_LABEL_TRACK_DxF             1343
+#define IDC_CHECK_PIPIx8				1350
+#define IDC_CHECK_PIPIx9				1351
+#define IDC_CHECK_PIPIx10				1352
+#define IDC_CHECK_PIPIx11				1353
+#define IDC_CHECK_PIPIx12				1354
+#define IDC_CHECK_PIPIx13				1355
+#define IDC_CHECK_PIPIx14				1356
+#define IDC_CHECK_PIPIx15				1357
+#define IDC_CHECK_PIPIx16				1358
 
 #define IDC_LABEL_TRACK_DxG				1344
 #define IDC_LABEL_TRACK_DxH				1345
@@ -561,15 +570,6 @@
 #define IDC_VOLUMEDxJ					1430
 #define IDC_VOLUMEDxK					1431
 
-#define IDC_CHECK_PIPI8					1440
-#define IDC_CHECK_PIPI9					1441
-#define IDC_CHECK_PIPI10				1442
-#define IDC_CHECK_PIPI11				1443
-#define IDC_CHECK_PIPI12				1444
-#define IDC_CHECK_PIPI13				1445
-#define IDC_CHECK_PIPI14				1446
-#define IDC_CHECK_PIPI15				1447
-
 #define IDE_LEFTDxQ						1450
 #define IDE_LEFTDxW						1451
 #define IDE_LEFTDxE						1452
@@ -607,6 +607,25 @@
 #define IDC_SETCOPY_FULLCLICK4			1491
 #define IDE_ORGDEFAULT					1500
 #define IDE_ORGCHOICE					1501
+
+#define IDD_SETFREQx8					1520
+#define IDD_SETFREQx9					1521
+#define IDD_SETFREQx10					1522
+#define IDD_SETFREQx11					1523
+#define IDD_SETFREQx12					1524
+#define IDD_SETFREQx13					1525
+#define IDD_SETFREQx14					1526
+#define IDD_SETFREQx15					1527
+
+
+#define IDC_CHECK_PIPI8					1520
+#define IDC_CHECK_PIPI9					1521
+#define IDC_CHECK_PIPI10				1522
+#define IDC_CHECK_PIPI11				1523
+#define IDC_CHECK_PIPI12				1524
+#define IDC_CHECK_PIPI13				1525
+#define IDC_CHECK_PIPI14				1526
+#define IDC_CHECK_PIPI15				1527
 
 #define IDM_DLGWAIT                     40003
 #define IDM_DLGTRACK                    40004

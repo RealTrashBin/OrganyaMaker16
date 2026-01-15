@@ -219,11 +219,12 @@ char GetFileNameMIDI(HWND hwnd,char *title, char *filename)
 
 //フックプロシージャ
 
-char GetFileNameLoad(HWND hwnd,char *title)
+char GetFileNameLoad(HWND hwnd,char *title,char*filename)
 {//ファイル名を取得(ロード)
 	OPENFILENAME ofn;
 	//FILE *fp;
 	char mfile[MAX_PATH];
+	char* p;
 
 	memset(&ofn, 0, sizeof(OPENFILENAME));
 	memset(&mfile, '\0', MAX_PATH);
@@ -231,7 +232,7 @@ char GetFileNameLoad(HWND hwnd,char *title)
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner   = hwnd;
 	ofn.hInstance   = hInst;
-	ofn.lpstrFilter = "Organya16Data[*.org16]\0*.org16\0OrganyaData[*.org]\0*.org\0All Files[*.*]\0*.*\0\0";
+	ofn.lpstrFilter = "Organya16 Data[*.org16]\0*.org16\0OrganyaData[*.org]\0*.org\0All Files[*.*]\0*.*\0\0";
 	ofn.lpstrFile   = mfile;
 	ofn.nMaxFile    = MAX_PATH;
 	ofn.lpstrTitle  = title;
@@ -248,7 +249,13 @@ char GetFileNameLoad(HWND hwnd,char *title)
 		return MSGCANCEL;//指定ファイルが存在しない
 	}
 	strcpy(music_file, mfile);
-
+	
+	strcpy(filename, music_file);
+	if ((p = strstr(filename, ".org16")) != NULL)
+	{
+		OrgFileType = true;
+	}
+	else OrgFileType = false;
 	return MSGLOADOK;
 }
 
