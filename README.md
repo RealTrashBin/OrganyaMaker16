@@ -10,7 +10,7 @@ This original library was created by [Studio Pixel](http://studiopixel.sakura.ne
 
 <img src='git/preimg.png' width=60% height=60%>
 
- WHY ARE YOU LOOKING AT THIS!?!?!?!?!?!
+Made by Studio Pixel in 1999 and later remade by Rxo Inverse and then re-remade by Strulz, I Bi_N have decided to make a gaint step in OrgMaking; making 16 more tracks.
 
 # &#x1F34E; License
 BSD  
