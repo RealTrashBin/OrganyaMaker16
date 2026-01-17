@@ -63,7 +63,7 @@ CURSOR                  CURSOR                  "bitmap\\cursor.cur"
 // Dialog
 //
 
-DLGSETTING DIALOGEX 0, 0, 151, 223
+DLGSETTING DIALOGEX 0, 0, 151, 180
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Song Properties"
 FONT 9, "MS PGothic", 0, 0, 0x1
@@ -75,22 +75,22 @@ BEGIN
     PUSHBUTTON      ">",IDC_BTN2,75,12,11,12,0,WS_EX_STATICEDGE
     RTEXT           "&BPM",IDC_STATIC,90,13,14,10
     EDITTEXT        IDC_BPM,106,12,32,12,ES_AUTOHSCROLL | ES_NUMBER
-    GROUPBOX        "Repeat &Range",IDC_STATIC,4,53,68,42
-    LTEXT           "Start",IDC_STATIC,13,67,20,8
-    EDITTEXT        IDD_REP_MEAS,34,65,16,12,ES_NUMBER
-    EDITTEXT        IDD_REP_BEAT,52,65,16,12,ES_NUMBER
-    LTEXT           "End",IDC_STATIC,13,80,20,8
-    EDITTEXT        IDD_END_MEAS,34,79,16,12,ES_NUMBER
-    EDITTEXT        IDD_END_BEAT,52,79,16,12,ES_NUMBER
-    GROUPBOX        "Display &Grid",IDC_STATIC,4,99,68,120
-    LISTBOX         IDD_LB1,10,110,58,78,LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Custom",IDC_STATIC,7,191,40,8
-    EDITTEXT        IDD_GRIDEDIT1,7,202,15,13,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "Beat",IDC_STATIC,23,205,15,8
-    EDITTEXT        IDD_GRIDEDIT2,39,202,15,13,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
-    LTEXT           "Step",IDC_STATIC,56,205,15,8
-    DEFPUSHBUTTON   "OK",IDOK,76,201,39,18
-    PUSHBUTTON      "Cancel",IDCANCEL,117,201,29,18
+    GROUPBOX        "Repeat &Range",IDC_STATIC,76,53,68,42
+    LTEXT           "Start",IDC_STATIC,85,67,20,8
+    EDITTEXT        IDD_REP_MEAS,106,65,16,12,ES_NUMBER//beat
+    EDITTEXT        IDD_REP_BEAT,124,65,16,12,ES_NUMBER//step
+    LTEXT           "End",IDC_STATIC,85,80,20,8
+    EDITTEXT        IDD_END_MEAS,106,79,16,12,ES_NUMBER //beat
+    EDITTEXT        IDD_END_BEAT,124,79,16,12,ES_NUMBER //step
+    GROUPBOX        "Display &Grid",IDC_STATIC,4,53,68,120
+    LISTBOX         IDD_LB1,10,64,58,78,LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Custom",IDC_STATIC,7,145,40,8
+    EDITTEXT        IDD_GRIDEDIT1,7,156,15,13,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Beat",IDC_STATIC,23,159,15,8
+    EDITTEXT        IDD_GRIDEDIT2,39,156,15,13,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Step",IDC_STATIC,56,159,15,8
+    DEFPUSHBUTTON   "OK",IDOK,76,156,39,18
+    PUSHBUTTON      "Cancel",IDCANCEL,117,156,29,18
     LTEXT           "''<'' BPM to wait ''>'' Wait to BPM.\nBPM is an extra function for conversion.",IDC_STATIC,13,27,122,17
 END
 
@@ -207,6 +207,7 @@ CAPTION "Instruments"
 FONT 9, "MS PGothic", 0, 0, 0x1
 BEGIN
         //MELODY
+        
     LISTBOX         IDD_SETFREQ0, 4, 36, 44, 155, LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
     LISTBOX         IDD_SETFREQ1, 48, 36, 44, 155, LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
     LISTBOX         IDD_SETFREQ2, 92, 36, 44, 155, LBS_NOINTEGRALHEIGHT | LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -249,21 +250,21 @@ BEGIN
 
     PUSHBUTTON      "Change &ListBox Height",IDC_DRUM,764,389,81,13
     EDITTEXT        IDD_SETFREQx0,9,8,23,12,ES_RIGHT | ES_NUMBER
-    EDITTEXT        IDD_SETFREQx1,54,8,23,12,ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx1,53,8,23,12,ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx2,97,8,23,12,ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx3,141,8,23,12,ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx4,190,8,23,12,ES_RIGHT | ES_NUMBER
-    EDITTEXT        IDD_SETFREQx5,235,8,23,12,ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx5,234,8,23,12,ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx6,278,8,23,12,ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx7,322,8,23,12,ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx8, 366, 8, 23, 12, ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx9, 410, 8, 23, 12, ES_RIGHT | ES_NUMBER
     EDITTEXT        IDD_SETFREQx10, 454, 8, 23, 12, ES_RIGHT | ES_NUMBER
-    EDITTEXT        IDD_SETFREQx11, 542, 8, 23, 12, ES_RIGHT | ES_NUMBER
-    EDITTEXT        IDD_SETFREQx12, 498, 8, 23, 12, ES_RIGHT | ES_NUMBER
-    EDITTEXT        IDD_SETFREQx13, 542, 8, 23, 12, ES_RIGHT | ES_NUMBER
-    EDITTEXT        IDD_SETFREQx14, 586, 8, 23, 12, ES_RIGHT | ES_NUMBER
-    EDITTEXT        IDD_SETFREQx15, 630, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx11, 498, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx12, 542, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx13, 586, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx14, 630, 8, 23, 12, ES_RIGHT | ES_NUMBER
+    EDITTEXT        IDD_SETFREQx15, 674, 8, 23, 12, ES_RIGHT | ES_NUMBER
     CONTROL         "",IDC_CHECK_PIPIx0,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,34,9,8,8
     CONTROL         "",IDC_CHECK_PIPIx1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,79,9,8,8
     CONTROL         "",IDC_CHECK_PIPIx2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,122,9,8,8
@@ -285,51 +286,55 @@ BEGIN
     DEFPUSHBUTTON   "Save", VS_VERSION_INFO,790,3,47,16
     PUSHBUTTON      "Cancel",IDCANCEL,840,3,36,16
         //MELODY
-    CTEXT           "1",IDC_LABEL_TRACK_1,12,24,16,8
-    CTEXT           "2", IDC_LABEL_TRACK_2, 57, 24, 16, 8
-    CTEXT           "3", IDC_LABEL_TRACK_3, 101, 24, 16, 8
-    CTEXT           "4", IDC_LABEL_TRACK_4, 145, 24, 16, 8
+    //CTEXT           "1",IDC_LABEL_TRACK_1 1,12,24,16,8 //IDC_LABEL_TRACK_
+    CTEXT           "1", IDC_STATIC, 13, 24, 16, 8
+    CTEXT           "2", IDC_STATIC, 57, 24, 16, 8
+    CTEXT           "3", IDC_STATIC, 101, 24, 16, 8
+    CTEXT           "4", IDC_STATIC, 145, 24, 16, 8
 
-    CTEXT           "5", IDC_LABEL_TRACK_5, 194, 24, 16, 8
-    CTEXT           "6", IDC_LABEL_TRACK_6, 238, 24, 16, 8
-    CTEXT           "7", IDC_LABEL_TRACK_7, 282, 24, 16, 8
-    CTEXT           "8", IDC_LABEL_TRACK_8, 326, 24, 16, 8
+    CTEXT           "5", IDC_STATIC, 194, 24, 16, 8
+    CTEXT           "6", IDC_STATIC, 238, 24, 16, 8
+    CTEXT           "7", IDC_STATIC, 282, 24, 16, 8
+    CTEXT           "8", IDC_STATIC, 326, 24, 16, 8
 
-    CTEXT           "9", IDC_LABEL_TRACK_9, 370, 24, 16, 8
-    CTEXT           "10", IDC_LABEL_TRACK_10, 414, 24, 16, 8
-    CTEXT           "11", IDC_LABEL_TRACK_11, 458, 24, 16, 8
-    CTEXT           "12", IDC_LABEL_TRACK_12, 507, 24, 16, 8
+    CTEXT           "9", IDC_STATIC, 370, 24, 16, 8
+    CTEXT           "10", IDC_STATIC, 414, 24, 16, 8
+    CTEXT           "11", IDC_STATIC, 458, 24, 16, 8
+    CTEXT           "12", IDC_STATIC, 502, 24, 16, 8
 
-    CTEXT           "13", IDC_LABEL_TRACK_13, 551, 24, 16, 8
-    CTEXT           "14", IDC_LABEL_TRACK_14, 595, 24, 16, 8
+    CTEXT           "13", IDC_STATIC, 546, 24, 16, 8
+    CTEXT           "14", IDC_STATIC, 590, 24, 16, 8
+    CTEXT           "15", IDC_STATIC, 634, 24, 16, 8 //Q
+    CTEXT           "16", IDC_STATIC, 678, 24, 16, 8 //W
         //DRAMS
         //Drams Y is 394
-        CTEXT           "Q", IDC_LABEL_TRACK_15, 12, 394, 16, 8 //Q
-        CTEXT           "W", IDC_LABEL_TRACK_16, 57, 394, 16, 8 //W
-        CTEXT           "E", IDC_LABEL_TRACK_DxQ, 101, 394, 16, 8
-        CTEXT           "R", IDC_LABEL_TRACK_DxW, 145, 394, 16, 8
 
-        CTEXT           "T", IDC_LABEL_TRACK_DxE, 194, 394, 16, 8
-        CTEXT           "Y", IDC_LABEL_TRACK_DxR, 238, 394, 16, 8
-        CTEXT           "U", IDC_LABEL_TRACK_DxT, 282, 394, 16, 8
-        CTEXT           "I", IDC_LABEL_TRACK_DxY, 326, 394, 16, 8
+        CTEXT           "Q", IDC_STATIC, 13, 394, 16, 8
+        CTEXT           "W", IDC_STATIC, 57, 394, 16, 8
+        CTEXT           "E", IDC_STATIC, 101, 394, 16, 8
+        CTEXT           "R", IDC_STATIC, 145, 394, 16, 8
 
-        CTEXT           "A", IDC_LABEL_TRACK_DxA, 375, 394, 16, 8
-        CTEXT           "S", IDC_LABEL_TRACK_DxS, 419, 394, 16, 8
-        CTEXT           "D", IDC_LABEL_TRACK_DxD, 463, 394, 16, 8
-        CTEXT           "F", IDC_LABEL_TRACK_DxF, 507, 394, 16, 8
+        CTEXT           "T", IDC_STATIC, 194, 394, 16, 8
+        CTEXT           "Y", IDC_STATIC, 238, 394, 16, 8
+        CTEXT           "U", IDC_STATIC, 282, 394, 16, 8
+        CTEXT           "I", IDC_STATIC, 326, 394, 16, 8
 
-        CTEXT           "G", IDC_LABEL_TRACK_DxG, 556, 394, 16, 8
-        CTEXT           "H", IDC_LABEL_TRACK_DxH, 600, 394, 16, 8
-        CTEXT           "J", IDC_LABEL_TRACK_DxJ, 644, 394, 16, 8
-        CTEXT           "K", IDC_LABEL_TRACK_DxK, 688, 394, 16, 8
+        CTEXT           "A", IDC_STATIC, 370, 394, 16, 8
+        CTEXT           "S", IDC_STATIC, 414, 394, 16, 8
+        CTEXT           "D", IDC_STATIC, 458, 394, 16, 8
+        CTEXT           "F", IDC_STATIC, 502, 394, 16, 8
+
+        CTEXT           "G", IDC_STATIC, 546, 394, 16, 8
+        CTEXT           "H", IDC_STATIC, 590, 394, 16, 8
+        CTEXT           "J", IDC_STATIC, 634, 394, 16, 8
+        CTEXT           "K", IDC_STATIC, 678, 394, 16, 8
 
     LTEXT           "Melody",IDC_STATIC,32,24,24,8
     LTEXT           "Drums",IDC_STATIC,32,394,24,8
     LTEXT           "Note",IDC_NOTE,815,37,15,8
     CONTROL         "WAVE100",IDC_WAVE100,"Static",SS_BITMAP,764,48,14,15,WS_EX_STATICEDGE
     LTEXT           "Waveforms",IDC_STATIC,769,36,36,12
-    LTEXT           "<- freq && pipi",IDC_STATIC,680,9,51,12
+    LTEXT           "<- Freq && Pipi",IDC_STATIC,710,9,51,12
 END
 
 DLGDELETE DIALOG 0, 0, 78, 51
@@ -561,8 +566,8 @@ CAPTION "About OrgMaker"
 FONT 9, "MS PGothic", 0, 0, 0x1
 BEGIN
 DEFPUSHBUTTON   "OK", IDOK, 39, 131, 40, 18
-CTEXT           "OrgMaker ver.16.0.2", IDC_STATIC, 20, 32, 80, 8
-LTEXT           "2025 / 05 / 25", IDC_STATIC, 37, 43, 44, 8
+CTEXT           "OrgMaker16 ver.1.0.0", IDC_STATIC, 20, 32, 80, 8
+LTEXT           "2026 / 01 / 16", IDC_STATIC, 37, 43, 44, 8
 CTEXT           "OrgMaker 1 by Studio Pixel", IDC_STATIC, 2, 57, 114, 16, SS_CENTERIMAGE | SS_SUNKEN
 ICON            "ICON", ID_ICON_ORG, 49, 3, 20, 20, SS_NOTIFY, WS_EX_DLGMODALFRAME //SS_Notify can be used to restore the "Meow!"
 CTEXT           "OrgMaker 2 by Rxo Inverse", IDC_STATIC, 2, 75, 114, 16, SS_CENTERIMAGE | SS_SUNKEN
@@ -806,7 +811,7 @@ BEGIN
     PUSHBUTTON      "Remove",IDC_DELETEBUTTON_2,463,1,49,15,0,WS_EX_CLIENTEDGE | WS_EX_STATICEDGE
     LTEXT           "",IDC_MESSAGE,296,18,180,9,0,WS_EX_STATICEDGE
 END
-
+/*
 IDD_DIALOGOPEN DIALOGEX 0, 0, 269, 171
 STYLE DS_SETFONT | DS_3DLOOK | DS_CONTROL | WS_CHILD | WS_CLIPSIBLINGS
 FONT 9, "MS PGothic", 0, 0, 0x1
@@ -814,7 +819,7 @@ BEGIN
     LTEXT           "",1119,0,15,269,156
     PUSHBUTTON      "Remember current dialog window size",IDC_BUTTON1,0,0,173,15,0,WS_EX_STATICEDGE,HIDC_BUTTON1
 END
-
+*/
 DLGSWAP DIALOG 0, 0, 99, 45
 STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION
 CAPTION "Swap Tracks"
@@ -1587,35 +1592,38 @@ BEGIN
     "1",            ID_AC_1,                VIRTKEY, NOINVERT
     "1",            ID_AC_C1,               VIRTKEY, CONTROL, NOINVERT
     "1",            ID_AC_CA1,              VIRTKEY, CONTROL, ALT, NOINVERT
- //   "1",            ID_AC_S1,               VIRTKEY, SHIFT, NOINVERT
+    //"1",            ID_AC_S1,               VIRTKEY, SHIFT, NOINVERT
+
+    //"1",            ID_AC_CS1,              VIRTKEY, CONTROL, SHIFT, NOINVERT
+
     "2",            ID_AC_2,                VIRTKEY, NOINVERT
     "2",            ID_AC_C2,               VIRTKEY, CONTROL, NOINVERT
     "2",            ID_AC_CA2,              VIRTKEY, CONTROL, ALT, NOINVERT
-//    "2",            ID_AC_S2,               VIRTKEY, SHIFT, NOINVERT
+   // "2",            ID_AC_S2,               VIRTKEY, SHIFT, NOINVERT
     "3",            ID_AC_3,                VIRTKEY, NOINVERT
     "3",            ID_AC_C3,               VIRTKEY, CONTROL, NOINVERT
     "3",            ID_AC_CA3,              VIRTKEY, CONTROL, ALT, NOINVERT
-//    "3",            ID_AC_S3,               VIRTKEY, SHIFT, NOINVERT
+   // "3",            ID_AC_S3,               VIRTKEY, SHIFT, NOINVERT
     "4",            ID_AC_4,                VIRTKEY, NOINVERT
     "4",            ID_AC_C4,               VIRTKEY, CONTROL, NOINVERT
     "4",            ID_AC_CA4,              VIRTKEY, CONTROL, ALT, NOINVERT
-//    "4",            ID_AC_S4,               VIRTKEY, SHIFT, NOINVERT
+  //  "4",            ID_AC_S4,               VIRTKEY, SHIFT, NOINVERT
     "5",            ID_AC_5,                VIRTKEY, NOINVERT
     "5",            ID_AC_C5,               VIRTKEY, CONTROL, NOINVERT
     "5",            ID_AC_CA5,              VIRTKEY, CONTROL, ALT, NOINVERT
-//   "5",            ID_AC_S5,               VIRTKEY, SHIFT, NOINVERT
+  // "5",            ID_AC_S5,               VIRTKEY, SHIFT, NOINVERT
     "6",            ID_AC_6,                VIRTKEY, NOINVERT
     "6",            ID_AC_C6,               VIRTKEY, CONTROL, NOINVERT
     "6",            ID_AC_CA6,              VIRTKEY, CONTROL, ALT, NOINVERT
-//    "6",            ID_AC_S6,               VIRTKEY, SHIFT, NOINVERT
+  //  "6",            ID_AC_S6,               VIRTKEY, SHIFT, NOINVERT
     "7",            ID_AC_7,                VIRTKEY, NOINVERT
     "7",            ID_AC_C7,               VIRTKEY, CONTROL, NOINVERT
     "7",            ID_AC_CA7,              VIRTKEY, CONTROL, ALT, NOINVERT
-//    "7",            ID_AC_S7,               VIRTKEY, SHIFT, NOINVERT
+ //   "7",            ID_AC_S7,               VIRTKEY, SHIFT, NOINVERT
     "8",            ID_AC_8,                VIRTKEY, NOINVERT
     "8",            ID_AC_C8,               VIRTKEY, CONTROL, NOINVERT
     "8",            ID_AC_CA8,              VIRTKEY, CONTROL, ALT, NOINVERT
-//    "8",            ID_AC_S8,               VIRTKEY, SHIFT, NOINVERT
+    "8",            ID_AC_S8,               VIRTKEY, SHIFT, NOINVERT
     "A",            ID_AC_SELECT_ALL,       VIRTKEY, CONTROL, NOINVERT
     "D",            ID_AC_SELECT_RESET,     VIRTKEY, CONTROL, NOINVERT
     "D",            ID_AC_CT_KEY_OCT_DOWN,  VIRTKEY, CONTROL, ALT, NOINVERT

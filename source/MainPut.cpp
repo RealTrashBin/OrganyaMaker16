@@ -71,14 +71,14 @@ RECT note_blue_rect[]={ //êBMPNOTE
 	{64, 61, 80, 67}, //Beige Note light
 
 
-	{131, 165, 147, 171}, // Midnight Note light(Bi_N)
-	{64, 37, 80, 43}, //Red Note light
-	{ 48, 45, 64, 51}, //Purple Note light
-	{64, 45, 80, 51}, //Green Note light
-	{ 48, 53, 64, 59}, //Cyan Note light
-	{64, 53, 80, 59}, //Yellow Note light
-	{ 48, 61, 64, 67}, //Gray Note light
-	{64, 61, 80, 67}, //Beige Note light
+	{131,  165,  147,  171}, //9th Note light(Bi_N)
+	{147,  165,  163,  171}, //Mint Note light(Bi_N)
+	{131,  173,  147,  179}, //Blueish Note light(Bi_N)
+	{147,  173,  163,  179}, //Pinkish Note light(Bi_N)
+	{131,  181,  147,  187}, //Beige Pinkish Note light(Bi_N)
+	{147,  181,  163,  187}, //Niko Note light(Bi_N) kitty!!~~
+	{131,  189,  147,  195}, //Purple-ish Note light(Bi_N)
+	{147,  189,  163,  195}, //Another Purple-ish Note light(Bi_N)
 
 	{ 97, 37, 113, 43}, //Blue Note(Dram) light
 	{113, 37, 129, 43}, //Red Note(Dram) light
@@ -90,14 +90,14 @@ RECT note_blue_rect[]={ //êBMPNOTE
 	{113, 61, 129, 67}, //Beige Note(Dram) light
 
 
-	{ 97, 37, 113, 43}, //Blue Note(Dram) light
-	{113, 37, 129, 43}, //Red Note(Dram) light
-	{ 97, 45, 113, 51}, //Purple Note(Dram) light
-	{113, 45, 129, 51}, //Green Note(Dram) light
-	{ 97, 53, 113, 59}, //Cyan Note(Dram) light
-	{113, 53, 129, 59}, //Yellow Note(Dram) light
-	{ 97, 61, 113, 67}, //Gray Note(Dram) light
-	{113, 61, 129, 67}, //Beige Note(Dram) light
+	{ 180,165,196,171}, //9th Note(Dram) light
+	{196,165,212,171}, //Mint Note(Dram) light
+	{ 180,173,196,179}, //Blueish Note(Dram) light
+	{196,173,212,179}, //Pinkish Note(Dram) light
+	{ 180,181,196,187}, //Beige pinkish Note(Dram) light
+	{196,181,212,187}, //Niko Note(Dram) Kityy!!!~~~~~ light
+	{ 180,189,196,195}, //Purple-ish Note(Dram) light
+	{196,189,212,195}, //Another purple-ish Note(Dram) light
 };
 
 RECT note_tail_rect[]={ //ÇµÇ¡Ç€
@@ -111,14 +111,14 @@ RECT note_tail_rect[]={ //ÇµÇ¡Ç€
 	{80, 65, 96, 68}, //Beige Note Tail light
 	
 
-	{163, 37, 179, 40}, //Midnight Note Tail light(Bi_N)
-	{80, 41, 96, 44}, //Red Note Tail light
-	{80, 45, 96, 48}, //Purple Note Tail light
-	{80, 49, 96, 52}, //Green Note Tail light
-	{80, 53, 96, 56}, //Cyan Note Tail light
-	{80, 57, 96, 60}, //Yellow Note Tail light
-	{80, 61, 96, 64}, //Gray Note Tail light
-	{80, 65, 96, 68}, //Beige Note Tail light
+	{163, 165, 179, 168}, //Midnight Note Tail light(Bi_N)
+	{163, 169, 179, 172}, //Red Note Tail light
+	{163, 173, 179, 176}, //Purple Note Tail light
+	{163, 177, 179, 180}, //Green Note Tail light
+	{163, 181, 179, 184}, //Cyan Note Tail light
+	{163, 185, 179, 188}, //Yellow Note Tail light
+	{163, 189, 179, 192}, //Gray Note Tail light
+	{163, 193, 179, 196}, //Beige Note Tail light
 
 
 	{80, 0, 96, 3}, //Blue Note Tail
@@ -132,13 +132,13 @@ RECT note_tail_rect[]={ //ÇµÇ¡Ç€
 	
 
 	{163, 128, 179, 131}, //Midnight Note Tail(Bi_N)
-	{80, 4, 96, 7}, //Red Note Tail
-	{80, 8, 96, 12}, //Purple Note Tail
-	{80, 12, 96, 16}, //Green Note Tail
-	{80, 16, 96, 20}, //Cyan Note Tail
-	{80, 20, 96, 24}, //Yellow Note Tail
-	{80, 24, 96, 28}, //Gray Note Tail
-	{80, 28, 96, 32}, //Beige Note Tail
+	{163, 132, 179, 135}, //Red Note Tail
+	{163, 136, 179, 139}, //Purple Note Tail
+	{163, 140, 179, 143}, //Green Note Tail
+	{163, 144, 179, 147}, //Cyan Note Tail
+	{163, 148, 179, 151}, //Yellow Note Tail
+	{163, 152, 179, 155}, //Gray Note Tail
+	{163, 156, 179, 159}, //Beige Note Tail
 	
 };
 RECT msc_rect[] = { //BMP MUSIC(Rect for keys on piano)
@@ -189,7 +189,7 @@ RECT rc_CurrentSelect = {0, 109, 63, 125}; //2014.04.30
 RECT rc_ActivePAN = {0, 125, 63, 196}; //2014.05.01 A
 RECT rc_ActiveVOL = {64, 125, 127, 196}; //2014.05.01 A
 
-RECT rc_TCPY[]={ //if TPCY == 1 these rects are used.
+RECT rc_TCPY[]={ 
 	{0,19,15,24}, //Gray Note
 	{0,35,15,40}, //Gray Note(Black Key)
 	{0,27,16,30}, //Gray Note Tail(White Key)

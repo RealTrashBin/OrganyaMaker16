@@ -9,7 +9,7 @@
 #define MA_NO_ENCODING
 #include "miniaudio.h"
 
-#define SE_MAX	512
+#define SE_MAX	1024
 
 // ƒVƒ“ƒ{ƒ‹’è‹`.
 #define	SMPFRQ			48000				//!< ƒTƒ“ƒvƒŠƒ“ƒOŽü”g”.
@@ -705,7 +705,7 @@ void PlayOrganObject(unsigned char key, int mode,char track,DWORD freq, bool pip
 }
 //ƒIƒ‹ƒK[ƒjƒƒƒIƒuƒWƒFƒNƒg‚ðŠJ•ú
 void ReleaseOrganyaObject(char track){
-	for(int i = 0; i < 8; i++){
+	for(int i = 0; i < 8; i++){ //8 is cuz key
 		if(lpORGANBUFFER[track][i][0] != NULL){
 			S_DestroySound(lpORGANBUFFER[track][i][0]);
 			lpORGANBUFFER[track][i][0] = NULL;

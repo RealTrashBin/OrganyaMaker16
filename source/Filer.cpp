@@ -43,7 +43,7 @@ char GetFileNameSave(HWND hwnd,char *title)
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner   = hwnd;
 	ofn.hInstance   = hInst;
-
+	/*
 	org_data.TrackFlag();
 	if (!org_data.TrackFlag())
 	{
@@ -51,10 +51,10 @@ char GetFileNameSave(HWND hwnd,char *title)
 		ofn.lpstrDefExt = "org";
 	}
 	else
-	{
-		ofn.lpstrFilter = "Organya16Data[*.org16]\0*.org16\0\0";
-		ofn.lpstrDefExt = "org16";
-	}
+	{*/
+	ofn.lpstrFilter = "Organya16Data[*.org16]\0*.org16\0All Files[*.*]\0*.*\0\0";
+	ofn.lpstrDefExt = "org16";
+	//}
 	ofn.lpstrFile   = music_file;
 	ofn.nMaxFile    = MAX_PATH;
 	ofn.lpstrTitle  = title;
@@ -232,14 +232,15 @@ char GetFileNameLoad(HWND hwnd,char *title,char*filename)
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner   = hwnd;
 	ofn.hInstance   = hInst;
-	ofn.lpstrFilter = "Organya16 Data[*.org16]\0*.org16\0OrganyaData[*.org]\0*.org\0All Files[*.*]\0*.*\0\0";
+	//ofn.lpstrFilter = "Organya16 Data[*.org16]\0*.org16\0OrganyaData[*.org]\0*.org\0All Files[*.*]\0*.*\0\0";
+	ofn.lpstrFilter = "Organya16 Data[*.org16]\0*.org16\0All Files[*.*]\0*.*\0\0";
 	ofn.lpstrFile   = mfile;
 	ofn.nMaxFile    = MAX_PATH;
 	ofn.lpstrTitle  = title;
 	ofn.Flags       = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 	
 	ofn.lpstrDefExt = "org16";
-	ofn.lpstrDefExt = "org";
+	//ofn.lpstrDefExt = "org";
 	
 	count_of_INIT_DONE = 0;
 	//ファイル名取得を試みる。

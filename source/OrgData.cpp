@@ -103,7 +103,7 @@ BOOL OrgData::SetMusicInfo(MUSICINFO *mi,unsigned long flag)
 		NoteAlloc(info.alloc_note);
 //		MessageBox(hWnd,"ˆ ƒƒbƒN","",MB_OK);
 	}
-	if(flag & SETWAIT){
+	if(flag & SETWAIT){ //speed
 		info.wait = mi->wait;
 		itoa(mi->wait,str,10);
 		SetDlgItemText(hDlgTrack,IDE_VIEWWAIT,str);
@@ -114,9 +114,8 @@ BOOL OrgData::SetMusicInfo(MUSICINFO *mi,unsigned long flag)
 		info.end_x = mi->end_x;
 	}
 	if(flag & SETFREQ){ //Is frequency set?
-		for(int i = 0; i < MAXMELODY; i++){
+		for(i = 0; i < MAXTRACK; i++){
 			info.tdata[i].freq = mi->tdata[i].freq;
-			info.tdata[i].pipi = info.tdata[i].pipi;
 		}
 	}
 	if(flag & SETWAVE){ //Is a waveform set?
@@ -704,17 +703,17 @@ void OrgData::InitOrgData(void)
 
 	// i is refering to TRACKS
 	for(i=0; i<MAXMELODY; i++){
-		info.tdata[i].wave_no = i*0;
+		info.tdata[i].wave_no = rand() % 100; //randomly generates a Wave for the track! ...thanks cplusplus.com
 		MakeOrganyaWave(i, info.tdata[i].wave_no, info.tdata[i].pipi);
 	}
 	info.tdata[16].wave_no = 0; //Drams
-	info.tdata[17].wave_no = 0;
-	info.tdata[18].wave_no = 0;
-	info.tdata[19].wave_no = 0;
-	info.tdata[20].wave_no = 0;
-	info.tdata[21].wave_no = 0;
-	info.tdata[22].wave_no = 0;
-	info.tdata[23].wave_no = 0;
+	info.tdata[17].wave_no = 2;
+	info.tdata[18].wave_no = 5;
+	info.tdata[19].wave_no = 6;
+	info.tdata[20].wave_no = 4;
+	info.tdata[21].wave_no = 8;
+	info.tdata[22].wave_no = 7;
+	info.tdata[23].wave_no = 1;
 	info.tdata[24].wave_no = 0;
 	info.tdata[25].wave_no = 0;
 	info.tdata[26].wave_no = 0;

@@ -17,7 +17,7 @@
 
 #define PI 3.14159265358979323846
 
-#define NUMGRID		16
+#define NUMGRID		17
 #define NUMGRIDA		11
 #define MAXWAVE		100
 #define maxx(a, b) ((a) > (b) ? (a) : (b))
@@ -73,7 +73,8 @@ int check_pipi[NUMGRID] ={
 	IDC_CHECK_PIPI12,
 	IDC_CHECK_PIPI13,
 	IDC_CHECK_PIPI14,
-	IDC_CHECK_PIPI15
+	IDC_CHECK_PIPI15,
+	IDC_CHECK_PIPI16
 };
 
 int txt_Pan[MAXTRACK]={
@@ -639,11 +640,12 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	long mouse_x;
 	long mouse_y;
 	long mx, my, n;
-	char str[32];
+	char str[16];
 	TCHAR* p;
 	static MUSICINFO mi;
 	static int iLastLBox = 0;
 	static int iMeloDrumMode = 0;
+	char* strTone[] = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
 	switch (message) {
 	case WM_INITDIALOG://ダイアログが呼ばれた
 		//strTrack, strNNNTrackに文字列を代入する。
@@ -659,12 +661,21 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		org_data.GetMusicInfo(&mi);
 		//FREQ & PIPI
-		for (j = 0; j < MAXMELODY; j++) {
+		for (j = 0; j < MAXMELODY+1; j++) {
 			i = mi.tdata[j].freq; itoa(i, str, 10);
-			SetDlgItemText(hdwnd, IDD_SETFREQx0 + j, str);
-			CheckDlgButton(hdwnd, IDC_CHECK_PIPIx0 + j, (mi.tdata[j].pipi ? 1 : 0));
+			if (j > 7)
+			{
+				SetDlgItemText(hdwnd, IDD_SETFREQx0 + j + 489, str);
+				CheckDlgButton(hdwnd, IDC_CHECK_PIPIx0 + j + 533, (mi.tdata[j].pipi ? 1 : 0));
+			}
+			else
+			{
+				SetDlgItemText(hdwnd, IDD_SETFREQx0 + j, str);
+				CheckDlgButton(hdwnd, IDC_CHECK_PIPIx0 + j, (mi.tdata[j].pipi ? 1 : 0));
+			}
 		}
 		//メロディリストボックスの初期化
+		
 		for (j = 0; j < MAXMELODY; j++) {
 			SendDlgItemMessage(hdwnd, freqbox[j], LB_RESETCONTENT, 0, 0);//初期化
 			for (i = 0; i < MAXWAVE; i++) {
@@ -677,6 +688,7 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				//sprintf(str," %02d",i);	// 2010.09.30 A
 				SendDlgItemMessage(hdwnd, freqbox[j], LB_ADDSTRING, 0, (LPARAM)str);//(LPARAM)wave_name[i].name);
 			}
+			
 			//最初のアイテムを選択
 			SendDlgItemMessage(hdwnd, freqbox[j], LB_SETCURSEL, mi.tdata[j].wave_no, 0);
 			SendDlgItemMessage(hdwnd, freqbox[j], LB_SETTOPINDEX, maxx(0, mi.tdata[j].wave_no - 9), 0);
@@ -700,14 +712,16 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			else SetDlgItemText(hdwnd, j + IDC_LABEL_TRACK_1, strTrack[j]);
 		}
 		ChangeListBoxSize(hdwnd, iMeloDrumMode);
+		SetDlgItemTextA(hdwnd, IDC_DRUM, "Change &ListBox Height");
 
 		if (waveBmp != NULL) {
+			
 			HBITMAP oldBmp = (HBITMAP)SendDlgItemMessage(hdwnd, IDC_WAVE100, STM_SETIMAGE, IMAGE_BITMAP, (long)waveBmp);
-			//if (oldBmp != NULL ) DeleteObject(oldBmp);
+			//if (oldBmp != NULL) DeleteObject(oldBmp);
 		}
 		return 1;
 	case WM_COMMAND:
-		if ((LOWORD(wParam) >= IDD_SETFREQx0 && LOWORD(wParam) <= IDD_SETFREQ15) && (HIWORD(wParam) == EN_SETFOCUS)) {	// 2014.10.19 
+		if ((LOWORD(wParam) >= IDD_SETFREQx0 && LOWORD(wParam) <= IDD_SETFREQx15) && (HIWORD(wParam) == EN_SETFOCUS)) {	// 2014.10.19 
 			PostMessage(GetDlgItem(hdwnd, LOWORD(wParam)), EM_SETSEL, 0, -1); //フォーカス時にテキストを全選択する
 			return -1;
 		}
@@ -718,14 +732,14 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				Rxo_StopAllSoundNow();
 				SetUndo();
 				n = 0;
-				for (j = 0; j < 15; j++) {
+				for (j = 0; j < MAXMELODY+1; j++) {
 					if (j < 8)
 					{
-						GetDlgItemTextA(hdwnd, IDD_SETFREQx0 + j, str, MAXMELODY); i = atol(str); mi.tdata[j].freq = (i > 0xFFFF) ? 0xFFFF : i;
+						GetDlgItemTextA(hdwnd, IDD_SETFREQx0 + j, str, MAXTRACK); i = atol(str); mi.tdata[j].freq = (i > 0xFFFF) ? 0xFFFF : i;
 					}
 					else
 					{
-						GetDlgItemTextA(hdwnd, IDD_SETFREQx0 + j + 498, str, MAXMELODY); i = atol(str); mi.tdata[j].freq = (i > 0xFFFF) ? 0xFFFF : i;
+						GetDlgItemTextA(hdwnd, IDD_SETFREQx0 + j + 489, str, MAXTRACK); i = atol(str); mi.tdata[j].freq = (i > 0xFFFF) ? 0xFFFF : i;
 					}
 					n |= (i >30000) ? 1 : 0;
 					if (j < 8)
@@ -734,11 +748,7 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 					}
 					else
 					{
-						mi.tdata[j].pipi = (IsDlgButtonChecked(hdwnd, IDC_CHECK_PIPIx0 + j + 404)) ? 1 : 0;
-					}
-					if (mi.tdata[10].pipi == 1)
-					{
-						MessageBoxA(hWnd, "Frequency 15 is here", "Work", MB_OK);
+						mi.tdata[j].pipi = (IsDlgButtonChecked(hdwnd, IDC_CHECK_PIPIx0 + j + 533)) ? 1 : 0;
 					}
 					MakeOrganyaWave(j, mi.tdata[j].wave_no, mi.tdata[j].pipi); // add this so it updates if pipi changes
 				}
@@ -774,10 +784,15 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			SamplePlayHeight = 36;
 			Sl_Reset(hdwnd);
 			iMeloDrumMode = 0;
+			SetDlgItemText(hdwnd, IDC_NOTE, "Note");
 			SendMessage(hdwnd, WM_INITDIALOG, 0, 0);
-			for (j = 0; j < MAXMELODY; j++)MakeOrganyaWave(j, mi.tdata[j].wave_no, mi.tdata[j].pipi);
-			for (j = MAXMELODY; j < MAXTRACK; j++) { InitDramObject(mi.tdata[j].wave_no, j - MAXMELODY); }
-			SetDlgItemTextA(hdwnd, IDC_NOTE, "Note");
+			for (j = 0; j < MAXMELODY; j++)
+			{
+				MakeOrganyaWave(j, mi.tdata[j].wave_no, mi.tdata[j].pipi);
+			}
+			for (j = MAXMELODY; j < MAXTRACK; j++)
+			{ InitDramObject(mi.tdata[j].wave_no, j - MAXMELODY); }
+			
 
 			return 1;
 		}
@@ -874,7 +889,6 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		return 1;
 	case WM_HSCROLL:
 		if ((HWND)lParam == GetDlgItem(hdwnd, IDC_SLIDER1)) {
-			char* strTone[] = { "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B" };
 			//PlayOrganKey(36,0,1000);
 			SamplePlayHeight = SendDlgItemMessage(hdwnd, IDC_SLIDER1, TBM_GETPOS, 0, 0);
 			SetDlgItemText(hdwnd, IDC_NOTE, strTone[SamplePlayHeight % 12]);

@@ -373,7 +373,7 @@
 #define IDC_LABEL_TRACK_6               1091
 #define IDC_LABEL_TRACK_7               1092
 #define IDC_DRUM                        1102
-#define IDC_NOTE                        1106
+#define IDC_NOTE                        1500
 #define IDC_PRESET1                     1107
 #define IDC_PRESET2                     1108
 #define IDC_CHECK_PIPIx0                1108
@@ -483,15 +483,6 @@
 #define IDC_LABEL_TRACK_DxS				1341
 #define IDC_LABEL_TRACK_DxD				1342
 #define IDC_LABEL_TRACK_DxF             1343
-#define IDC_CHECK_PIPIx8				1350
-#define IDC_CHECK_PIPIx9				1351
-#define IDC_CHECK_PIPIx10				1352
-#define IDC_CHECK_PIPIx11				1353
-#define IDC_CHECK_PIPIx12				1354
-#define IDC_CHECK_PIPIx13				1355
-#define IDC_CHECK_PIPIx14				1356
-#define IDC_CHECK_PIPIx15				1357
-#define IDC_CHECK_PIPIx16				1358
 
 #define IDC_LABEL_TRACK_DxG				1344
 #define IDC_LABEL_TRACK_DxH				1345
@@ -626,6 +617,17 @@
 #define IDC_CHECK_PIPI13				1525
 #define IDC_CHECK_PIPI14				1526
 #define IDC_CHECK_PIPI15				1527
+#define IDC_CHECK_PIPI16				1528
+
+#define IDC_CHECK_PIPIx8				1650
+#define IDC_CHECK_PIPIx9				1651
+#define IDC_CHECK_PIPIx10				1652
+#define IDC_CHECK_PIPIx11				1653
+#define IDC_CHECK_PIPIx12				1654
+#define IDC_CHECK_PIPIx13				1655
+#define IDC_CHECK_PIPIx14				1656
+#define IDC_CHECK_PIPIx15				1657
+#define IDC_CHECK_PIPIx16				1658
 
 #define IDM_DLGWAIT                     40003
 #define IDM_DLGTRACK                    40004
@@ -902,6 +904,8 @@
 #define ID_AC_WAV                       40298
 #define IDM_DLGWAVEDBS                  40299
 #define IDM_DCLEN						40300
+
+#define ID_AC_CS1						40400
 
 // Next default values for new objects
 // 

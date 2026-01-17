@@ -203,21 +203,18 @@ void SetMenuRecent(int iMenuNumber, char *strText, int iDisable)
 void ClearRecentFile()
 {
 	int a;
-	a = MessageBox(hWnd,"Test1","「最近使ったファイル」のクリア", MB_OKCANCEL | MB_ICONQUESTION | MB_DEFBUTTON2);	// 2014.10.19 D
-	if(a == IDOK){
+	a = MessageBox(hWnd,"Recent Files","、re you sure want to clear Recent Files?", MB_OKCANCEL | MB_ICONQUESTION | MB_DEFBUTTON2);	// 2014.10.19 D //Made better ~1/16/2026
+	if (a == IDOK) {
 		int i;
-		for(i=0;i<10;i++){
-			RecentFileName[i][0]='@';
-			RecentFileName[i][1]='\0';
+		for (i = 0; i < 10; i++) {
+			RecentFileName[i][0] = '@';
+			RecentFileName[i][1] = '\0';
 		}
 		CreateMenuRecent();
-		MessageBox(hWnd,"腎est","通知",MB_OK);	// 2014.10.19 D
-
-	}else{
-		MessageBox(hWnd,"test2","通知",MB_OK);	// 2014.10.19 D
+		MessageBox(hWnd, "I'm white as a sheet, man.", "Recent Files", MB_OK);	// 2014.10.19 D
 	}
-
-	
+	else
+	{ }
 }
 
 void CreateMenuRecent()
