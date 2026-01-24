@@ -17,7 +17,7 @@
 
 #define PI 3.14159265358979323846
 
-#define NUMGRID		17
+#define NUMGRID		16
 #define NUMGRIDA		11
 #define MAXWAVE		100
 #define maxx(a, b) ((a) > (b) ? (a) : (b))
@@ -73,8 +73,7 @@ int check_pipi[NUMGRID] ={
 	IDC_CHECK_PIPI12,
 	IDC_CHECK_PIPI13,
 	IDC_CHECK_PIPI14,
-	IDC_CHECK_PIPI15,
-	IDC_CHECK_PIPI16
+	IDC_CHECK_PIPI15
 };
 
 int txt_Pan[MAXTRACK]={
@@ -269,13 +268,13 @@ BOOL SetGrid(HWND hdwnd,MUSICINFO *mi)
 		GetDlgItemText(hdwnd,IDD_GRIDEDIT1,str,3);
 		a = atol(str);
 		if(a<=0 || a>=128){
-			MessageBox(hdwnd,"îèéqÇÃêîílÇ™Ç®Ç©ÇµÇ¢Ç≈Ç∑ÅB","ERROR(îèéq)",MB_OK);	// 2014.10.19 D
+			MessageBox(hdwnd,"Time Signature cannot be below 0 or above 128.","Error(Beat)",MB_OK);	// 2014.10.19 D
 			return FALSE;
 		}
 		GetDlgItemText(hdwnd,IDD_GRIDEDIT2,str,3);
 		b = atol(str);
 		if(b<=0 || b>=128){
-			MessageBox(hdwnd,"ï™äÑÇÃêîílÇ™Ç®Ç©ÇµÇ¢Ç≈Ç∑ÅB","ERROR(ï™äÑ)",MB_OK);	// 2014.10.19 D
+			MessageBox(hdwnd,"Time Signature cannot be below 0 or above 128.","Error(Step)",MB_OK);	// 2014.10.19 D
 			return FALSE;
 		}
 
@@ -301,7 +300,7 @@ BOOL SetRepeat(HWND hdwnd, MUSICINFO *mi)
 	b = atol(str);
 	mi->end_x = (unsigned short)a * (mi->dot * mi->line) + b;
 	if(mi->end_x <= mi->repeat_x){
-		MessageBox(hdwnd,"Not a proper range.","ERROR(Repeat)",MB_OK);	// 2014.10.19 D
+		MessageBox(hdwnd,"Not a proper range.","Error(Repeat)",MB_OK);	// 2014.10.19 D
 		return FALSE;
 	}
 	return TRUE;
@@ -509,7 +508,7 @@ char *dram_name[] = { //Names for all the drams.
 	"Bass03",//10
 	"Tom02",//11
 	
-	"Bass04", //ê12
+	"Bass04", //ÅE2
 	"Bass05",//13
 	"Snare03",//14
 
@@ -661,7 +660,7 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		org_data.GetMusicInfo(&mi);
 		//FREQ & PIPI
-		for (j = 0; j < MAXMELODY+1; j++) {
+		for (j = 0; j < MAXMELODY; j++) {
 			i = mi.tdata[j].freq; itoa(i, str, 10);
 			if (j > 7)
 			{
@@ -732,7 +731,7 @@ BOOL CALLBACK DialogWave(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				Rxo_StopAllSoundNow();
 				SetUndo();
 				n = 0;
-				for (j = 0; j < MAXMELODY+1; j++) {
+				for (j = 0; j < MAXMELODY; j++) {
 					if (j < 8)
 					{
 						GetDlgItemTextA(hdwnd, IDD_SETFREQx0 + j, str, MAXTRACK); i = atol(str); mi.tdata[j].freq = (i > 0xFFFF) ? 0xFFFF : i;

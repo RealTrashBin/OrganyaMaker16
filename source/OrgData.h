@@ -1,16 +1,16 @@
 #include "DefOrg.h"
 //編集用構造体///////////////
 typedef struct{//●コピー構造体
-	char track1;//このトラックの
+	int track1;//このトラックの
 	long x1_1;//ここから
 	long x1_2;//ここまでを
-	char track2;//このトラックの
+	int track2;//このトラックの
 	long x2;//ここに
 	long num;//何回
 }NOTECOPY;
 
 typedef struct{//●トランスポートやパンポット
-	char track;//このトラックの
+	int track;//このトラックの
 	long x1;//ここから
 	long x2;//ここまでを
 	unsigned char a;//これだけ 
@@ -30,7 +30,7 @@ typedef struct NOTELIST{
 //トラックデータ＊８
 typedef struct{
 	unsigned short freq;//+α周波数(1000がDefault)
-//	unsigned short note_num;//音符の数
+	unsigned short note_num;//音符の数
 	unsigned char wave_no;//波形No
 	char pipi;
 	NOTELIST *note_p;//NoteData領域の先頭アドレス
@@ -120,7 +120,7 @@ typedef struct OrgData{
 		BOOL OrgData::SaveMusicData(void);
 		BOOL OrgData::LoadMusicData(void);
 		int FileCheckBeforeLoad(char *checkfile); //ファイルがロード可能であれば0異常であれば1を返す。ﾃﾞｰﾀロードはされない。 2014.05.22
-		bool OrgData::TrackFlag(void);
+		BOOL OrgData::TrackFlag(void);
 		//以下は編集関係
 		BOOL DelateNoteData(PARCHANGE *pc);
 		BOOL CopyNoteData(NOTECOPY *nc);

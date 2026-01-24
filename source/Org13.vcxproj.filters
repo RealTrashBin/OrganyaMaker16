@@ -279,6 +279,9 @@
     <Image Include="Bitmap\button_track_Y.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Bitmap\Note_old.bmp">
+      <Filter>Resource Files\Bitmap</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="Wave\Per03.wav">
@@ -319,6 +322,12 @@
     </Media>
     <Media Include="Wave\HiOpen05.wav">
       <Filter>Resource Files\Wave</Filter>
+    </Media>
+    <Media Include="Metro\Metro01.wav">
+      <Filter>Resource Files\Metro</Filter>
+    </Media>
+    <Media Include="Metro\Metro02.wav">
+      <Filter>Resource Files\Metro</Filter>
     </Media>
   </ItemGroup>
   <ItemGroup>

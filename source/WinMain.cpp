@@ -1127,7 +1127,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 				if(CancelDeleteCurrentData(CDCD_INIT))break;
 				ClearUndo();
 				memset(music_file, 0 , MAX_PATH);
-				strcpy(music_file, "NewData.org");
+				strcpy(music_file, "NewData.org16");
 				//for(i = 0; i < 12; i++){
 				//	music_file[i] = name[i];
 				//}
@@ -1337,15 +1337,6 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 
 		break;
 	case WM_CLOSE:
-		//if(iChangeFinish!=0){	// A 2010.09.22
-		//	char cc[512],*chn;
-		//	GetWindowText(hWnd,cc,512);
-		//	chn = strstr(cc, HENKOU_NO_SHIRUSHI);
-		//	if(chn!=NULL){
-		//		//Confirm the end when there is a change.// A 2010.09.22
-		//		if(MessageBox(hwnd,"Any unsaved content will be discarded. Are you sure you want to quit?","end confirmation",MB_OKCANCEL| MB_ICONASTERISK)==IDCANCEL)break;
-		//	}
-		//}
 		if(CancelDeleteCurrentData(CDCD_EXIT))break;
 
 		SaveIniFile();
@@ -1724,44 +1715,6 @@ void SaveIniFile()
 	scr_data.SetIniFile();
 
 }
-
-/*
-//opening flash
-BOOL CALLBACK DialogFlash(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	switch(message){
-	case WM_INITDIALOG:
-		int i;
-		long screen_w;
-		long screen_h;
-		long my_w;
-		long my_h;
-		long x,y,w,h;
-
-		//screen size
-		screen_w = GetSystemMetrics(SM_CXSCREEN);
-		screen_h = GetSystemMetrics(SM_CYSCREEN);
-		//window size
-		my_w = gWidthWindow;
-		my_h = gHeightWindow;
-
-		MoveWindow( hDlg, screen_w/2, screen_h/2, 1, 1, TRUE );
-		ShowWindow( hDlg, SW_SHOW );
-		for( i = 1; i <= WAITFLASH; i++ ){
-			x = screen_w/2 - ( my_w/2 * i/WAITFLASH );
-			y = screen_h/2 - ( my_h/2 * i/WAITFLASH );
-			w = my_w * i / WAITFLASH;
-			h = my_h * i / WAITFLASH;
-			MoveWindow( hDlg, x, y, w, h, TRUE );
-		}
-		ShowWindow(hWnd,SW_SHOW);
-		EndDialog(hDlg,0);
-		return 1;
-	default:return FALSE;
-	}
-	return TRUE;
-}
-*/
 
 void CheckLoupeMenu(void)
 {

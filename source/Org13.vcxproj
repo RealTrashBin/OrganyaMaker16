@@ -172,7 +172,6 @@
     <ClInclude Include="DefOrg.h" />
     <ClInclude Include="Filer.h" />
     <ClInclude Include="Gdi.h" />
-    <ClInclude Include="TrackFlag.h" />
     <ClInclude Include="miniaudio.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="OrgData.h" />
@@ -182,6 +181,7 @@
     <ClInclude Include="Setting.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TrackFlag.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Bitmap\button_track_1.bmp" />
@@ -216,6 +216,7 @@
     <Image Include="Bitmap\Loupe_PLUS.bmp" />
     <Image Include="Bitmap\Music.bmp" />
     <Image Include="Bitmap\Note.bmp" />
+    <Image Include="Bitmap\Note_old.bmp" />
     <Image Include="Bitmap\Number.bmp" />
     <Image Include="Bitmap\org_back.bmp" />
     <Image Include="Bitmap\org_back_step.bmp" />
@@ -238,6 +239,8 @@
     <CustomBuild Include="Wave\Wave.dat" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Metro\Metro01.wav" />
+    <Media Include="Metro\Metro02.wav" />
     <Media Include="Wave\Bass09.wav" />
     <Media Include="Wave\Bass10.wav" />
     <Media Include="Wave\Bass11.wav" />

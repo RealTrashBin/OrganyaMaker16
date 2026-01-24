@@ -132,12 +132,12 @@ int getRecentTrack(int iOrder, int isDrumTrack){ //Å‹ßg‚Á‚½ƒgƒ‰ƒbƒN‚ğ•Ô‚·
 	j=0;
  	if(isDrumTrack==0){
 		for(i=0;i<MAXMELODY;i++){
-			if(7-iOrder==j)return iRecentTrackM[i];
+			if(15-iOrder==j)return iRecentTrackM[i];
 			j++;
 		}
 	}else{
 		for(i=0;i<MAXMELODY;i++){
-			if(7-iOrder==j)return iRecentTrackD[i];
+			if(15-iOrder==j)return iRecentTrackD[i];
 			j++;
 		}
 	}
@@ -203,7 +203,7 @@ void SetMenuRecent(int iMenuNumber, char *strText, int iDisable)
 void ClearRecentFile()
 {
 	int a;
-	a = MessageBox(hWnd,"Recent Files","Are you sure want to clear Recent Files?", MB_OKCANCEL | MB_ICONQUESTION | MB_DEFBUTTON2);	// 2014.10.19 D //Made better ~1/16/2026
+	a = MessageBox(hWnd,"Are you sure want to clear Recent Files?","Recent Files", MB_OKCANCEL | MB_ICONQUESTION | MB_DEFBUTTON2);	// 2014.10.19 D //Made better ~1/16/2026
 	if (a == IDOK) {
 		int i;
 		for (i = 0; i < 10; i++) {
@@ -272,102 +272,133 @@ int GetSelectMeasBeat(int GetToValue, int addValue)
 	}
 	return r;
 }
-char *TrackCode[]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","Q","W","E","R","T","Y","U","I","A","S","D","F","G","H","J","K"};
+char *TrackCode[MAXTRACK]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","Q","W","E","R","T","Y","U","I","A","S","D","F","G","H","J","K"};
 
 //Returns the values of each track
-int ReverseTrackCode(char *strTrack)
+int ReverseTrackCode(int strTrack)
 {
-	int i;
+	char i;
 	i=-1;
 	do{
 		i++;
-		switch(strTrack[i]){
+		switch (strTrack) {
 			//Melody
-		case '1':
+		case 1:
 			return 0;
-		case '2':
+			break;
+		case 2:
 			return 1;
-		case '3':
+			break;
+		case 3:
 			return 2;
-		case '4':
+			break;
+		case 4:
 			return 3;
-		case '5':
+			break;
+		case 5:
 			return 4;
-		case '6':
+			break;
+		case 6:
 			return 5;
-		case '7':
+			break;
+		case 7:
 			return 6;
-		case '8':
+			break;
+		case 8:
 			return 7;
-		case '9':
+			break;
+		case 9:
 			return 8;
-		case '10':
+			break;
+		case 10:
 			return 9;
-		case '11':
+			break;
+		case 11:
 			return 10;
-		case '12':
+			break;
+		case 12:
 			return 11;
-		case '13':
+			break;
+		case 13:
 			return 12;
-		case '14':
+			break;
+		case 14:
 			return 13;
-		case '15':
+			break;
+		case 15:
 			return 14;
-		//Drams
-		case '16':
+			break;
+		case 16:
 			return 15;
+			break;
 		case 'Q':
 		case 'q':
 			return 16;
+			break;
 		case 'W':
 		case 'w':
 			return 17;
+			break;
 		case 'E':
 		case 'e':
 			return 18;
+			break;
 		case 'R':
 		case 'r':
 			return 19;
+			break;
 		case 'T':
 		case 't':
 			return 20;
+			break;
 		case 'Y':
 		case 'y':
 			return 21;
+			break;
 		case 'U':
 		case 'u':
 			return 22;
+			break;
 		case 'I':
 		case 'i':
 			return 23;
+			break;
 		case 'A':
 		case 'a':
 			return 24;
+			break;
 		case 'S':
 		case 's':
 			return 25;
+			break;
 		case 'D':
 		case 'd':
 			return 26;
+			break;
 		case 'F':
 		case 'f':
 			return 27;
+			break;
 		case 'G':
 		case 'g':
 			return 28;
+			break;
 		case 'H':
 		case 'h':
 			return 29;
+			break;
 		case 'J':
 		case 'j':
 			return 30;
+			break;
 		case 'K':
 		case 'k':
 			return 31;
+			break;
 		}
 	}
 
-	while(strTrack[i]==' '); //If strTrack is blank return 99.
+	while((char)strTrack==' '); //If strTrack is blank return 99.
 	return 99;
 }
 
@@ -487,14 +518,14 @@ void ShowMemoryState(){ //ƒfƒoƒbƒO—p
 void SortMusicNote(void)
 {
 	int a;
-	a = MessageBox(hWnd,"’·ŠÔ‚Ìg—p‚É‚æ‚èAƒm[ƒgi‰¹•„j‚ªƒƒ‚ƒŠã‚É\nU—‚µ‚Ä‚µ‚Ü‚¢‚Ü‚·Bi•ˆ–Ê‡‚Æƒƒ‚ƒŠ‡‚ÍˆÙ‚È‚Á‚Ä‚¢‚éj\n‚±‚ÌŠÖ”‚Íƒm[ƒg‚ğ•ˆ–Ê‚Ì‡”Ô‚É\n•À‚×Š·‚¦‚Ü‚·B\n®Aƒf[ƒ^‚ğƒ[ƒh‚µ’¼‚µ‚Ä‚à“¯‚¶Œø‰Ê‚ª“¾‚ç‚ê‚Ü‚·B\nÀs‚µ‚Ü‚·‚©H","g‚¢•û‚Æ–Ú“I",MB_OKCANCEL|MB_ICONQUESTION|MB_DEFBUTTON2);	// 2014.10.19 D
+	a = MessageBox(hWnd,"After prolonged use, the notes will be scattered in memory. This function rearranges the notes in the order of the score. The same effect can be achieved by reloading the data. Do you want to run it?","Notice",MB_OKCANCEL|MB_ICONQUESTION|MB_DEFBUTTON2);	// 2014.10.19 D
 	if(a == IDOK){
 		org_data.SortNotes();
-		MessageBox(hWnd,"•À‚×‘Ö‚¦EÄ","Done",MB_OK);	// 2014.10.19 D
+		MessageBox(hWnd,"Rearranged and restructured.","Done",MB_OK);	// 2014.10.19 D
 
-	}else{
+	}/*else {
 		MessageBox(hWnd,"ƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚µ‚½B","Done",MB_OK);	// 2014.10.19 D
-	}
+	}*/
 }
 
 //‰¼‘z“I‚ÉƒNƒŠƒbƒvƒ{[ƒh‚ğ—pˆÓ‚µ‚ÄAƒf[ƒ^‚Ì‚â‚èæ‚è‚Í‚±‚¢‚Â‚ğ‰î‚µ‚Äs‚¤B

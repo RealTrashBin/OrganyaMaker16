@@ -407,7 +407,7 @@ BOOL OrgData::ChangeVolumeData(PARCHANGE *pc, char mode)
 			np = np->to;
 		}
 	}
-	/*else if (pc->mode == (MODEDECAY + 14)) { //ê LINEAR 10 L
+	/*else if (pc->mode == (MODEDECAY + 14)) { //ÅELINEAR 10 L
 		for (i = 0; i < num; i++) {
 			if (np->volume != VOLDUMMY) {
 				if (d == 0) {

@@ -617,17 +617,15 @@
 #define IDC_CHECK_PIPI13				1525
 #define IDC_CHECK_PIPI14				1526
 #define IDC_CHECK_PIPI15				1527
-#define IDC_CHECK_PIPI16				1528
 
-#define IDC_CHECK_PIPIx8				1650
-#define IDC_CHECK_PIPIx9				1651
-#define IDC_CHECK_PIPIx10				1652
-#define IDC_CHECK_PIPIx11				1653
-#define IDC_CHECK_PIPIx12				1654
-#define IDC_CHECK_PIPIx13				1655
-#define IDC_CHECK_PIPIx14				1656
-#define IDC_CHECK_PIPIx15				1657
-#define IDC_CHECK_PIPIx16				1658
+#define IDC_CHECK_PIPIx8				1649
+#define IDC_CHECK_PIPIx9				1650
+#define IDC_CHECK_PIPIx10				1651
+#define IDC_CHECK_PIPIx11				1652
+#define IDC_CHECK_PIPIx12				1653
+#define IDC_CHECK_PIPIx13				1654
+#define IDC_CHECK_PIPIx14				1655
+#define IDC_CHECK_PIPIx15				1656
 
 #define IDM_DLGWAIT                     40003
 #define IDM_DLGTRACK                    40004

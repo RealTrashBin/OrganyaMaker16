@@ -19,7 +19,7 @@ extern char *TrackCode[]; //トラック名と数字の置き換え用
 extern int Menu_Recent[];
 extern char RecentFileName[10][MAX_PATH];	//最近使ったファイル名
 
-extern int ReverseTrackCode(char *strTrack); //その逆函数
+extern int ReverseTrackCode(int strTrack); //その逆函数
 extern void ShowMemoryState();
 extern void SortMusicNote(void); //音符の整理
 

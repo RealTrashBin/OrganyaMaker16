@@ -661,14 +661,8 @@ void PlayOrganObject(unsigned char key, int mode,char track,DWORD freq, bool pip
 			}
 			break;
 		case 1: // Ä¶
-//			if(key_on == 1 && no == old_key/12)//
-//				lpORGANBUFFER[old_key/12]->Stop();
-//				ChangeOrganFrequency(key%12);//Žü”g”‚ðÝ’è‚µ‚Ä
-//				lpORGANBUFFER[no]->Play(0, 0, 0);
-//			if(key_on == 1 && no == old_key/12){//–Â‚Á‚Ä‚éWAV‚ª“¯‚¶WAVNO‚È‚ç
-//				old_key = key;
-//				ChangeOrganFrequency(key%12);//Žü”g”‚ð•Ï‚¦‚é‚¾‚¯
-//			}
+			S_StopSound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]]);
+			S_RewindSound(lpORGANBUFFER[track][old_key[track] / 12][key_twin[track]]);
 			break;
 		case 2: // •à‚©‚¹’âŽ~
 			if(old_key[track] != 255){
@@ -977,7 +971,7 @@ void Rxo_StopAllSoundNow(void)
 			S_RewindSound(lpSECONDARYBUFFER[i]);
 		}
 	
-	for (i = 0; i < 8; i++){
+	for (i = 0; i < MAXMELODY; i++){
 		for (j = 0; j < 8; j++) {
 			for (k = 0; k < 2; k++) {
 				if (lpORGANBUFFER[i][j][k] != NULL) {

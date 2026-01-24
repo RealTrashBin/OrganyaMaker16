@@ -18,7 +18,7 @@
 #define SETPIPI		0x00000040
 
 
-#define ALLOCNOTE	4096 //Memory Allocation for Notes.
+#define ALLOCNOTE	4096 //Memory Allocation for Notes. Don't change to a higher value if u want to be compatable with other orgmakers
 #define MODEPARADD	0 //Adds onto an extending note?
 #define MODEPARSUB	1 //Subtracts from an extending note?
 //PAR is for notes I think.

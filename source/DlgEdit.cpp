@@ -7,6 +7,7 @@
 #include "OrgData.h"
 #include "Gdi.h"
 #include "rxoFunction.h"
+#include "TrackFlag.h"
 
 extern HWND hDlgPlayer; //The player
 extern HWND hDlgTrack; //The thing that holds the Tracks, mute, etc
@@ -49,16 +50,17 @@ BOOL CALLBACK DialogDelete(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPara
 			EnableWindow(hDlgPlayer,TRUE);
 			return 1;
 		case IDOK:
+			GetDlgItemText(hdwnd, IDE_DELTRACK, str, 4);
+			a = binTrackCode(str);
 			GetDlgItemText(hdwnd,IDE_DELTRACK,str,4);
-			//a = atol(str);
-			a = ReverseTrackCode(str);
-			if(a >= MAXTRACK){
+			if(binTrackCode(str) == 99){
 				MessageBox(hdwnd,"Not a proper track.","Error(track)",MB_OK);
 
 				return 1;
 			}
 			//パラメータ生成
-			pc.track = (char)a;
+			
+			pc.track = a;
 			org_data.GetMusicInfo(&mi);
 			GetDlgItemText(hdwnd,IDE_DELFROM,str,4);
 			b = atol(str);
@@ -145,15 +147,20 @@ BOOL CALLBACK DialogCopy(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			}
 			//トラックのチェック
 			GetDlgItemText(hdwnd,IDE_TRACK1,str,4);
-			if(ReverseTrackCode(str) >= MAXTRACK){
+			if(binTrackCode(str) == 99){
 				MessageBox(hdwnd,"From Track is not valid.","Error(Copy)",MB_OK);	// 2014.10.18 D
 				return 1;
-			}else nc.track1 = (char)ReverseTrackCode(str);
+			}
+			else
+			{
+				nc.track1 = binTrackCode(str);
+			}
 			GetDlgItemText(hdwnd,IDE_TRACK2,str,4);
-			if(ReverseTrackCode(str) >= MAXTRACK){
-				MessageBox(hdwnd,"To Track is not valid.","Error(Copy)",MB_OK);	// 2014.10.18 D
+			if (binTrackCode(str) == 99) {
+				MessageBox(hdwnd, "To Track is not valid.", "Error(Copy)", MB_OK);	// 2014.10.18 D
 				return 1;
-			}else nc.track2= (char)ReverseTrackCode(str);
+			}
+			else nc.track2 = binTrackCode(str);
 			//コピー範囲のチェック
 			org_data.GetMusicInfo(&mi);
 			GetDlgItemText(hdwnd,IDE_MEAS1_1,str,4);//範囲from
@@ -197,12 +204,6 @@ BOOL CALLBACK DialogCopy(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			SetUndo();
 			org_data.CopyNoteData(&nc);
 			org_data.CheckNoteTail(nc.track2);
-			//表示
-			//org_data.PutMusic();
-			//RedrawWindow(hWnd,&rect,NULL,RDW_INVALIDATE|RDW_ERASENOW);
-			//試しに表示
-//			sprintf(str,"%dトラックの%dから%dまでを、%dトラックの%dに%d回コピーしました",
-//			nc.track1,nc.x1_1,nc.x1_2,nc.track2,nc.x2,nc.num);
 			MessageBox(hdwnd,"Track has been copied.","Done",MB_OK);	// 2014.10.19 D
 			return 1;
 		}
@@ -247,10 +248,11 @@ BOOL CALLBACK DialogPan(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				pc.mode = MODEPARSUB;
 			//トラックのチェック
 			GetDlgItemText(hdwnd,IDE_TRACK,str,4);
-			if(ReverseTrackCode(str) >= MAXTRACK){
+			if(binTrackCode(str) == 99){
 				MessageBox(hdwnd,"Not a proper Track.","Error(Pan)",MB_OK);	// 2014.10.19 D
 				return 1;
-			}else pc.track = (char)ReverseTrackCode(str);
+			}
+			else pc.track = binTrackCode(str);
 			//範囲のチェック
 			org_data.GetMusicInfo(&mi);
 			GetDlgItemText(hdwnd,IDE_MEAS1,str,4);//範囲from
@@ -312,11 +314,12 @@ BOOL CALLBACK DialogTrans(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam
 				pc.mode = MODEPARSUB;
 			
 			//トラックのチェック
-			GetDlgItemText(hdwnd,IDE_TRACK,str,4);
-			if(ReverseTrackCode(str) >= MAXTRACK){
+			GetDlgItemTextA(hdwnd,IDE_TRACK,str,4);
+			if(binTrackCode(str) == 99){
 				MessageBox(hdwnd,"Not a proper Track.","Error(Trans)",MB_OK);	// 2014.10.19 D
 				return 1;
-			}else pc.track = (char)ReverseTrackCode(str);
+			}
+			else pc.track = binTrackCode(str);
 			//範囲のチェック
 			org_data.GetMusicInfo(&mi);
 			GetDlgItemText(hdwnd,IDE_MEAS1,str,4);//範囲from
@@ -378,10 +381,10 @@ BOOL CALLBACK DialogVolume(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPara
 				pc.mode = MODEPARSUB;
 			//トラックのチェック
 			GetDlgItemText(hdwnd,IDE_TRACK,str,4);
-			if(ReverseTrackCode(str) >= MAXTRACK){
+			if(binTrackCode(str) == 99){
 				MessageBox(hdwnd,"Not a proper Track.","Error(Volume)",MB_OK);	// 2014.10.19 D
 				return 1;
-			}else pc.track = (char)ReverseTrackCode(str);
+			}else pc.track = binTrackCode(str);
 			//範囲のチェック
 			org_data.GetMusicInfo(&mi);
 			GetDlgItemText(hdwnd,IDE_MEAS1,str,4);//範囲from
@@ -406,7 +409,7 @@ BOOL CALLBACK DialogVolume(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPara
 	return 0;
 }
 
-//Tracks being used?
+//Tracks Usage in
 int cbox[MAXTRACK] = {
 	IDC_USE0,
 	IDC_USE1,
@@ -605,16 +608,16 @@ BOOL CALLBACK DialogSwap(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case IDOK:
 			//Errors 
 			GetDlgItemText(hdwnd,IDE_TRACK1,str,4);
-			if (ReverseTrackCode(str) >= MAXTRACK)
+			if (binTrackCode(str) == 99)
 			{ 
-				MessageBox(hdwnd, "広eft Track Error.", "Error(Swap)", MB_OK);	// 2014.10.19 D
+				MessageBox(hdwnd, "Left Track Error.", "Error(Swap)", MB_OK);	// 2014.10.19 D
 				return 1; //Return exit code
-			}else nc.track1 = (char)ReverseTrackCode(str); //Sets Track1 to the 1st input Track
+			}else nc.track1 = binTrackCode(str); //Sets Track1 to the 1st input Track
 			GetDlgItemText(hdwnd,IDE_TRACK2,str,4);
-			if(ReverseTrackCode(str) >= MAXTRACK){
+			if(binTrackCode(str) == 99){
 				MessageBox(hdwnd,"Right Track Error.","Error(Swap)",MB_OK);	// 2014.10.19 D
 				return 1; //Return exit code
-			}else nc.track2 = (char)ReverseTrackCode(str);//Sets Track2 to the 2nd input Track
+			}else nc.track2 = binTrackCode(str);//Sets Track2 to the 2nd input Track
 
 			SetUndo();
 			org_data.SwapTrack(&nc);

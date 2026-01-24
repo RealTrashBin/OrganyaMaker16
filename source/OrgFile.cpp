@@ -11,13 +11,10 @@
 char music_file[MAX_PATH]; //NewData.org
 char pass[7] = "Org-01"; //Base Format
 char pass2[7] = "Org-02";//Pipi
-char pass3[7] = "Org-03";//èNew Drams
+char pass3[7] = "Org-03";//New Drams
 
 char pass4[7] = "Org-16";//16 Tracks
-bool OrgFileType;
-
-#define NewMelody MAXTRACK - 24 //8
-#define NewDram MAXTRACK - 8 //24
+bool OrgFileType; //Checks if it's ORG or ORG-16
 
 //Important Structures for how ORGMAKER works.
 typedef struct {
@@ -40,9 +37,18 @@ typedef struct {
 	long repeat_x;//Beginning of repeat segment.
 	long end_x;//End of repeat segment.
 	ORGANYATRACK tdata[MAXTRACK]; //TRACKS
-}ORGANYADATA; //Structure of an ORG File
+}ORGANYADATA; //Structure of an ORG-16 File
+typedef struct {
+	signed short wait; //Speed of ORG
+	unsigned char line; //Beat (For time signature)
+	unsigned char dot; //Step (For time signature)
+	long repeat_x;//Beginning of repeat segment.
+	long end_x;//End of repeat segment.
+	ORGANYATRACK tdata[16]; //TRACKS
+}ORGDATAEIGHT; //Structure of an ORG File
 
 ORGANYADATA orgdat;
+ORGDATAEIGHT eightdat;
 //Gets the amount of Notes and can copy them?
 unsigned short OrgData::GetNoteNumber(char track,NOTECOPY *nc)
 {
@@ -98,7 +104,7 @@ BOOL OrgData::SaveMusicData(void)
 			orgdat.tdata[i].pipi = info.tdata[i].pipi;
 			orgdat.tdata[i].note_num = GetNoteNumber(i, NULL);
 		}
-	}/*
+	}
 	else
 	{
 		for (i = 0; i < 8; i++) {
@@ -108,14 +114,14 @@ BOOL OrgData::SaveMusicData(void)
 			orgdat.tdata[i].note_num = GetNoteNumber(i, NULL);
 		}
 			
-		for (i = 16; i < 24; i++) {
-			orgdat.tdata[i].freq = info.tdata[i].freq;
-			orgdat.tdata[i].wave_no = info.tdata[i].wave_no;
-			orgdat.tdata[i].pipi = info.tdata[i].pipi;
-			orgdat.tdata[i].note_num = GetNoteNumber(i, NULL);
+		for (i = 8; i < 16; i++) {
+			orgdat.tdata[i].freq = info.tdata[i+8].freq;
+			orgdat.tdata[i].wave_no = info.tdata[i+8].wave_no;
+			orgdat.tdata[i].pipi = info.tdata[i+8].pipi;
+			orgdat.tdata[i].note_num = GetNoteNumber(i+8, NULL);
 		}
 	}
-	*/
+	
 	//Saves Notes
 	//Can't write to file error
 	FILE *fp;
@@ -129,18 +135,15 @@ BOOL OrgData::SaveMusicData(void)
 	{
 		if (orgdat.tdata[i].pipi == 0)
 		{
-			j = 1;
+			continue;
 		}
 		else
 		{
-			pf = true;
+			j = 2;
+			break;
 		}
 	}
-		if (pf == true)
-		{
-			j = 2;
-		}
-	for(i=MAXTRACK / 2;i<MAXTRACK;i++) //Checks for new Drams.
+	for(i=MAXTRACK / 2; i<MAXTRACK; i++) //Checks for new Drams.
 	{
 		if (orgdat.tdata[i].wave_no >= 13)
 		{
@@ -154,15 +157,21 @@ BOOL OrgData::SaveMusicData(void)
 	}
 
 	if(j==1)fwrite(&pass[0], sizeof(char), 6, fp);
-	else if(j==2)fwrite(&pass2[0], sizeof(char), 6, fp);//version 2, write version 2.
-	else if(j==3)fwrite(&pass3[0], sizeof(char), 6, fp);//version 3, write version 3.
-	else fwrite(&pass4[0], sizeof(char), 6, fp);
+	if(j==2)fwrite(&pass2[0], sizeof(char), 6, fp);//version 2, write version 2.
+	if(j==3)fwrite(&pass3[0], sizeof(char), 6, fp);//version 3, write version 3.
+	if(j==4)fwrite(&pass4[0], sizeof(char), 6, fp);
 
 	//Writes the Struct of an ORG's data.
+	if (j < 4)
+	{
+		fwrite(&eightdat, sizeof(ORGDATAEIGHT), 1, fp);
+	}
+	else {
 		fwrite(&orgdat, sizeof(ORGANYADATA), 1, fp);
+	}
 
 	//Writes the TRACK's data, j is the TRACK in this instance.
-	if (j)
+	if (j == 4)
 	{
 		for (j = 0; j < MAXTRACK; j++) {
 			if (info.tdata[j].note_list == NULL)continue;//If there's no notes, continue to the next TRACK.
@@ -193,67 +202,68 @@ BOOL OrgData::SaveMusicData(void)
 			}
 		}
 	}
-	/*
+	
 	else
 	{ //Yes, I did just copy and paste the code from above.
-		for (j = 0; j < NewMelody; j++) { //Vanilla ORG Melody save.
+		for (j = 0; j < 8; j++) { //ORG Melody save.
 			if (info.tdata[j].note_list == NULL)continue;
 			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->x, sizeof(long), 1, fp);
 				np = np->to;
 			}
 			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->y, sizeof(unsigned char), 1, fp);
 				np = np->to;
 			}
 			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->length, sizeof(unsigned char), 1, fp);
 				np = np->to;
 			}
 			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->volume, sizeof(unsigned char), 1, fp);
 				np = np->to;
 			}
 			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->pan, sizeof(unsigned char), 1, fp);
 				np = np->to;
 			}
 		}
-		for (j = MAXMELODY; j < NewDram; j++) { //Vanilla ORG Dram save.
-			if (info.tdata[j].note_list == NULL)continue;
-			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+
+		for (j = 8; j < 16; j++) { //ORG Dram save.
+			if (info.tdata[j+8].note_list == NULL)continue;
+			np = info.tdata[j+8].note_list;
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->x, sizeof(long), 1, fp);
 				np = np->to;
 			}
-			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			np = info.tdata[j+8].note_list;
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->y, sizeof(unsigned char), 1, fp);
 				np = np->to;
 			}
-			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			np = info.tdata[j+8].note_list;
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->length, sizeof(unsigned char), 1, fp);
 				np = np->to;
 			}
-			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			np = info.tdata[j+8].note_list;
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->volume, sizeof(unsigned char), 1, fp);
 				np = np->to;
 			}
-			np = info.tdata[j].note_list;
-			for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+			np = info.tdata[j+8].note_list;
+			for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 				fwrite(&np->pan, sizeof(unsigned char), 1, fp);
 				np = np->to;
 			}
 		}
 	}
-	*/
+	
 	fclose(fp);
 	PutRecentFile(music_file); //Puts it the most recent on the recent list.
 //	MessageBox(hWnd,"ï€ë∂ÇµÇ‹ÇµÇΩ","Message (Save)",MB_OK);
@@ -300,7 +310,7 @@ BOOL OrgData::LoadMusicData(void)
 	NOTELIST* np;
 	NOTECOPY nc;
 	MUSICINFO mi;
-	int i, j;
+	int i, j, t;
 	char pass_check[6];
 	char ver = 0;
 	bool cflag = false;
@@ -317,21 +327,34 @@ BOOL OrgData::LoadMusicData(void)
 	if (!memcmp(pass_check, pass2, 6))ver = 2;
 	if (!memcmp(pass_check, pass3, 6))ver = 3;
 	if (!memcmp(pass_check, pass4, 6))ver = 4;
-	if (!ver || ver < 4) {
+	if (!ver) {
 		fclose(fp);
 		MessageBox(hWnd, "Not a proper Version.", "Error(Load)", MB_OK);
 		return FALSE;
 	}
 
 	//Open the ORG file.
-	fread(&orgdat, sizeof(ORGANYADATA), 1, fp);
-
-	//Reads the struct of an ORG file
+	if (ver == 4)
+	{
+		fread(&orgdat, sizeof(ORGANYADATA), 1, fp);
 	info.wait = orgdat.wait;
 	info.line = orgdat.line;
 	info.dot = orgdat.dot;
 	info.repeat_x = orgdat.repeat_x;
 	info.end_x = orgdat.end_x;
+	}
+	else
+	{
+		fread(&eightdat, sizeof(ORGDATAEIGHT), 1, fp);
+	info.wait = eightdat.wait;
+	info.line = eightdat.line;
+	info.dot = eightdat.dot;
+	info.repeat_x = eightdat.repeat_x;
+	info.end_x = eightdat.end_x;
+	}
+
+	//Reads the struct of an ORG file
+
 	
 	if (OrgFileType == true)
 	{
@@ -342,24 +365,23 @@ BOOL OrgData::LoadMusicData(void)
 			info.tdata[i].wave_no = orgdat.tdata[i].wave_no;
 		}
 	}
-	/*
 	else
 	{
 		for (i = 0; i < 8; i++) {
-			info.tdata[i].freq = orgdat.tdata[i].freq;
+			info.tdata[i].freq = eightdat.tdata[i].freq;
 			if (ver == 1)info.tdata[i].pipi = 0;
-			else info.tdata[i].pipi = orgdat.tdata[i].pipi;
-			info.tdata[i].wave_no = orgdat.tdata[i].wave_no;
+			else info.tdata[i].pipi = eightdat.tdata[i].pipi;
+			info.tdata[i].wave_no = eightdat.tdata[i].wave_no;
 		}
-		for (i = NewMelody; i < MAXMELODY; i++) {
+		for (i = 8; i < 16; i++) {
 			j = i + 8;
-			info.tdata[i].freq = orgdat.tdata[j].freq;
-			if (ver == 1)info.tdata[i].pipi = 0;
-			else info.tdata[i].pipi = orgdat.tdata[j].pipi;
-			info.tdata[i].wave_no = orgdat.tdata[j].wave_no;
+			info.tdata[j].freq = eightdat.tdata[i].freq;
+			if (ver == 1)info.tdata[j].pipi = 0;
+			else info.tdata[j].pipi = eightdat.tdata[i].pipi;
+			info.tdata[j].wave_no = eightdat.tdata[i].wave_no;
 		}
 	}
-	*/
+	
 	//Loads in TRACKS
 	if (ver == 4) {
 		for (j = 0; j < MAXTRACK; j++) {
@@ -452,16 +474,17 @@ BOOL OrgData::LoadMusicData(void)
 			AutoLoadPVIFile();
 		}
 	}
-	/*
+	
 	else
 		{
 			for (j = 0; j < 8; j++) {
 				//If no notes, continue.
-				if (orgdat.tdata[j].note_num == 0) {
+				if (eightdat.tdata[j].note_num == 0) {
 					info.tdata[j].note_list = NULL;
 					continue;
 				}
-				if (orgdat.tdata[j].note_num > info.alloc_note) {
+				info.tdata[j + 8].wave_no = 0;
+				if (eightdat.tdata[j].note_num > info.alloc_note) {
 					if (!cflag) {
 						MessageBox(NULL, "Some tracks were shortened due to having too many notes.", "Notice", MB_OK | MB_ICONASTERISK);
 						cflag = true;
@@ -473,7 +496,7 @@ BOOL OrgData::LoadMusicData(void)
 				np->from = NULL;
 				np->to = (np + 1);
 				np++;
-				for (i = 1; i < orgdat.tdata[j].note_num && i < info.alloc_note; i++) {
+				for (i = 1; i < eightdat.tdata[j].note_num && i < info.alloc_note; i++) {
 					np->from = (np - 1);
 					np->to = (np + 1);
 					np++;
@@ -484,57 +507,58 @@ BOOL OrgData::LoadMusicData(void)
 
 				//Placement of notes.
 				np = info.tdata[j].note_p;//Çwç¿ïW
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(long), SEEK_CUR); continue; }
 					fread(&np->x, sizeof(long), 1, fp);
 					np++;
 				}
 				np = info.tdata[j].note_p;//Çxç¿ïW
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(unsigned char), SEEK_CUR); continue; }
 					fread(&np->y, sizeof(unsigned char), 1, fp);
 					if (np->y >= 96) np->y = KEYDUMMY; //Places the notes on their Y/Key
 					np++;
 				}
 				np = info.tdata[j].note_p;//í∑Ç≥
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(unsigned char), SEEK_CUR); continue; }
 					fread(&np->length, sizeof(unsigned char), 1, fp);
 					if (np->length == 0) np->length = 1; // Length of note.
 					np++;
 				}
 				np = info.tdata[j].note_p;//Volume
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(unsigned char), SEEK_CUR); continue; }
 					fread(&np->volume, sizeof(unsigned char), 1, fp);
 					np++;
 				}
 				np = info.tdata[j].note_p;//Panning
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(unsigned char), SEEK_CUR); continue; }
 					fread(&np->pan, sizeof(unsigned char), 1, fp);
-					np++;
+					np++; 
 				}
 			}
-			for (j = 16; j < 24; j++) {
+			for (j = 8; j < 16; j++) {
 				//If no notes, continue.
-				if (orgdat.tdata[j].note_num == 0) {
-					info.tdata[j].note_list = NULL;
+				if (eightdat.tdata[j].note_num == 0) {
+					info.tdata[j+8].note_list = NULL;
 					continue;
 				}
-				if (orgdat.tdata[j].note_num > info.alloc_note) {
+				info.tdata[j + 16].wave_no = 0;
+				if (eightdat.tdata[j].note_num > info.alloc_note) {
 					if (!cflag) {
 						MessageBox(NULL, "Some tracks were shortened due to having too many notes.", "Notice", MB_OK | MB_ICONASTERISK);
 						cflag = true;
 					}
 				}
 				//ÉäÉXÉgÇçÏÇÈ
-				np = info.tdata[j].note_p;
-				info.tdata[j].note_list = info.tdata[j].note_p;
+				np = info.tdata[j+8].note_p;
+				info.tdata[j+8].note_list = info.tdata[j+8].note_p;
 				np->from = NULL;
 				np->to = (np + 1);
 				np++;
-				for (i = 1; i < orgdat.tdata[j].note_num && i < info.alloc_note; i++) {
+				for (i = 1; i < eightdat.tdata[j].note_num && i < info.alloc_note; i++) {
 					np->from = (np - 1);
 					np->to = (np + 1);
 					np++;
@@ -544,34 +568,34 @@ BOOL OrgData::LoadMusicData(void)
 				np->to = NULL;
 
 				//Placement of notes.
-				np = info.tdata[j].note_p;//Çwç¿ïW
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				np = info.tdata[j+8].note_p;//Çwç¿ïW
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(long), SEEK_CUR); continue; }
 					fread(&np->x, sizeof(long), 1, fp);
 					np++;
 				}
-				np = info.tdata[j].note_p;//Çxç¿ïW
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				np = info.tdata[j+8].note_p;//Çxç¿ïW
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(unsigned char), SEEK_CUR); continue; }
 					fread(&np->y, sizeof(unsigned char), 1, fp);
 					if (np->y >= 96) np->y = KEYDUMMY; //Places the notes on their Y/Key
 					np++;
 				}
-				np = info.tdata[j].note_p;//í∑Ç≥
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				np = info.tdata[j+8].note_p;//í∑Ç≥
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(unsigned char), SEEK_CUR); continue; }
 					fread(&np->length, sizeof(unsigned char), 1, fp);
 					if (np->length == 0) np->length = 1; // Length of note.
 					np++;
 				}
-				np = info.tdata[j].note_p;//Volume
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				np = info.tdata[j+8].note_p;//Volume
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(unsigned char), SEEK_CUR); continue; }
 					fread(&np->volume, sizeof(unsigned char), 1, fp);
 					np++;
 				}
-				np = info.tdata[j].note_p;//Panning
-				for (i = 0; i < orgdat.tdata[j].note_num; i++) {
+				np = info.tdata[j+8].note_p;//Panning
+				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
 					if (i >= info.alloc_note) { fseek(fp, sizeof(unsigned char), SEEK_CUR); continue; }
 					fread(&np->pan, sizeof(unsigned char), 1, fp);
 					np++;
@@ -583,8 +607,8 @@ BOOL OrgData::LoadMusicData(void)
 			{
 				MakeOrganyaWave(j, info.tdata[j].wave_no, info.tdata[j].pipi);
 			}
-			for (j = MAXMELODY / 2; j < 16; j++) {
-				i = info.tdata[j+8].wave_no;
+			for (j = 16; j < 24; j++) {
+				i = info.tdata[j].wave_no;
 				InitDramObject(i, j - MAXMELODY);
 			}
 
@@ -606,7 +630,7 @@ BOOL OrgData::LoadMusicData(void)
 				AutoLoadPVIFile();
 			}
 		}
-		*/
+		
 		return TRUE;
 	}
 

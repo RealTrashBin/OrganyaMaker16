@@ -4,6 +4,7 @@
 #include "DefOrg.h"
 #include "OrgData.h"
 #include "rxoFunction.h"
+#include <string>
 
 RECT CmnDialogWnd;
 int count_of_INIT_DONE;
@@ -35,15 +36,18 @@ char GetFileNameSave(HWND hwnd,char *title)
 {//ファイル名を取得(セーブ)
 	OPENFILENAME ofn;
 	int i;
+	const char* nExt;
 	//FILE *fp;
 //	char res;//ファイルオープンの結果
-
 	memset(&ofn,0,sizeof(OPENFILENAME));
-//	strcpy(GetName,"*.pmd");
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner   = hwnd;
 	ofn.hInstance   = hInst;
-	/*
+	ofn.lpstrFile   = music_file;
+	ofn.nMaxFile    = MAX_PATH;
+	ofn.lpstrTitle  = title;
+	ofn.Flags       = OFN_NOREADONLYRETURN | OFN_OVERWRITEPROMPT | OFN_CREATEPROMPT | OFN_HIDEREADONLY;
+
 	org_data.TrackFlag();
 	if (!org_data.TrackFlag())
 	{
@@ -51,14 +55,16 @@ char GetFileNameSave(HWND hwnd,char *title)
 		ofn.lpstrDefExt = "org";
 	}
 	else
-	{*/
-	ofn.lpstrFilter = "Organya16Data[*.org16]\0*.org16\0All Files[*.*]\0*.*\0\0";
-	ofn.lpstrDefExt = "org16";
-	//}
-	ofn.lpstrFile   = music_file;
-	ofn.nMaxFile    = MAX_PATH;
-	ofn.lpstrTitle  = title;
-	ofn.Flags       = OFN_NOREADONLYRETURN | OFN_OVERWRITEPROMPT | OFN_CREATEPROMPT | OFN_HIDEREADONLY;
+	{
+		ofn.lpstrFilter = "Organya16Data[*.org16]\0*.org16\0\0";
+		ofn.lpstrDefExt = "org16";
+	}
+
+	std::string Ext(music_file); //You have to do this to avoid conflicts.
+	size_t OrgExtension = Ext.find_last_of(".");
+	nExt = Ext.substr(0, OrgExtension).c_str();
+	strcpy(music_file, nExt);
+
 
 	//ファイル名取得を試みる。
 	if(GetSaveFileName(&ofn));//InvalidateRect(hwnd,NULL,TRUE);
@@ -219,12 +225,13 @@ char GetFileNameMIDI(HWND hwnd,char *title, char *filename)
 
 //フックプロシージャ
 
-char GetFileNameLoad(HWND hwnd,char *title,char*filename)
+char GetFileNameLoad(HWND hwnd,char *title, char *filename)
 {//ファイル名を取得(ロード)
 	OPENFILENAME ofn;
 	//FILE *fp;
 	char mfile[MAX_PATH];
 	char* p;
+	size_t npos;
 
 	memset(&ofn, 0, sizeof(OPENFILENAME));
 	memset(&mfile, '\0', MAX_PATH);
@@ -232,15 +239,13 @@ char GetFileNameLoad(HWND hwnd,char *title,char*filename)
 	ofn.lStructSize = sizeof(OPENFILENAME);
 	ofn.hwndOwner   = hwnd;
 	ofn.hInstance   = hInst;
-	//ofn.lpstrFilter = "Organya16 Data[*.org16]\0*.org16\0OrganyaData[*.org]\0*.org\0All Files[*.*]\0*.*\0\0";
-	ofn.lpstrFilter = "Organya16 Data[*.org16]\0*.org16\0All Files[*.*]\0*.*\0\0";
+	ofn.lpstrFilter = "Organya16 Data[*.org16]\0*.org16\0OrganyaData[*.org]\0*.org\0All Files[*.*]\0*.*\0\0";
 	ofn.lpstrFile   = mfile;
 	ofn.nMaxFile    = MAX_PATH;
 	ofn.lpstrTitle  = title;
 	ofn.Flags       = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 	
-	ofn.lpstrDefExt = "org16";
-	//ofn.lpstrDefExt = "org";
+	ofn.lpstrDefExt = "org16", "org";
 	
 	count_of_INIT_DONE = 0;
 	//ファイル名取得を試みる。
@@ -249,14 +254,18 @@ char GetFileNameLoad(HWND hwnd,char *title,char*filename)
 	if(org_data.FileCheckBeforeLoad(mfile)){
 		return MSGCANCEL;//指定ファイルが存在しない
 	}
-	strcpy(music_file, mfile);
 	
-	strcpy(filename, music_file);
+	
+	strcpy(filename, mfile);
 	if ((p = strstr(filename, ".org16")) != NULL)
 	{
 		OrgFileType = true;
 	}
 	else OrgFileType = false;
+
+	strcpy(music_file,mfile);
+
+
 	return MSGLOADOK;
 }
 

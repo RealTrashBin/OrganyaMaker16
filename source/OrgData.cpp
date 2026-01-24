@@ -703,7 +703,8 @@ void OrgData::InitOrgData(void)
 
 	// i is refering to TRACKS
 	for(i=0; i<MAXMELODY; i++){
-		info.tdata[i].wave_no = rand() % 100; //randomly generates a Wave for the track! ...thanks cplusplus.com
+		//info.tdata[i].wave_no = rand() % 100; //randomly generates a Wave for the track! ...thanks cplusplus.com
+		info.tdata[i].wave_no = i + 1;
 		MakeOrganyaWave(i, info.tdata[i].wave_no, info.tdata[i].pipi);
 	}
 	info.tdata[16].wave_no = 0; //Drams
@@ -713,7 +714,7 @@ void OrgData::InitOrgData(void)
 	info.tdata[20].wave_no = 4;
 	info.tdata[21].wave_no = 8;
 	info.tdata[22].wave_no = 7;
-	info.tdata[23].wave_no = 1;
+	info.tdata[23].wave_no = 10;
 	info.tdata[24].wave_no = 0;
 	info.tdata[25].wave_no = 0;
 	info.tdata[26].wave_no = 0;

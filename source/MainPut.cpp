@@ -467,7 +467,7 @@ void OrgData::PutNotes2(int TPCY, bool vol)
 			while (p != NULL) {
 				ypos = (95 - p->y - scr_v) * 12;
 				xpos = (p->x - scr_h) * NoteWidth + KEYWIDTH;
-				t = (p->y % 12); if (t == 1 || t == 3 || t == 6 || t == 8 || t == 10)t = 1;else t = 0;
+				t = (p->y % 12); if (t == 1 || t == 3 || t == 6 || t == 8 || t == 10)t = 1;else t = 0; //I think this releates to whether the note is on white or black.
 				if (xpos > WWidth)break;
 
 				if (ypos >= 0 && ypos < WHeight + 286 - WHNM) {
@@ -577,16 +577,17 @@ void OrgData::PutMusic(void)
 	}
 
 	if(gDrawDouble==0){
-		if(track < MAXMELODY)PutNotes(0, false);
+		if(track < MAXMELODY)
+			PutNotes(0, false);
 		else PutNotes2(0, false);
 	}else{
 		if(track < MAXMELODY){
-			PutNotes2(1, false);	//半透明表示
-			PutNotes(0, false);		//実体表示
+			PutNotes2(1, false);	//Dram Tracks are hidden
+			PutNotes(0, false);		//Melody Tracks are shown
 		}
 		else{
-			PutNotes(1, false);	//半透明表示
-			PutNotes2(0, false);	//実体表示
+			PutNotes(1, false);	//Melody Tracks are hidden
+			PutNotes2(0, false);	//Dram Tracks are shown
 		}
 		
 	}
@@ -670,21 +671,6 @@ void OrgData::PutMusic(void)
 		itoa(playPos % (info.dot * info.line), str, 10);
 		GetDlgItemText(hDlgPlayer, IDE_VIEWXPOS, oldstr, 10);
 		if (strcmp(str, oldstr) != 0) SetDlgItemText(hDlgPlayer, IDE_VIEWXPOS, str);
-
-		/*if (sSmoothScroll) {
-			/*DWORD dwNowTime;
-			dwNowTime = timeGetTime();
-			// Only draw if ms have passed, to prevent lags
-			if (dwNowTime - lastDrawTime >= drawCatch) { // 50 fps (cave story reference)
-				if (play_p != info.end_x) scr_data.SetHorzScroll(play_p);
-				else scr_data.SetHorzScroll(info.repeat_x);
-				lastDrawTime = timeGetTime();
-				drawCatch = lastDrawTime - dwNowTime;
-				if (drawCatch > 500) drawCatch = 500;
-			}*//*
-			/*if (playPos != info.end_x) scr_data.SetHorzScroll(playPos);
-			else scr_data.SetHorzScroll(info.repeat_x);*//*
-		}*/
 
 		scr_data.SetHorzScroll(sSmoothScroll ? playPos : ((playPos / (info.dot * info.line)) * (info.dot * info.line)));
 	}
