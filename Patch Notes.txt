@@ -3,15 +3,11 @@ Added a new file! (.org16 for use with the 16 tracks in OrgMaker 16, note: it'll
 Made the drams appear in ResourceHacker again.
 Made some error messages appear in normal textboxes again.
 
-Disabled MIDI Export, it just crashes OrgMaker because MIDI supports ONLY 16 channels and not 32.
+Disabled MIDI Export, it won't work because MIDI supports ONLY 16 channels and not 32.
 
 	Goals:
-
-			Make it read ORG files properly again.
-
-			Fix memory bug that locks tracks to 31-32 notes per track.
+			Create Multi-delete function
 
 			Add export to FT2 XM feature since it has 32 Tracks.
 			(Remember the one Clownancy made.)
 
-			Fix the shift+track error
