@@ -9,7 +9,7 @@ This does not use a MIDI device.
 
 ## History
 
-This original library was created by [Studio Pixel](http://studiopixel.sakura.ne.jp/) in 1999, and was used in [Cave Story](https://www.cavestory.org/).
+The original program was created by [Studio Pixel](http://studiopixel.sakura.ne.jp/) in 1999, and was used in [Cave Story](https://www.cavestory.org/).
 
 It was then updated multiple times by [Rxo Inverse](https://www5b.biglobe.ne.jp/~kiss-me/aji/index.html) throughout 2003-2014, and was used in [STARGAZER](https://www5b.biglobe.ne.jp/~kiss-me/aji/stargazerj.html)
 
