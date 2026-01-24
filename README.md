@@ -1,7 +1,5 @@
 <img src='git/OrgMaker16.png'>
 
-# ORGMAKER V16
-
 
 **The latest and greatest in 32 Organya Track technology!**
 
