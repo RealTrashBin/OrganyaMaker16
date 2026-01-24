@@ -87,7 +87,6 @@ int binTrackCode(char* str)
 
 	if (!i)
 	{
-		MessageBox(hWnd, "Melo", "Text", MB_OK);
 		i = ReverseTrackCode(atoi(str));
 	}
 	
