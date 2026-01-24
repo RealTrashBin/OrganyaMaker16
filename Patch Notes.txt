@@ -11,3 +11,6 @@ Disabled MIDI Export, it won't work because MIDI supports ONLY 16 channels and n
 			Add export to FT2 XM feature since it has 32 Tracks.
 			(Remember the one Clownancy made.)
 
+			Fix WAV export to allow 32 track output.
+
+
