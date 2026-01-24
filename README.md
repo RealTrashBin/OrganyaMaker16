@@ -15,7 +15,7 @@ This original library was created by [Studio Pixel](http://studiopixel.sakura.ne
 
 It was then updated multiple times by [Rxo Inverse](https://www5b.biglobe.ne.jp/~kiss-me/aji/index.html) throughout 2003-2014, and was used in [STARGAZER](https://www5b.biglobe.ne.jp/~kiss-me/aji/stargazerj.html)
 
-As of this document being written, [Strultz](https://strultz.github.io/) is working on [OrgMaker 3](https://github.com/Strultz/orgmaker-3/tree/main), which aims to add more features to OrgMaker.
+As of this being written, [Strultz](https://strultz.github.io/) is working on [OrgMaker 3](https://github.com/Strultz/orgmaker-3/tree/main), which aims to add more features to OrgMaker.
 
 ## Features
 
