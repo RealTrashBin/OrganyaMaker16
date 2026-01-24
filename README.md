@@ -1,5 +1,8 @@
 <img src='git/OrgMaker16.png'>
+
 # ORGMAKER V16
+
+
 **The latest and greatest in 32 Organya Track technology!**
 
 **Fork of a Fork of a music sequencer for retro video games**
@@ -17,9 +20,13 @@ As of this document being written, [Strultz](https://strultz.github.io/) is work
 ## Features
 
 <img src='git/previmg.png' width=60% height=60%>
+
 16 Melody Tracks with 100 Waveforms to select from, along with 16 Dram Tracks with 43 Dram Samples to choose from.
+
 Compatable with previous versions of OrgMaker.
+
 Exporting ORG or ORG-16 File as a WAV file.
+
 (Soon)Cave Story Engine 2 support!!
 
 ## Download
