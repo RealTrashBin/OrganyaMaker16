@@ -33,9 +33,13 @@ You'll need Visual Studio(it doesn't matter the version) with the `Desktop devel
 BSD 3-Clause License
 
 Copyright (c) 2025-2026 Bi_N
+
 Copyright (c) 2023-2025 Strultz
+
 Copyright (c) 2004-2018 Rxo Inverse
+
 Copyright (c) 1999-2004 Studio Pixel
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
