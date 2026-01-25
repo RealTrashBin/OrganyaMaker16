@@ -23,7 +23,7 @@ As of this being written, [Strultz](https://strultz.github.io/) is working on [O
 
 Compatable with previous versions of OrgMaker.
 
-(Soon)Exporting ORG-16 File as a WAV file.
+Exporting ORG-16 File as a WAV file.
 
 (Soon)Cave Story Engine 2 support!!
 
