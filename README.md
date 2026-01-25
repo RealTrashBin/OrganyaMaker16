@@ -21,9 +21,9 @@ As of this being written, [Strultz](https://strultz.github.io/) is working on [O
 
 16 Melody Tracks with 100 Waveforms to select from, along with 16 Dram Tracks with 43 Dram Samples to choose from.
 
-Compatable with previous versions of OrgMaker.
+Compatable with all ORG files.
 
-Exporting ORG-16 File as a WAV file.
+Exporting ORG-16 as a WAV file.
 
 (Soon)Cave Story Engine 2 support!!
 
