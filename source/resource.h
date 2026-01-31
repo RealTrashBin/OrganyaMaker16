@@ -419,7 +419,6 @@
 #define IDE_VOL_LENGTH					1225
 #define IDC_VOL_USENOTELEN				1226
 #define IDC_VOL_SETNOTELEN				1227
-
 #define IDC_LABEL_TRACK_8               1300
 #define IDC_LABEL_TRACK_9               1301
 #define IDC_LABEL_TRACK_10              1302
@@ -428,14 +427,12 @@
 #define IDC_LABEL_TRACK_13              1305
 #define IDC_LABEL_TRACK_14              1306
 #define IDC_LABEL_TRACK_15              1307
-
 #define IDC_LABEL_TRACK_DxQ				1310
 #define IDC_LABEL_TRACK_DxW				1311
 #define IDC_LABEL_TRACK_DxE				1312
 #define IDC_LABEL_TRACK_DxR             1313
 #define IDC_LABEL_TRACK_DxT				1314
 #define IDC_LABEL_TRACK_DxY				1315
-
 #define IDC_LABEL_TRACK_E               1232
 #define IDC_LABEL_TRACK_R               1233
 #define IDC_LABEL_TRACK_T               1234
@@ -450,7 +447,6 @@
 #define IDC_TRACKDxY					1327
 #define IDC_TRACKDxU					1328
 #define IDC_TRACKDxI					1329
-
 #define IDC_TRACKDxA					1340
 #define IDC_TRACKDxS					1341
 #define IDC_TRACKDxD					1342
@@ -459,17 +455,14 @@
 #define IDC_TRACKDxH					1345
 #define IDC_TRACKDxJ					1346
 #define IDC_TRACKDxK					1347
-
 #define IDD_SETFREQ16					1316
 #define IDD_SETFREQ17					1317
-
 #define IDD_SETFREQDxE					1322
 #define IDD_SETFREQDxR					1323
 #define IDD_SETFREQDxT					1324
 #define IDD_SETFREQDxY					1325
 #define IDD_SETFREQDxU					1326
 #define IDD_SETFREQDxI					1327
-
 #define IDD_SETFREQDxA					1330
 #define IDD_SETFREQDxS					1331
 #define IDD_SETFREQDxD					1332
@@ -478,12 +471,10 @@
 #define IDD_SETFREQDxH					1335
 #define IDD_SETFREQDxJ					1336
 #define IDD_SETFREQDxK					1337
-
 #define IDC_LABEL_TRACK_DxA				1340
 #define IDC_LABEL_TRACK_DxS				1341
 #define IDC_LABEL_TRACK_DxD				1342
 #define IDC_LABEL_TRACK_DxF             1343
-
 #define IDC_LABEL_TRACK_DxG				1344
 #define IDC_LABEL_TRACK_DxH				1345
 #define IDC_LABEL_TRACK_DxJ				1346
@@ -504,12 +495,10 @@
 #define IDC_MUTE29						1363
 #define IDC_MUTE30						1364
 #define IDC_MUTE31						1365
-
 #define IDC_BTN_MELO2					1366
 #define IDC_BTN_DRAM					1367
 #define IDC_BTN_DRAM2					1368
 #define IDC_BTN_FULL2					1369
-
 #define IDC_USEDxQ						1370
 #define IDC_USEDxW						1371
 #define IDC_USEDxE						1372
@@ -526,7 +515,6 @@
 #define IDC_USEDxH						1383
 #define IDC_USEDxJ						1384
 #define IDC_USEDxK						1385
-
 #define IDC_PANPOTDxQ					1400
 #define IDC_PANPOTDxW					1401
 #define IDC_PANPOTDxE					1402
@@ -543,7 +531,6 @@
 #define IDC_PANPOTDxH					1413
 #define IDC_PANPOTDxJ					1414
 #define IDC_PANPOTDxK					1415
-
 #define IDC_VOLUMEDxQ					1416
 #define IDC_VOLUMEDxW					1417
 #define IDC_VOLUMEDxE					1418
@@ -560,7 +547,6 @@
 #define IDC_VOLUMEDxH					1429
 #define IDC_VOLUMEDxJ					1430
 #define IDC_VOLUMEDxK					1431
-
 #define IDE_LEFTDxQ						1450
 #define IDE_LEFTDxW						1451
 #define IDE_LEFTDxE						1452
@@ -577,7 +563,6 @@
 #define IDE_LEFTDxH						1463
 #define IDE_LEFTDxJ						1464
 #define IDE_LEFTDxK						1465
-
 #define IDE_USEDxQ						1470
 #define IDE_USEDxW						1471
 #define IDE_USEDxE						1472
@@ -598,7 +583,6 @@
 #define IDC_SETCOPY_FULLCLICK4			1491
 #define IDE_ORGDEFAULT					1500
 #define IDE_ORGCHOICE					1501
-
 #define IDD_SETFREQx8					1520
 #define IDD_SETFREQx9					1521
 #define IDD_SETFREQx10					1522
@@ -607,8 +591,6 @@
 #define IDD_SETFREQx13					1525
 #define IDD_SETFREQx14					1526
 #define IDD_SETFREQx15					1527
-
-
 #define IDC_CHECK_PIPI8					1520
 #define IDC_CHECK_PIPI9					1521
 #define IDC_CHECK_PIPI10				1522
@@ -617,7 +599,6 @@
 #define IDC_CHECK_PIPI13				1525
 #define IDC_CHECK_PIPI14				1526
 #define IDC_CHECK_PIPI15				1527
-
 #define IDC_CHECK_PIPIx8				1649
 #define IDC_CHECK_PIPIx9				1650
 #define IDC_CHECK_PIPIx10				1651
@@ -626,13 +607,13 @@
 #define IDC_CHECK_PIPIx13				1654
 #define IDC_CHECK_PIPIx14				1655
 #define IDC_CHECK_PIPIx15				1656
-
 #define IDM_DLGWAIT                     40003
 #define IDM_DLGTRACK                    40004
 #define IDM_DLGWAVE                     40005
 #define IDM_SAVENEW                     40006
 #define IDM_LOAD                        40007
 #define IDM_EXIT                        40008
+#define IDM_DLGMULDELETE				40009
 #define IDM_DLGDELETE                   40010
 #define IDM_INIT                        40011
 #define IDM_DLGCOPY                     40012
@@ -902,8 +883,31 @@
 #define ID_AC_WAV                       40298
 #define IDM_DLGWAVEDBS                  40299
 #define IDM_DCLEN						40300
-
+#define ID_AC_DLGMUL_DELETE				40301
 #define ID_AC_CS1						40400
+#define ID_AC_CS2						40401
+#define ID_AC_CS3						40402
+#define ID_AC_CS4						40403
+#define ID_AC_CS5						40404
+#define ID_AC_CS6						40405
+#define ID_AC_CS7						40406
+#define ID_AC_CS8						40407
+#define ID_AC_CSQ						40408
+#define ID_AC_CSW						40409
+#define ID_AC_CSE						40410
+#define ID_AC_CSR						40411
+#define ID_AC_CST						40412
+#define ID_AC_CSY						40413
+#define ID_AC_CSU						40414
+#define ID_AC_CSI						40415
+#define ID_AC_CQ						40416
+#define ID_AC_CW						40417
+#define ID_AC_CE						40418
+#define ID_AC_CR						40419
+#define ID_AC_CT						40420
+#define ID_AC_CY						40421
+#define ID_AC_CU						40422
+#define ID_AC_CI						40423
 
 // Next default values for new objects
 // 

@@ -8,13 +8,15 @@
 #include "rxoFunction.h"
 
 //ORGMAKER Checks these in files, don't mess with them.
-char music_file[MAX_PATH]; //NewData.org
+char music_file[MAX_PATH]; //NewData
+char mus_file[MAX_PATH]; //NewData.org
 char pass[7] = "Org-01"; //Base Format
 char pass2[7] = "Org-02";//Pipi
 char pass3[7] = "Org-03";//New Drams
 
 char pass4[7] = "Org-16";//16 Tracks
 bool OrgFileType; //Checks if it's ORG or ORG-16
+extern bool ExtFlag;
 
 //Important Structures for how ORGMAKER works.
 typedef struct {
@@ -86,17 +88,26 @@ BOOL OrgData::SaveMusicData(void)
 {
 	NOTELIST *np;
 	int i,j; // i is TRACK
-	bool pf;
 	//ORG Structure to save
-	orgdat.wait = info.wait;
-	orgdat.line = info.line;
-	orgdat.dot = info.dot;
-	orgdat.repeat_x = info.repeat_x;
-	orgdat.end_x = info.end_x;
+	if (TrackFlag() == FALSE)
+	{
+		eightdat.wait = info.wait;
+		eightdat.line = info.line;
+		eightdat.dot = info.dot;
+		eightdat.repeat_x = info.repeat_x;
+		eightdat.end_x = info.end_x;
+	}
+	else
+	{
+		orgdat.wait = info.wait;
+		orgdat.line = info.line;
+		orgdat.dot = info.dot;
+		orgdat.repeat_x = info.repeat_x;
+		orgdat.end_x = info.end_x;
+	}
 	
 	//Loop that writes the needed TRACK data
-	TrackFlag();
-	if (TrackFlag() == true)
+	if (TrackFlag() == TRUE)
 	{
 		for (i = 0; i < MAXTRACK; i++) {
 			orgdat.tdata[i].freq = info.tdata[i].freq;
@@ -108,29 +119,28 @@ BOOL OrgData::SaveMusicData(void)
 	else
 	{
 		for (i = 0; i < 8; i++) {
-			orgdat.tdata[i].freq = info.tdata[i].freq;
-			orgdat.tdata[i].wave_no = info.tdata[i].wave_no;
-			orgdat.tdata[i].pipi = info.tdata[i].pipi;
-			orgdat.tdata[i].note_num = GetNoteNumber(i, NULL);
+			eightdat.tdata[i].freq = info.tdata[i].freq;
+			eightdat.tdata[i].wave_no = info.tdata[i].wave_no;
+			eightdat.tdata[i].pipi = info.tdata[i].pipi;
+			eightdat.tdata[i].note_num = GetNoteNumber(i, NULL);
 		}
 			
 		for (i = 8; i < 16; i++) {
-			orgdat.tdata[i].freq = info.tdata[i+8].freq;
-			orgdat.tdata[i].wave_no = info.tdata[i+8].wave_no;
-			orgdat.tdata[i].pipi = info.tdata[i+8].pipi;
-			orgdat.tdata[i].note_num = GetNoteNumber(i+8, NULL);
+			eightdat.tdata[i].freq = info.tdata[i+8].freq;
+			eightdat.tdata[i].wave_no = info.tdata[i+8].wave_no;
+			eightdat.tdata[i].pipi = info.tdata[i+8].pipi;
+			eightdat.tdata[i].note_num = GetNoteNumber(i+8, NULL);
 		}
 	}
 	
 	//Saves Notes
 	//Can't write to file error
 	FILE *fp;
-	if((fp=fopen(music_file,"wb"))==NULL){
+	if((fp=fopen(mus_file,"wb"))==NULL){
 		MessageBox(hWnd,"Can't write to ORG file.", "Saving Error", MB_OK);
 		return(FALSE);
 	}
 	j = 1;//j is the file version in this instance.
-	pf = false;//Pipi Flag
 	for (i = 0; i < MAXMELODY; i++) //pipi file checker
 	{
 		if (orgdat.tdata[i].pipi == 0)
@@ -148,6 +158,7 @@ BOOL OrgData::SaveMusicData(void)
 		if (orgdat.tdata[i].wave_no >= 13)
 		{
 			j = 3;
+			break;
 		}
 	}
 
@@ -205,6 +216,7 @@ BOOL OrgData::SaveMusicData(void)
 	
 	else
 	{ //Yes, I did just copy and paste the code from above.
+		
 		for (j = 0; j < 8; j++) { //ORG Melody save.
 			if (info.tdata[j].note_list == NULL)continue;
 			np = info.tdata[j].note_list;
@@ -233,7 +245,7 @@ BOOL OrgData::SaveMusicData(void)
 				np = np->to;
 			}
 		}
-
+		
 		for (j = 8; j < 16; j++) { //ORG Dram save.
 			if (info.tdata[j+8].note_list == NULL)continue;
 			np = info.tdata[j+8].note_list;
@@ -265,7 +277,7 @@ BOOL OrgData::SaveMusicData(void)
 	}
 	
 	fclose(fp);
-	PutRecentFile(music_file); //Puts it the most recent on the recent list.
+	PutRecentFile(mus_file); //Puts it the most recent on the recent list.
 //	MessageBox(hWnd,"保存しました","Message (Save)",MB_OK);
 	if(SaveWithInitVolFile != 0){
 		AutoSavePVIFile();
@@ -288,7 +300,6 @@ int OrgData::FileCheckBeforeLoad(char *checkfile)
 		MessageBox(hWnd,"File Doesn't exist.","Loading Error",MB_OK);
 		return 1; //Sorry Strultz, I had to make it where ur little pop up windows don't pop up.
 	}
-
 	fread(&pass_check[0], sizeof(char), 6, fp);
 	if( !memcmp( pass_check, pass, 6 ) )ver = 1;
 	if( !memcmp( pass_check, pass2, 6 ) )ver = 2;
@@ -308,16 +319,15 @@ BOOL OrgData::LoadMusicData(void)
 {
 	ORGANYADATA orgdat;
 	NOTELIST* np;
-	NOTECOPY nc;
-	MUSICINFO mi;
-	int i, j, t;
+	int i, j;
 	char pass_check[6];
 	char ver = 0;
 	bool cflag = false;
+	bool TrackTurn = false;
 
 	//｣｣｣｣｣｣｣｣｣｣｣｣｣｣｣ロード
 	FILE* fp;
-	if ((fp = fopen(music_file, "rb")) == NULL) {
+	if ((fp = fopen(mus_file, "rb")) == NULL) {
 		MessageBox(hWnd, "Couldn't access file.", "Error (Load)", MB_OK);
 		return(FALSE);
 	}
@@ -381,7 +391,6 @@ BOOL OrgData::LoadMusicData(void)
 			info.tdata[j].wave_no = eightdat.tdata[i].wave_no;
 		}
 	}
-	
 	//Loads in TRACKS
 	if (ver == 4) {
 		for (j = 0; j < MAXTRACK; j++) {
@@ -468,7 +477,7 @@ BOOL OrgData::LoadMusicData(void)
 		scr_data.ChangeHorizontalRange(info.dot * info.line * MAXHORZMEAS);
 		//MakeMusicParts(info.line,info.dot);//パーツを生成
 		//MakePanParts(info.line,info.dot);
-		PutRecentFile(music_file);
+		PutRecentFile(mus_file);
 		//↓2014.05.06 A
 		if (SaveWithInitVolFile != 0) {
 			AutoLoadPVIFile();
@@ -478,12 +487,23 @@ BOOL OrgData::LoadMusicData(void)
 	else
 		{
 			for (j = 0; j < 8; j++) {
+				for (i = 8; i < MAXMELODY; i++)
+				{
+					if (!TrackTurn)
+					{
+						info.tdata[i].wave_no = 0;
+						if (i == MAXMELODY)
+						{
+							TrackTurn = true;
+						}
+					}
+					//if (j == 7)TrackTurn = false; break;
+				}
 				//If no notes, continue.
 				if (eightdat.tdata[j].note_num == 0) {
 					info.tdata[j].note_list = NULL;
 					continue;
 				}
-				info.tdata[j + 8].wave_no = 0;
 				if (eightdat.tdata[j].note_num > info.alloc_note) {
 					if (!cflag) {
 						MessageBox(NULL, "Some tracks were shortened due to having too many notes.", "Notice", MB_OK | MB_ICONASTERISK);
@@ -491,6 +511,7 @@ BOOL OrgData::LoadMusicData(void)
 					}
 				}
 				//リストを作る
+				
 				np = info.tdata[j].note_p;
 				info.tdata[j].note_list = info.tdata[j].note_p;
 				np->from = NULL;
@@ -504,7 +525,6 @@ BOOL OrgData::LoadMusicData(void)
 				//最後の音符のtoはNULL
 				np--;
 				np->to = NULL;
-
 				//Placement of notes.
 				np = info.tdata[j].note_p;//Ｘ座標
 				for (i = 0; i < eightdat.tdata[j].note_num; i++) {
@@ -540,12 +560,23 @@ BOOL OrgData::LoadMusicData(void)
 				}
 			}
 			for (j = 8; j < 16; j++) {
+				for (i = 24; i < MAXTRACK; i++)
+				{
+					if (!TrackTurn)
+					{
+						info.tdata[i].wave_no = 0;
+						if (i == MAXTRACK)
+						{
+							TrackTurn = true;
+						}
+					}
+					//else if (j == 16) break;
+				}
 				//If no notes, continue.
 				if (eightdat.tdata[j].note_num == 0) {
 					info.tdata[j+8].note_list = NULL;
 					continue;
 				}
-				info.tdata[j + 16].wave_no = 0;
 				if (eightdat.tdata[j].note_num > info.alloc_note) {
 					if (!cflag) {
 						MessageBox(NULL, "Some tracks were shortened due to having too many notes.", "Notice", MB_OK | MB_ICONASTERISK);
@@ -613,7 +644,7 @@ BOOL OrgData::LoadMusicData(void)
 			}
 
 			//プレイヤーに表示
-			char str[32];
+			char str[16];
 			SetPlayPointer(0);//頭出し
 			scr_data.SetHorzScroll(0);
 			itoa(info.wait, str, 10);
@@ -624,13 +655,12 @@ BOOL OrgData::LoadMusicData(void)
 			scr_data.ChangeHorizontalRange(info.dot * info.line * MAXHORZMEAS);
 			//MakeMusicParts(info.line,info.dot);//パーツを生成
 			//MakePanParts(info.line,info.dot);
-			PutRecentFile(music_file);
+			PutRecentFile(mus_file);
 			//↓2014.05.06 A
 			if (SaveWithInitVolFile != 0) {
 				AutoLoadPVIFile();
 			}
 		}
-		
 		return TRUE;
 	}
 

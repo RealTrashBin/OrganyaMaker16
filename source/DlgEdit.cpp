@@ -446,12 +446,78 @@ int cbox[MAXTRACK] = {
 	IDC_USEDxK,
 };
 
+BOOL CALLBACK DialogMultiDelete(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	char str[128] = { NULL };
+	int  i;
+	bool use;
+	PARCHANGE pc;
+	MUSICINFO mi;
+	switch (message)
+	{
+	case WM_INITDIALOG:
+		GetDlgItemText(hDlgPlayer, GET_MEAS1,str,4);
+		SetDlgItemText(hdwnd, IDE_MEAS1_1, str);
+
+		EnableWindow(hDlgPlayer, FALSE);
+		break;
+	case WM_COMMAND:
+		switch (LOWORD(wParam))
+		{
+		case IDCANCEL:
+			EndDialog(hdwnd, 0);
+			EnableWindow(hDlgPlayer, true);
+			return 1;
+			break;
+		case IDOK:
+			org_data.GetMusicInfo(&mi);
+			GetDlgItemText(hdwnd, IDE_MEAS1_1, str, 4);
+			pc.x1 = atoi(str)*mi.dot*mi.line;
+			GetDlgItemText(hdwnd, IDE_MEAS1_2, str, 4);
+			pc.x2 = atoi(str)*mi.dot*mi.line-1;
+			if (pc.x1 >= pc.x2)
+			{
+				MessageBox(hdwnd, "Invalid copy range.", "Error(Multi-Delete)", MB_OK);
+				return 1;
+			}
+			use = false;
+			for (i = 0; i < MAXTRACK; i++)
+			{
+				if (SendDlgItemMessageA(hdwnd, cbox[i], BM_GETCHECK, 0, 0) == 1)
+				{
+					use = true;
+					break;
+				}
+			}
+			if (use == false)
+			{
+				MessageBox(hdwnd, "You must select one track.", "Error(Delete)", MB_OK);
+				return 1;
+			}
+			for (i = 0; i < MAXTRACK; i++)
+			{
+				pc.track = i;
+				if (SendDlgItemMessageA(hdwnd, cbox[i], BM_GETCHECK, 0, 0) == 1)
+				{
+					org_data.DelateNoteData(&pc);
+				}
+			}
+			MessageBox(hdwnd, "Selected Tracks deleted.", "Done", MB_OK);
+			break;
+		}
+		break;
+	}
+
+	return 0;
+}
+
 //Multi-Copy function
 BOOL CALLBACK DialogCopy2(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	int i;
 	char str[128] = {NULL};
 	long a,b,c;
+	bool use;
 	RECT rect = {64,0,WWidth,WHeight};//XV‚·‚é—Ìˆæ
 	MUSICINFO mi;
 //	PARCHANGE pc;
@@ -559,6 +625,18 @@ BOOL CALLBACK DialogCopy2(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam
 				msgbox(hdwnd,IDS_WARNING_COPY_HANI,IDS_ERROR_COPY,MB_OK);	// 2014.10.19 A
 				return 1;
 			}
+			use = false;
+			for (i = 0; i < MAXTRACK; i++)
+			{
+				if (SendDlgItemMessage(hdwnd, cbox[i], BM_GETCHECK, 0, 0) == 1)use = true;
+				else continue;
+			}
+			if (use == false)
+			{
+				MessageBox(hdwnd, "You must select one track.", "Error(Copy)", MB_OK);
+				return 1;
+			}
+
 			c += atol(str);
 			nc.x1_1 = a;
 			nc.x1_2 = b;
@@ -571,6 +649,7 @@ BOOL CALLBACK DialogCopy2(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam
 					nc.track1 = nc.track2 = i;
 					org_data.CopyNoteData(&nc);
 					org_data.CheckNoteTail(nc.track2);
+					use = true;
 				}
 			}
 			msgbox(hdwnd,IDS_COPY,IDS_NOTIFY_TITLE,MB_OK);	// 2014.10.19 A

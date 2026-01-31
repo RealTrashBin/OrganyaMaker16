@@ -141,7 +141,6 @@ void ChangeTrack(HWND hdwnd, int iTrack){
 			}
 		}
 	}
-	org_data.track + 1;
 	SetDlgItemText(hDlgTrack,IDE_VIEWTRACK,TrackCode[org_data.track]); //Sets the letter/number
 	SetFocus(hWnd);
 }

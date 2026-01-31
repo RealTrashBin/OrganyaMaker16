@@ -130,7 +130,7 @@ BOOL CALLBACK DialogPlayer(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPara
 				EnableMenuItem(hmenu, 10, MF_BYPOSITION | MF_DISABLED);
 				//DragAcceptFiles(hWnd,FALSE);//ドラッグ禁止
 				//トラック ミュート のチェック
-				for(i = 0; i < MAXTRACK; i++){
+				for (i = 0; i < MAXTRACK; i++) {
 					if(SendDlgItemMessage(hDlgTrack,mute_name[i],BM_GETCHECK,0,0)){
 						org_data.mute[i] = 1;
 					}else{
@@ -140,7 +140,7 @@ BOOL CALLBACK DialogPlayer(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPara
 				//プレイポインターの設定
 				scr_data.GetScrollPosition(&hp,&vp);
 				org_data.SetPlayPointer(hp);
-				timer_sw = 1;
+				timer_sw = '1';
 				InitMMTimer();
 				//テンポを取得
 				MUSICINFO mi;

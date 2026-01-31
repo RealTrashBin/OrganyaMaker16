@@ -31,6 +31,7 @@
 #include "Click.h"
 #include <stdio.h>
 #include <string.h>
+#include <string>
 #include "Filer.h"
 #include "rxoFunction.h"
 
@@ -42,6 +43,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam);
 BOOL CALLBACK DialogSetting(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogDefault(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogDelete(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
+BOOL CALLBACK DialogMultiDelete(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogCopy(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogCopy2(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogPan(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
@@ -59,7 +61,7 @@ BOOL CALLBACK DialogTheme(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam
 BOOL CALLBACK DialogWavExport(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogWaveDB(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 BOOL CALLBACK DialogDecayLength(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
-BOOL CALLBACK DialogSettings(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
+//BOOL CALLBACK DialogSettings(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 void SetModified(bool mod);
 void CheckLoupeMenu(void);
@@ -87,6 +89,7 @@ ORGDATA org_data;//main data
 SCROLLDATA scr_data;//scroll data
 MOUSEDATA mouse_data;//mouse data
 extern char music_file[];//file name
+extern char mus_file[];
 extern int sGrid;	//Range selection in grid units
 extern int sACrnt;	//Range selection always on current track
 
@@ -131,14 +134,18 @@ int gHeightWindow;
 
 int gDrawDouble;	//draw both trackgroups
 
-int iChgTrackKey[16] = { //Important
+int iChgTrackKey[32] = { //Important
 	ID_AC_1,	ID_AC_2,	ID_AC_3,	ID_AC_4,	ID_AC_5,	ID_AC_6,	ID_AC_7,	ID_AC_8,
+	ID_AC_S1,	ID_AC_S2,	ID_AC_S3,	ID_AC_S4,	ID_AC_S5,	ID_AC_S6,	ID_AC_S7,	ID_AC_S8,
 	ID_AC_Q,	ID_AC_W,	ID_AC_E,	ID_AC_R,	ID_AC_T,	ID_AC_Y,	ID_AC_U,	ID_AC_I,
+	ID_AC_SQ,	ID_AC_SW,	ID_AC_SE,	ID_AC_SR,	ID_AC_ST,	ID_AC_SY,	ID_AC_SU,	ID_AC_SI,
 };
 
-int iMuteKey[16]={ //Important
-	ID_AC_S1, ID_AC_S2, ID_AC_S3, ID_AC_S4, ID_AC_S5, ID_AC_S6, ID_AC_S7, ID_AC_S8,
-	ID_AC_SQ, ID_AC_SW, ID_AC_SE, ID_AC_SR, ID_AC_ST, ID_AC_SY, ID_AC_SU, ID_AC_SI, 
+int iMuteKey[32]={ //Important
+	ID_AC_C1, ID_AC_C2, ID_AC_C3, ID_AC_C4, ID_AC_C5, ID_AC_C6, ID_AC_C7, ID_AC_C8,
+	ID_AC_CQ, ID_AC_CW, ID_AC_CE, ID_AC_CR, ID_AC_CT, ID_AC_CY, ID_AC_CU, ID_AC_CI,
+	ID_AC_CS1, ID_AC_CS2, ID_AC_CS3, ID_AC_CS4, ID_AC_CS5, ID_AC_CS6, ID_AC_CS7, ID_AC_CS8,
+	ID_AC_CSQ, ID_AC_CSW, ID_AC_CSE, ID_AC_CSR, ID_AC_CST, ID_AC_CSY, ID_AC_CSU, ID_AC_CSI,
 };
 
 TCHAR strSize[128]; //for Debug	// 2010.08.14 A
@@ -159,14 +166,20 @@ static HACCEL Ac;
 
 bool OpenDoSave(HWND hwnd, bool savenew) {
 	char res;
-	if (savenew || gFileUnsaved) {
+	std::string filename(music_file);
+	size_t Organyaname = filename.find_last_of(".");
+	
+	
+	if (((!org_data.TrackFlag() && Organyaname != NULL) || (org_data.TrackFlag() && Organyaname == NULL)) || (savenew || gFileUnsaved)) {
 		res = GetFileNameSave(hwnd, MessageString[IDS_STRING62]); //"Save As"
 		if (res == MSGCANCEL) return false;
 		if (res == MSGEXISFILE) {
-			if(MessageBox(hwnd,"Do you want to overwrite?","There is a file with the same name",MB_YESNO | MB_ICONEXCLAMATION)	// 2014.10.19 D
+			if(MessageBox(hwnd,"Do you want to overwrite?", "There is a file with the same name", MB_YESNO | MB_ICONEXCLAMATION)	// 2014.10.19 D
 				== IDNO) return false;
 		}
 	}
+	
+	
 	org_data.SaveMusicData();
 	SetModified(false);
 	gFileUnsaved = false;
@@ -190,7 +203,7 @@ int CancelDeleteCurrentData(int iMessagePattern = 1){
 			}*/
 			//res = msgbox(hWnd, IDS_NOTIFY_UNSAVED, IDS_NOTIFY_TITLE_UNSAVED, MB_YESNOCANCEL | MB_ICONWARNING);	// 2014.10.19 A
 			TCHAR strMesssage[2048];
-			wsprintf(strMesssage, MessageString[IDS_NOTIFY_UNSAVED], music_file);
+			wsprintf(strMesssage, MessageString[IDS_NOTIFY_UNSAVED], mus_file);
 			res = MessageBox(hWnd, strMesssage, MessageString[IDS_NOTIFY_TITLE_UNSAVED], MB_YESNOCANCEL | MB_ICONWARNING);
 			if (res == IDCANCEL) return 1;
 			if (res == IDYES) return OpenDoSave(hWnd, false) ? 0 : 1;
@@ -270,7 +283,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR dropfile
 	AllocMessageStringBuffer();
 
 	//initial file name
-	strcpy(music_file, MessageString[IDS_DEFAULT_ORG_FILENAME]);
+	strcpy(mus_file, MessageString[IDS_DEFAULT_ORG_FILENAME]);
 
 	iCast['Z']= 33;
 	iCast['S']= 34;
@@ -499,7 +512,6 @@ int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR dropfile
 			SetDlgItemInt(hDlgTrack,IDE_VIEWWAIT,mi.wait,TRUE );
 			//SetDlgItemInt(hDlgTrack,IDE_VIEWTRACK,0,TRUE );
 			SetDlgItemText(hDlgTrack,IDE_VIEWTRACK,"1");
-	FILE *fp;
 	char kfn[MAX_PATH],gfn[MAX_PATH];
 	if(dropfile[0]!=0){
 		strcpy(kfn,dropfile);
@@ -515,7 +527,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR dropfile
 		//MessageBox(hWnd,gfn,"Error(Load)",MB_OK);
 
 		if (!org_data.FileCheckBeforeLoad(gfn)) { //A 2010.09.25 If the file is in Org format
-			strcpy(music_file, gfn);
+			strcpy(mus_file, gfn +(char) *" (Not loaded)");
 			if (org_data.LoadMusicData() == TRUE) { //C 2010.09.25 Judgment added
 				SetModified(false);//title name set
 				gFileUnsaved = false;
@@ -530,7 +542,7 @@ int APIENTRY WinMain(HINSTANCE hInstance,HINSTANCE hPrevInstance,LPTSTR dropfile
 			else {
 				//Because it was not an ORG format file //A 2010.9.25
 				//File name clear
-				strcpy(music_file, MessageString[IDS_DEFAULT_ORG_FILENAME]);
+				strcpy(mus_file, "NewData");
 			}
 		}
 	}
@@ -668,6 +680,10 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 			case ID_AC_DELETE:
 				DialogBox(hInst,"DLGDELETE",hwnd,DialogDelete);
 				break;
+			case IDM_DLGMULDELETE:
+			case ID_AC_DLGMUL_DELETE:
+				DialogBox(hInst, "DLGMULDELETE", hwnd, DialogMultiDelete);
+				break;
 			case IDM_DLGCOPY://
 			case ID_AC_COPY:
 				DialogBox(hInst,"DLGCOPY",hwnd,DialogCopy);
@@ -685,7 +701,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 				DialogBox(hInst,"DLGTRANS",hwnd,DialogTrans);
 				break;
 			case ID_AC_STPLAY:
-				SendMessage(hDlgPlayer , WM_COMMAND , IDC_PLAY , NULL);
+				SendMessageA(hDlgPlayer , WM_COMMAND , IDC_PLAY , NULL);
 				break;
 			case ID_AC_STBACK:
 				SendMessage(hDlgPlayer , WM_COMMAND , IDC_START , NULL);
@@ -716,7 +732,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 				DialogBox(hInst, "DLGWAVEDBS", hwnd, DialogWaveDB);
 				break;
 			case IDM_DLGSETTINGS:
-				DialogBox(hInst, "DLGSETTINGS", hwnd, DialogSettings);
+				//DialogBox(hInst, "DLGSETTINGS", hwnd, DialogSettings);
 				break;
 			case IDM_DLGHELP://
 			case ID_AC_HELP:
@@ -745,7 +761,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 					if(msgbox(hwnd,IDS_NOTIFY_OVERWRITE,IDS_INFO_SAME_FILE,MB_YESNO | MB_ICONEXCLAMATION)	// 2014.10.19 A
 						==IDNO)break;
 				}
-				org_data.ExportMIDIData(strMIDIFile, iDlgRepeat);
+				//org_data.ExportMIDIData(strMIDIFile, iDlgRepeat);
 				//SetTitlebarText();//title name set
 				//ResetTitlebarChange();
 				break;
@@ -787,8 +803,6 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 				SelectReset();
 				//org_data.PutMusic();
 				//RedrawWindow(hWnd,&rect,NULL,RDW_INVALIDATE|RDW_ERASENOW);
-
-				for(i=0;i<8;i++)ucMIDIProgramChangeValue[i]=255;
 				break;
 			case IDM_EXIT:
 				//if(iChangeFinish!=0){	// A 2010.09.22
@@ -1127,15 +1141,15 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 				if(CancelDeleteCurrentData(CDCD_INIT))break;
 				ClearUndo();
 				memset(music_file, 0 , MAX_PATH);
-				strcpy(music_file, "NewData.org16");
+				strcpy(music_file, "NewData");
 				//for(i = 0; i < 12; i++){
-				//	music_file[i] = name[i];
+				//	mus_file[i] = name[i];
 				//}
 				org_data.InitOrgData();
 				org_data.SetPlayPointer(0);
 				scr_data.SetHorzScroll(0);
 				//reflected in the player
-				SetDlgItemText(hDlgPlayer,IDE_VIEWWAIT,"128");
+				SetDlgItemText(hDlgPlayer,IDE_VIEWWAIT,"100");
 				SetDlgItemText(hDlgPlayer,IDE_VIEWMEAS,"0");
 				SetDlgItemText(hDlgPlayer,IDE_VIEWXPOS,"0");
 				SetModified(false);
@@ -1267,7 +1281,7 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 		case ID_MENUITEM40265:      SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, MessageString[IDS_STRING78]); break;
 		case IDM_EXPORT_MIDI:       SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, MessageString[IDS_STRING79]); break;
 		case IDM_LOAD2:             SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, MessageString[IDS_STRING80]); break;
-		case IDM_SAVEOVER:          SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, music_file); break; 
+		case IDM_SAVEOVER:          SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, mus_file); break; 
 		case IDM_SAVENEW:           SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, MessageString[IDS_STRING81]); break; 
 		case IDM_RECENT1:           SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, RecentFileName[0]); break;
 		case IDM_RECENT2:           SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, RecentFileName[1]); break;
@@ -1308,20 +1322,20 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 		//SetFocus(hWnd);
 		SetForegroundWindow(hwnd);
 		if(CancelDeleteCurrentData(CDCD_LOAD))break;
-		//DragQueryFile((HDROP)wParam,0,music_file,MAX_PATH);	// 2014.05.22 D
+		//DragQueryFile((HDROP)wParam,0,mus_file,MAX_PATH);	// 2014.05.22 D
 		DragQueryFile((HDROP)wParam,0,strMIDIFile,MAX_PATH);	// 2014.05.22 A
 		if(org_data.FileCheckBeforeLoad(strMIDIFile)){
 			msgbox(hwnd, IDS_STRING64, IDS_ERROR_LOAD, MB_OK | MB_ICONWARNING);
 			//SetDlgItemText(hDlgEZCopy, IDC_MESSAGE, MessageString[IDS_STRING64]); // The file cannot be opened or is in an invalid format.
 			break;
 		}
-		strcpy(music_file, strMIDIFile);
+		strcpy(mus_file, strMIDIFile);
 
 		if (timer_sw != 0) // Stop playing song
 			SendMessage(hDlgPlayer, WM_COMMAND, IDC_STOP, NULL);
 
 		ClearUndo();
-//		MessageBox(hWnd,music_file,"",MB_OK);
+//		MessageBox(hWnd,mus_file,"",MB_OK);
 		org_data.InitOrgData();
 		org_data.LoadMusicData();
 		//org_data.PutMusic();//View sheet music
@@ -1578,23 +1592,27 @@ LRESULT CALLBACK WndProc(HWND hwnd,UINT message,WPARAM wParam,LPARAM lParam)
 //Show filename in title bar
 void SetTitlebarText()
 {
-	int i, j;
+	int i, j,t;
 	char k;
 	char set_name[MAX_PATH + 20];//display space in title
 	char file_name[MAX_PATH];//Manipulate names (exclude directories)
 
+
+
 	i = 0;
-	while (music_file[i] != NULL) i++;//first up to the end
-	while (i != 0 && music_file[i - 1] != '\\') i--; //Last circle mark
+	while (mus_file[i] != NULL) i++;//first up to the end
+	while (i != 0 && mus_file[i - 1] != '\\') i--; //Last circle mark
 
 	//create file name
 	j = 0;
-	while (music_file[i] != NULL) {
-		file_name[j] = music_file[i];
+	while (mus_file[i] != NULL) {
+		file_name[j] = mus_file[i];
 		i++;
 		j++;
 	}
 	file_name[j] = NULL;
+
+	t = 0;
 
 	k = 0;
 	if (gFileModified) { // Lazy
@@ -1603,13 +1621,16 @@ void SetTitlebarText()
 	}
 	//put file name
 	for (i = 0; i < MAX_PATH; i++) {
-		if (file_name[i] == NULL)break;
-		set_name[i + k] = file_name[i];
+		if (file_name[i] == NULL)
+			break;
+		set_name[i + t + k] = file_name[i];
 	}
+
 	//Insert app title
 	for (j = 0; j < 20; j++) {
-		set_name[i + k] = lpszName[j];
-		if (set_name[i + k] == NULL) break;
+		set_name[i + t + k] = lpszName[j];
+		if (set_name[i + t + k] == NULL)
+			break;
 		i++;
 	}
 	SetWindowText(hWnd, &set_name[0]);

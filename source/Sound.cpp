@@ -9,7 +9,7 @@
 #define MA_NO_ENCODING
 #include "miniaudio.h"
 
-#define SE_MAX	1024
+#define SE_MAX	2048
 
 // ƒVƒ“ƒ{ƒ‹’è‹`.
 #define	SMPFRQ			48000				//!< ƒTƒ“ƒvƒŠƒ“ƒOŽü”g”.
@@ -759,7 +759,7 @@ BOOL InitWaveData100(void)
 
 	return TRUE;
 }
-BOOL LoadWaveData100(const char *file)
+BOOL LoadWaveData100(const char* file)
 {
 	unsigned char bytes[4];
 

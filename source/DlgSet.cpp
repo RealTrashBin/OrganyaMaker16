@@ -1100,7 +1100,7 @@ BOOL CALLBACK DialogWaveDB(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPara
 		strcat(sDir, "soundbanks");
 
 		char sPath[MAX_PATH];
-		sprintf(sPath, "%s\\*.sb", sDir);
+		sprintf(sPath, "%s\\*.wdb", sDir);
 
 		if ((hFind = FindFirstFile(sPath, &fdFile)) != INVALID_HANDLE_VALUE)
 		{
@@ -1209,7 +1209,7 @@ BOOL CALLBACK DialogMemo(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	return 0;
 }
-
+/*
 BOOL CALLBACK DialogSettings(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	//	char str[10] = {NULL};
@@ -1237,7 +1237,7 @@ BOOL CALLBACK DialogSettings(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lPa
 	}
 	return 0;
 }
-
+*/
 static unsigned long sample_rate = 0;
 static unsigned long loop_count = 0;
 static unsigned long fade_mseconds = 0;
@@ -1298,7 +1298,6 @@ bool ExportWave(unsigned int streamsize, unsigned int samples, const char *strPa
 BOOL CALLBACK DialogWavExport(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	MUSICINFO mi;
-	FILE* deez;
 	char res;
 	char strPath[MAX_PATH] = {NULL};
 	switch (message) {
@@ -1396,9 +1395,6 @@ BOOL CALLBACK DialogWavExport(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lP
 
 BOOL CALLBACK DialogDecayLength(HWND hdwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	MUSICINFO mi;
-	FILE* deez;
-	char res;
 	char strPath[MAX_PATH] = { NULL };
 	switch (message) {
 	case WM_INITDIALOG: {
@@ -1500,7 +1496,7 @@ bool GetSetPVInitFile(HWND hdwnd, int IsSave, int iQuiet)
 	FILE *fp;
 	char init_file[512];
 	int ml;
-	strcpy(init_file, music_file);
+	strcpy(init_file, "Default");
 	ml = strlen(init_file);
 	if(ml>4){
 		if(init_file[ml-4]=='.'){ //pvi付加
@@ -1516,7 +1512,7 @@ bool GetSetPVInitFile(HWND hdwnd, int IsSave, int iQuiet)
 	ofn.hwndOwner   = hdwnd;
 	ofn.hInstance   = hInst;
 	//ofn.lpstrFilter = "パン／ボリューム初期値データ[*.pvi]\0*.pvi\0全ての形式 [*.*]\0*.*\0\0"; //パン／ボリューム初期値データ[*.pvi]\0*.pvi\0全ての形式 [*.*]\0*.*\0\0	// 2014.10.19 D
-	ofn.lpstrFilter = MessageString[IDS_STRING108]; //パン／ボリューム初期値データ[*.pvi]\0*.pvi\0全ての形式 [*.*]\0*.*\0\0	// 2014.10.19 A
+	ofn.lpstrFilter = "Default Pan/Volume Data (*.pvi)\0*.pvi\0All Files (*.*)\0*.*\0\0";
 	ofn.lpstrFile   = init_file;
 	ofn.nMaxFile    = MAX_PATH;
 	ofn.lpstrDefExt = "pvi";

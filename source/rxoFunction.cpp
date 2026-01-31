@@ -243,7 +243,7 @@ bool SetLoadRecentFile(int iNum)
 {
 	if (iNum < 0 || iNum > 9) return false;
 	if (org_data.FileCheckBeforeLoad(RecentFileName[iNum])) return false;
-	strcpy(music_file, RecentFileName[iNum]);
+	strcpy(mus_file, RecentFileName[iNum]);
 	return true;
 }
 
@@ -936,7 +936,7 @@ bool AutoLoadPVIFile()
 	//2014.05.30 M
 	char *PVIFile;
 	PVIFile = new char[MAX_PATH];
-	strcpy(PVIFile, music_file);
+	strcpy(PVIFile, mus_file);
 	int ml = strlen(PVIFile);
 	if(ml>4){
 		if(PVIFile[ml-4] == '.'){
@@ -969,7 +969,7 @@ bool AutoSavePVIFile()
 	//2014.05.06 A
 	char *PVIFile;
 	PVIFile = new char[MAX_PATH];
-	strcpy(PVIFile, music_file);
+	strcpy(PVIFile, mus_file);
 	int ml = strlen(PVIFile);
 	if(ml>4){
 		if(PVIFile[ml-4] == '.'){
