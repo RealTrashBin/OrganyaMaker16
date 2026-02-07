@@ -49,7 +49,7 @@ HWND hWnd;
 #define SETWAVE		0x00000020
 #define SETPIPI		0x00000040
 
-//#define Hybrid //Please un-note this if you wish for Cave Story to play both ORG and ORG16 files.
+//#define HYBRID //Please un-note this if you wish for Cave Story to play both ORG and ORG16 files.
 
 // Below are Organya song data structures
 typedef struct NOTELIST
@@ -553,7 +553,7 @@ void OrgData::ReleaseNote(void)
 		}
 	}
 }
-#ifdef Hybrid
+#ifdef HYBRID
 	char pass[7] = "Org-01";
 	char pass2[7] = "Org-02";	// Pipi
 	char pass3[7] = "Org-03";	// New Dram
@@ -580,13 +580,11 @@ BOOL OrgData::InitMusicData(const char *path)
 
 	memcpy(&pass_check[0], p, 6);
 	p += 6;
-#ifdef Hybrid
+#ifdef HYBRID
 	if (memcmp(pass_check, pass, 6) == 0)
 		ver = 1;	
-	if (memcmp(pass_check, pass2, 6) == 0)
-		ver = 2;	
-	if (memcmp(pass_check, pass3, 6) == 0)
-		ver = 3;
+	if (memcmp(pass_check, pass2, 6) == 0 || memcmp(pass_check, pass3, 6) == 0)
+		ver = 2;
 #endif
 
 	if (memcmp(pass_check, pass4, 6) == 0)
@@ -594,11 +592,12 @@ BOOL OrgData::InitMusicData(const char *path)
 
 	if(!ver)
 	{
-#ifdef Hybrid
+#ifdef HYBRID
 		MessageBox(hWnd, "Organya is not proper version.", "Error(Orgnaya)", MB_OK);
 #endif
-#ifndef Hybrid
+#ifndef HYBRID
 		MessageBox(hWnd, "Organya is not version 4.", "Error(Orgnaya)", MB_OK);
+
 #endif
 		free(file_buffer);
 		return FALSE;
